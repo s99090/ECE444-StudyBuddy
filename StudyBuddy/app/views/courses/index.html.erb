@@ -8,11 +8,6 @@
     <th>Subject</th>
     <th>Term</th>
     <th>Course Code</th>
-    <th>Students</th>
-    <th>Useful Notes</th>
-    <th>Useful Links</th>
-    <th>Discussion Forum</th>
-    <th>Course Groups</th>
   </tr>
  
   <% @courses.each do |course| %>
@@ -22,11 +17,6 @@
       <td><%= course.subject %></td>
       <td><%= course.term %></td>
       <td><%= course.course_code %></td>
-      <td><%= course.students %></td>
-      <td><%= course.notes %></td>
-      <td><%= course.links %></td>
-      <td><%= course.discussions %></td>
-      <td><%= course.groups %></td>
       <td><%= link_to 'Show', course_path(course) %></td>
     </tr>
   <% end %>
