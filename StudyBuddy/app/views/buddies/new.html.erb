@@ -1,0 +1,26 @@
+<%= form_with scope: :buddy, url: buddies_path, local: true do |form| %>
+    <p>
+      <%= form.label :username %><br>
+      <%= form.text_field :username %>
+    </p>
+   
+    <p>
+      <%= form.label :service %><br>
+      <%= form.text_field :service %>
+    </p>
+
+    <p>
+      <%= form.label :description %><br>
+      <%= form.text_area :description %>
+    </p>
+
+
+    <p>
+      <%= form.label :hourly_rate %><br>
+      <%= form.text_field :hourly_rate %>
+    </p>
+   
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
