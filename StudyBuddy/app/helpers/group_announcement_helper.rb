@@ -1,0 +1,2 @@
+module GroupAnnouncementHelper
+end

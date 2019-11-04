@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  group: one
+  time: 2019-11-03 16:21:43
+  place: MyText
+  description: MyText
+
+two:
+  group: two
+  time: 2019-11-03 16:21:43
+  place: MyText
+  description: MyText

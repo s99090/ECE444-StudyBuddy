@@ -1,0 +1,2 @@
+class GroupAnnouncementController < ApplicationController
+end
