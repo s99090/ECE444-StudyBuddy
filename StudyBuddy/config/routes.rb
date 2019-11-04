@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :groups do 
     resources :group_announcement, :group_meeting
   end
-  resources :buddies, :courses
+  resources :buddies, :courses, :notes, :links, :discussions
 
   root 'welcome#index'
 end

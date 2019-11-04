@@ -1,0 +1,21 @@
+<h1>Listing Available Links for @link.course</h1>
+<%= link_to 'Main Page', controller: 'welcome' %> |
+<%= link_to 'New Link', new_link_path %>
+
+<table>
+  <tr>
+    <th>Link Name</th>
+    <th>Link URL</th>
+    <th>Date Uploaded</th>
+  </tr>
+ 
+  <% @links.each do |link| %>
+    <tr>
+      <td><%= link.link_name %></td>
+      <td><%= link.link_url %></td>
+      <td><%= link.created_at %></td>
+      <td><%= link_to 'Proceed', link_path(link) %></td>
+    </tr>
+  <% end %>
+</table>
+
