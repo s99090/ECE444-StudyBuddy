@@ -39,6 +39,26 @@ ActiveRecord::Schema.define(version: 2019_11_04_034956) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "group_announcements", force: :cascade do |t|
+    t.string "creator"
+    t.text "body"
+    t.bigint "group_id", null: false
+    t.datetime "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_announcements_on_group_id"
+  end
+
+  create_table "group_meetings", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.datetime "time"
+    t.text "place"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_meetings_on_group_id"
+  end
+
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.text "text"
