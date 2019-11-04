@@ -11,8 +11,7 @@
 
 <p>
 <strong>Links:</strong>
-<%= links_path %>
-<%= link_to 'Links', links_path %>
+<%= link_to 'Links', course_links_path(@course, @link)%>
 </p>
 
 <p>
@@ -26,7 +25,7 @@
 </p>
 
 <%= link_to 'Notes', controller: 'notes' %>
-<%= link_to 'External Links', controller: 'links' %>
+
 <%= link_to 'Discussions', controller: 'discussions' %>
 
 <%= link_to 'Back', courses_path %>

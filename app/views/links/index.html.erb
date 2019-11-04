@@ -1,6 +1,7 @@
-<h1>Listing Available Links for @link.course</h1>
+<h1>Listing Available Links for <%=@course.course_code%></h1>
 <%= link_to 'Main Page', controller: 'welcome' %> |
-<%= link_to 'New Link', new_link_path %>
+<%= link_to 'New Link', new_course_link_path%>
+
 
 <table>
   <tr>
@@ -14,7 +15,7 @@
       <td><%= link.link_name %></td>
       <td><%= link.link_url %></td>
       <td><%= link.created_at %></td>
-      <td><%= link_to 'Proceed', link_path(link) %></td>
+
     </tr>
   <% end %>
 </table>

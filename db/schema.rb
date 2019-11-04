@@ -39,26 +39,6 @@ ActiveRecord::Schema.define(version: 2019_11_03_222241) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "group_announcements", force: :cascade do |t|
-    t.string "creator"
-    t.text "body"
-    t.bigint "group_id", null: false
-    t.datetime "date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_id"], name: "index_group_announcements_on_group_id"
-  end
-
-  create_table "group_meetings", force: :cascade do |t|
-    t.bigint "group_id", null: false
-    t.datetime "time"
-    t.text "place"
-    t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_id"], name: "index_group_meetings_on_group_id"
-  end
-
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.text "text"
@@ -67,14 +47,12 @@ ActiveRecord::Schema.define(version: 2019_11_03_222241) do
   end
 
   create_table "links", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "course_id"
     t.string "link_name"
     t.string "link_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_links_on_user_id"
+    t.index ["course_id"], name: "index_links_on_course_id"
   end
 
-  add_foreign_key "group_announcements", "groups"
-  add_foreign_key "group_meetings", "groups"
 end
