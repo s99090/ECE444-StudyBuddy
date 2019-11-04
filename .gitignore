@@ -8,28 +8,35 @@
 /.bundle
 
 # Ignore the default SQLite database.
-/StudyBuddy/db/*.sqlite3
-/StudyBuddy/db/*.sqlite3-journal
+/db/*.sqlite3
+/db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
 /StudyBuddy/log/*
 /StudyBuddy/tmp/*
 !/StudyBuddy/log/.keep
 !/StudyBuddy/tmp/.keep
 
 # Ignore uploaded files in development.
-/StudyBuddy/storage/*
-!/StudyBuddy/storage/.keep
+/storage/*
+!/storage/.keep
 
 /StudyBuddy/public/assets
+/public/assets
 StudyBuddy.byebug_history
 
 # Ignore master key for decrypting credentials and more.
 /StudyBuddy/config/master.key
+/config/master.key
 
 /StudyBuddy/public/packs
 /StudyBuddy/public/packs-test
 /StudyBuddy/node_modules
+/public/packs
+/public/packs-test
+/node_modules
 /StudyBuddy/yarn-error.log
 StudyBuddy/yarn-debug.log*
 StudyBuddy/.yarn-integrity
