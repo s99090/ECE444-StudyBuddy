@@ -3,6 +3,7 @@
 <%= @course.course_id %>
 </p>
 
+
 <p>
 <strong>Notes:</strong>
 <%= @course.notes %>
@@ -10,7 +11,8 @@
 
 <p>
 <strong>Links:</strong>
-<%= @course.links %>
+<%= links_path %>
+<%= link_to 'Links', links_path %>
 </p>
 
 <p>

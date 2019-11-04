@@ -1,0 +1,16 @@
+<%= form_with scope: :link, url: links_path, local: true do |form| %>
+    <p>
+      <%= form.label :link_name %><br>
+      <%= form.text_field :link_name %>
+    </p>
+   
+    <p>
+      <%= form.label :link_url %><br>
+      <%= form.text_field :link_url %>
+    </p>
+     
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+
