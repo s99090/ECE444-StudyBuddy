@@ -11,5 +11,8 @@ Rails.application.routes.draw do
     resources :links
   end
 
-  root 'welcome#index'
+  match '/home' => 'welcome#index', via: [:get, :post]
+  match '/about' => 'welcome#about', via: [:get, :post]
+  match '/contact' => 'welcome#contact', via: [:get, :post]
+  root 'welcome#welcome'
 end
