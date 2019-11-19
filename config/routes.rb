@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   resources :buddies, :notes, :discussions
 
+  resources :users, :only => :none do
+    resource :profile
+  end
+
   resources :courses do 
     resources :links
   end
