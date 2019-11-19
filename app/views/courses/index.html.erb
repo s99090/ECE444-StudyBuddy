@@ -1,8 +1,15 @@
-<h1>Listing Available Courses</h1>
-<%= link_to 'Main Page', controller: 'welcome' %>
-<%= link_to 'New Course', new_course_path %>
+<div style="margin-left: 100px; margin-top: 50px"><h1>Available Courses</h1></div>
 
-<table>
+<div class="ui search" style="width: 500px; margin-left: auto; margin-right: auto">
+  <div class="ui icon input">
+    <input class="prompt" type="text" placeholder="Search classes...">
+    <i class="search icon"></i>
+  </div>
+  <div class="results"></div>
+</div>
+
+<table class="ui selectable celled table" style="width: 1500px; margin-left: auto; margin-right: auto">
+<thead>
   <tr>
     <th>CourseID</th>
     <th>Name</th>
@@ -10,15 +17,20 @@
     <th>Term</th>
     <th>Course Code</th>
   </tr>
-
+  </thead>
+<tbody>
   <% @courses.each do |course| %>
     <tr>
-      <td><%= course.course_id %></td>
+      <td><%= link_to course.course_id, course_path(course) %></td>
       <td><%= course.name %></td>
       <td><%= course.subject %></td>
       <td><%= course.term %></td>
       <td><%= course.course_code %></td>
-      <td><%= link_to 'Show', course_path(course) %></td>
     </tr>
   <% end %>
+  </tbody>
 </table>
+
+<div style = "margin-left: 80%">
+<%= link_to 'New Course', new_course_path, :class => 'ui primary button'%>
+</div>
