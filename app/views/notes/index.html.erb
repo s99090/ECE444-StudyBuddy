@@ -1,1 +1,22 @@
 <h1>List all notes</h1>
+
+<button>
+  <%= link_to 'Add New Note', new_course_note_path %>
+</button>
+
+<hr>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th></th>
+  </tr>
+
+  <% @notes.each do |note| %>
+    <tr>
+      <td><%= note.title %></td>
+      <td><%= note.description %></td>
+      <td><%= link_to 'Show', course_note_path(@course, note) %></td>
+    </tr>
+  <% end %>
+</table>

@@ -5,14 +5,15 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get 'welcome/index'
 
-  resources :buddies, :notes, :discussions
+  resources :buddies, :discussions
 
   resources :users, :only => :none do
     resource :profile
   end
 
-  resources :courses do 
+  resources :courses do
     resources :links
+    resources :notes
   end
 
   resources :groups do
