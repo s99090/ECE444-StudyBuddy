@@ -1,7 +1,7 @@
 <h1>Listing Available Links for <%=@course.course_code%></h1>
 <%= link_to 'Main Page', controller: 'welcome' %> |
 <%= link_to 'New Link', new_course_link_path%>
-
+<%= params.inspect%>
 
 <table>
   <tr>
