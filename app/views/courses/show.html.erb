@@ -6,7 +6,7 @@
 
 <p>
 <strong>Notes:</strong>
-<%= @course.notes %>
+<%= link_to 'Notes', course_notes_path(@course) %>
 </p>
 
 <p>
@@ -16,16 +16,12 @@
 
 <p>
 <strong>Discussions:</strong>
-<%= @course.discussions %>
+<%= link_to 'Discussions', course_discussions_path(@course, @discussion)%>
 </p>
 
 <p>
 <strong>Groups:</strong>
 <%= @course.groups %>
 </p>
-
-<%= link_to 'Notes', course_notes_path(@course) %>
-
-<%= link_to 'Discussions', controller: 'discussions' %>
 
 <%= link_to 'Back', courses_path %>
