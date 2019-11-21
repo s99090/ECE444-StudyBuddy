@@ -43,7 +43,7 @@
       <div class="right menu">
           <% if user_signed_in? %>
           <div class="item">Logged in as <b>&nbsp;<%= current_user.email %></b></div>
-          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'item' %>
+          <%= link_to 'My Profile', user_profile_path(current_user), :class => 'item' %>
           <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'item'  %>
         <% else %>
           <%= link_to "Sign up", new_user_registration_path, :class => 'item'  %>

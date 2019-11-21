@@ -1,0 +1,10 @@
+<h1> My Profile </h1>
+<p>
+  <strong>Last Name:</strong>
+    <%= @profile.lname %><br />
+  <strong>First Name:</strong>
+    <%= @profile.fname %>
+</p>
+
+<%= link_to 'Edit Profile', edit_user_profile_path %><br />
+<%= link_to 'Edit Account', edit_user_registration_path %>
