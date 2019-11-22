@@ -1,1 +1,17 @@
 <h1>Create New Discussion</h1>
+<%= form_with scope: :discussion, url: course_discussions_path, local: true do |form| %>
+    <p>
+      <%= form.label :discussion_name %><br>
+      <%= form.text_field :discussion_name %>
+    </p>
+   
+    <p>
+      <%= form.label :discussion_administrator %><br>
+      <%= form.text_field :discussion_administrator %>
+    </p>
+     
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+

@@ -1,14 +1,20 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    registrations: 'users/registrations'
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get 'welcome/index'
 
-  resources :buddies, :notes, :discussions
+  resources :buddies
 
-  resources :courses do 
+  resources :users, :only => :none do
+    resource :profile, :only => [:show, :edit, :update]
+  end
+
+  resources :courses do
     resources :links
+    resources :notes
+    resources :discussions
   end
 
   resources :groups do

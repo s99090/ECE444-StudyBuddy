@@ -1,1 +1,22 @@
-<h1>List All Discussions</h1>
+<h1>List All Discussions for <%=@course.course_code%></h1>
+<%= link_to 'Main Page', controller: 'welcome' %> |
+<%= link_to 'New Discussion', new_course_discussion_path%>
+
+
+
+<table>
+  <tr>
+    <th>Discussion Name</th>
+    <th>Discussion URL</th>
+    <th>Date Uploaded</th>
+  </tr>
+ 
+  <% @discussions.each do |discussion| %>
+    <tr>
+      <td><%= discussion.discussion_name %></td>
+      <td><%= link_to discussion.discussion_name, course_discussion_path(@course, discussion) %></td>
+      <td><%= discussion.created_at %></td>
+    </tr>
+  <% end %>
+</table>
+

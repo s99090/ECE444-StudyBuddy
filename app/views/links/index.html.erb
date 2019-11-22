@@ -13,7 +13,7 @@
   <% @links.each do |link| %>
     <tr>
       <td><%= link.link_name %></td>
-      <td><%= link.link_url %></td>
+      <td> <%= link_to link.link_url, link.link_url, :target => "_blank" %></td>
       <td><%= link.created_at %></td>
 
     </tr>
