@@ -1,32 +1,46 @@
-<%= form_with scope: :course, url: courses_path, local: true do |form| %>
-    <p>
-      <%= form.label :course_id %><br>
+<%= form_with scope: :course, :class => "ui form", url: courses_path, local: true do |form| %>
+<div style="width: 1500px; margin-left: auto; margin-right: auto; margin-top: 75px; margin-bottom: 100px">
+  <h4 class="ui dividing header">Course Information</h4>
+    <div class = "field">
+      <%= form.label :course_id %>
       <%= form.text_field :course_id %>
-    </p>
-   
-    <p>
-      <%= form.label :name %><br>
+    </div>
+
+    <div class = "field">
+      <%= form.label :name %>
       <%= form.text_field :name %>
-    </p>
+    </div>
 
-    <p>
-      <%= form.label :subject %><br>
-      <%= form.text_area :subject %>
-    </p>
+    <div class = "field">
+      <%= form.label :subject %>
+      <%= form.text_field :subject %>
+    </div>
 
 
-    <p>
-      <%= form.label :term %><br>
+    <div class = "field">
+      <%= form.label :term %>
       <%= form.text_field :term %>
-    </p>
+    </div>
 
-    <p>
-      <%= form.label :course_code %><br>
-      <%= form.text_field :course_code %>
-    </p>
-     
-    <p>
-      <%= form.submit %>
-    </p>
+    <div class = "field">
+      <%= form.label :course_code %>
+      <%= form.text_field :course_code%>
+    </div>
+
+    <h4 class="ui dividing header">Suggested Fields</h4>
+    <div class = "field">
+      <label>Professor</label>
+      <input type="text" name="professor-name" placeholder="Albus Dumbledore">
+     </div>
+
+     <div class = "field">
+     <label>Class Description</label>
+      <textarea></textarea>
+    </div>
+
+    <div class = "field">
+      <%= form.submit :class=>'ui primary button' %>
+     </div>
+    </div>
   <% end %>
 
