@@ -1,22 +1,18 @@
-<h1>Listing buddies</h1>
+<div style="margin-left: 100px; margin-top: 50px"><h1>There are 0 Buddies available to help you!</h1></div>
 
-<%= link_to 'Sign up as a Studybuddy', new_buddy_path %>
-&nbsp;
-<%= link_to 'Main Page', controller: 'welcome' %>
-
-<table>
+<table class="ui selectable celled table" style="width: 1500px; margin-left: auto; margin-right: auto">
+  <thead>
   <tr>
-    <th>Username</th>
-<!--    <th>Service</th>-->
+    <th>Name</th>
     <th>Description</th>
     <th>Hourly rate</th>
     <th></th>
   </tr>
- 
+  </thead>
+
   <% @buddies.each do |buddy| %>
     <tr>
-      <td><%= buddy.username %></td>
-<!--      <td><%#= buddy.service %></td>-->
+      <td><%= buddy.fname + " " + buddy.lname %></td>
       <td><%= buddy.description %></td>
       <td><%= buddy.hourly_rate %></td>
       <td><%= link_to 'Show', buddy_path(buddy) %></td>
