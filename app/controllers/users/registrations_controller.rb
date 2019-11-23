@@ -10,12 +10,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  #   if resource.save
-  #     resource.create_profile
-  #   end
-  # end
+  def create
+    super
+    if resource.save
+      @profile = resource.create_profile
+      @profile.avatar.attach(io: File.open("#{Rails.root}/app/assets/images/default_profile.png"), filename: 'default_profile.png')
+    end
+  end
 
   # GET /resource/edit
   # def edit
