@@ -10,7 +10,20 @@
   <p> <%= member.username %> <%= link_to 'Profile', user_profile_path(member) %></p>
 <% end %>
 
-<h1>Announcements</h1>
+<h1>Events</h1>
+<%= link_to 'New Event', new_group_event_path(@group) %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= event.name %></td>
+      <td><%= link_to 'Show', group_event_path(@group) %></td>
+    </tr>
+  <% end %>
+</table>
 
 <h1>Discussions</h1>
 

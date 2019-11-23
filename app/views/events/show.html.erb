@@ -1,0 +1,20 @@
+
+<h1> Event </h1>
+<p>
+  <strong>Event Type:</strong>
+    <%= @event.event_type %><br />
+  <strong>Event Name:</strong>
+    <%= @event.name %><br />
+  <strong>Content:</strong>
+    <%= @event.content %><br />
+  <strong>Event Date:</strong>
+    <%= @event.datetime %><br />
+</p>
+
+<% if @event.creater_id == current_user.id %>
+  <%= link_to 'Edit Event', edit_group_event_path(@group,@event) %> |
+  <%= link_to 'Destroy', group_event_path(@group,@event),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %> |
+<% end %>
+<%= link_to 'Back', group_path(@group) %>
