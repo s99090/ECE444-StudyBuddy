@@ -2,7 +2,7 @@
 
 <%= link_to 'Main Page', controller: 'welcome' %> |
 <%= link_to 'New Group', new_group_path %>
- <%= params.inspect%>
+
 <table>
   <tr>
     <th>Name</th>
@@ -15,10 +15,14 @@
       <td><%= group.name %></td>
       <td><%= group.text %></td>
       <td><%= link_to 'Show', group_path(group) %></td>
-      <td><%= link_to 'Edit', edit_group_path(group) %></td>
-      <td><%= link_to 'Delete', group_path(group),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+
+      <% if not group.users.exists?(current_user.id) %>
+        <td><%= link_to 'Join', join_group_path(group), method: :put %></td>
+      <% else %>
+        <td><%= link_to 'Leave', join_group_path(group),
+                method: :put,
+                data: { confirm: 'If you are the only member in the group, the group will be deleted after you leave. Are you sure?' } %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
