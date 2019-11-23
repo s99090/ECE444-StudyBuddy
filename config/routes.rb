@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   end
 
   resources :groups do
+    member do
+      patch :join
+      put :join
+    end
     resources :group_announcement
     resources :group_meeting
   end

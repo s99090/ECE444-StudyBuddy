@@ -1,13 +1,25 @@
 <h1> Group: <%= @group.name %> </h1>
-<%= params.inspect%>
+
 <p>
-  <strong>Text:</strong>
+  <strong>About:</strong>
     <%= @group.text %>
 </p>
+
+<h1>Members</h1>
+<% @group.users.each do |member| %>
+  <p> <%= member.username %> <%= link_to 'Profile', user_profile_path(member) %></p>
+<% end %>
 
 <h1>Announcements</h1>
 
 <h1>Discussions</h1>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<% if @group.users.exists?(current_user.id) %>
+  <%= link_to 'Edit', edit_group_path(@group) %> |
+  <%= link_to 'Leave', join_group_path(@group),
+              method: :put,
+              data: { confirm: 'If you are the only member in the group, the group will be deleted after you leave. Are you sure?' } %> |
+<% else %>
+  <%= link_to 'Join', join_group_path(@group), method: :put %> |
+<% end %>
+  <%= link_to 'Back', groups_path %>

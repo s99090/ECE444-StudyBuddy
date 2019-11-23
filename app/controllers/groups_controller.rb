@@ -19,6 +19,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
 
     if @group.save
+      @group.users << current_user
       redirect_to @group
     else
       render 'new'
@@ -27,20 +28,37 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-   
-    if @group.update(group_params)
-      redirect_to @group
+
+    if @group.users.exists?(current_user.id)
+      if @group.update(group_params)
+        redirect_to @group
+      else
+        render 'edit'
+      end
     else
+      @group.errors[:base] << "Sorry, you are not the member of this group!"
       render 'edit'
     end
   end
-
+  
+  def join
+    @group = Group.find(params[:id])
+    
+    if @group.users.exists?(current_user.id)
+      @group.users.delete(current_user)
+      if not @group.users.any?
+        destroy
+      end
+      redirect_to groups_path
+    else
+      @group.users << current_user
+      redirect_to @group
+    end
+  end
   
   def destroy
     @group = Group.find(params[:id])
     @group.destroy
-  
-    redirect_to groups_path
   end
 
 private
