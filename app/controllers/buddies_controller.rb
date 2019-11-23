@@ -8,8 +8,8 @@ class BuddiesController < ApplicationController
     end
 
     def create
-        @buddy = Buddy.new(params.require(:buddy).permit(:id, :username, :service, :description, :hourly_rate))
- 
+        @buddy = Buddy.new(params.require(:buddy).permit(:id, :username, :fname, :lname, :description, :hourly_rate))
+
         @buddy.save
         redirect_to @buddy
     end

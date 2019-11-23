@@ -7,7 +7,7 @@
 <table>
   <tr>
     <th>Username</th>
-    <th>Service</th>
+<!--    <th>Service</th>-->
     <th>Description</th>
     <th>Hourly rate</th>
     <th></th>
@@ -16,7 +16,7 @@
   <% @buddies.each do |buddy| %>
     <tr>
       <td><%= buddy.username %></td>
-      <td><%= buddy.service %></td>
+<!--      <td><%#= buddy.service %></td>-->
       <td><%= buddy.description %></td>
       <td><%= buddy.hourly_rate %></td>
       <td><%= link_to 'Show', buddy_path(buddy) %></td>
