@@ -1,20 +1,24 @@
 class BuddiesController < ApplicationController
-    def index
-        @buddies = Buddy.all
+  def index
+    @buddies = Buddy.all
+  end
+
+  def new
+    @buddy = Buddy.new
+  end
+
+  def create
+    @buddy = Buddy.new(params.require(:buddy).permit(:id, :username, :fname, :lname, :description, :hourly_rate))
+
+    if @buddy.save
+      redirect_to @buddy
+    else
+      render 'new'
     end
 
-    def new
-        @buddy = Buddy.new
-    end
+  end
 
-    def create
-        @buddy = Buddy.new(params.require(:buddy).permit(:id, :username, :fname, :lname, :description, :hourly_rate))
-
-        @buddy.save
-        redirect_to @buddy
-    end
-
-    def show
-        @buddy = Buddy.find(params[:id])
-    end
+  def show
+    @buddy = Buddy.find(params[:id])
+  end
 end
