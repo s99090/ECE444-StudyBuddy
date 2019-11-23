@@ -2,6 +2,10 @@ class ProfilesController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @profile = @user.profile
+    if @profile == nil
+      @profile = @user.create_profile
+      @profile.avatar.attach(io: File.open("#{Rails.root}/app/assets/images/default_profile.png"), filename: 'default_profile.png')
+    end
   end
 
   # def new
@@ -32,6 +36,6 @@ class ProfilesController < ApplicationController
   
 private
   def profile_params
-    params.require(:profile).permit(:lname, :fname)
+    params.require(:profile).permit(:lname, :fname, :avatar)
   end
 end

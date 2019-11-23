@@ -1,15 +1,19 @@
-<h1>Edit Profile</h1>
+<h1>Edit My Profile</h1>
 
-<%= params.inspect%>
 <%= form_with model: [current_user, @profile], local: true do |form| %>
+  
+  <p>
+    <%= image_tag @profile.avatar, :style => "height: 60px; weight: 60px;" %><br /><br>
+    <%= form.file_field :avatar %>
+  </p>
 
   <p>
-    <%= form.label :lname %><br>
+    <%= form.label :last_name %><br>
     <%= form.text_field :lname %>
   </p>
 
   <p>
-    <%= form.label :fname %><br>
+    <%= form.label :first_name %><br>
     <%= form.text_field :fname %>
   </p>
 
