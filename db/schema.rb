@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_23_032023) do
+ActiveRecord::Schema.define(version: 2019_11_23_212309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(version: 2019_11_23_032023) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.integer "creater_id", null: false
+    t.string "commentable_type", null: false
+    t.bigint "commentable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "course_id"
     t.string "name"
@@ -68,6 +78,18 @@ ActiveRecord::Schema.define(version: 2019_11_23_032023) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["course_id"], name: "index_discussions_on_course_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "event_type"
+    t.string "name"
+    t.text "content"
+    t.datetime "datetime"
+    t.integer "creater_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_events_on_group_id"
   end
 
   create_table "group_announcements", force: :cascade do |t|
@@ -147,6 +169,7 @@ ActiveRecord::Schema.define(version: 2019_11_23_032023) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "events", "groups"
   add_foreign_key "group_announcements", "groups"
   add_foreign_key "group_meetings", "groups"
   add_foreign_key "profiles", "users"

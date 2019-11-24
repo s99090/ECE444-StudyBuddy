@@ -1,39 +1,65 @@
-<%= form_with scope: :buddy, url: buddies_path, local: true do |form| %>
+<%= form_with scope: :buddy, :class => "ui large form", url: buddies_path, local: true do |form| %>
+
+  <% if @buddy.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@buddy.errors.count, "error") %> occurred during the sign up process:
+      </h2>
+      <ul>
+        <% @buddy.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div style="width: 1500px; margin-left: auto; margin-right: auto; margin-top: 75px; margin-bottom: 100px">
+
+    <h3 class="ui dividing header">Sign up to Become a Buddy!</h3>
+
+    <div class="fields">
+      <div class="six wide field">
+        <%= form.label :first_name %><br>
+        <%= form.text_field :fname, :value => current_user.profile.fname, placeholder: "First Name" %>
+      </div>
+      <div class="six wide field">
+        <%= form.label :last_name %><br>
+        <%= form.text_field :lname, :value => current_user.profile.lname, placeholder: "Last Name" %>
+      </div>
+      <div class="six wide field">
+        <%= form.label :username, "StudyBuddy Username" %><br>
+        <%= form.text_field :username, :value => current_user.username, placeholder: "StudyBuddy Username" %>
+      </div>
+    </div>
 
 
-  <p>
-    <%= form.label :username %><br>
-    <%= form.text_field :username, :value => current_user.email %>
-  </p>
+    <div class="field">
+      <%= form.label :description, "Why would you like to be a Buddy?" %><br>
+      <%= form.text_area :description, placeholder: "I would like to be a Buddy because..." %>
+    </div>
 
-  <p>
-    <%= form.label :first_name %><br>
-    <%= form.text_field :fname %>
-  </p>
+    <div class="field">
+      <label>Which course(s) would you like to tutor?</label>
+      <%#= select_tag 'user_id', options_for_select(@users.collect { |u| [u.name, u.id] }) %>
 
-  <p>
-    <%= form.label :last_name %><br>
-    <%= form.text_field :lname %>
-  </p>
+      <select id="multi-select-demo" multiple="multiple">
 
-  <p>
-    <%= form.label :description %><br>
-    <%= form.text_area :description %>
-  </p>
+        <option value="ECE444">ECE444</option>
+        <option value="ECE555">ECE555</option>
+        <option value="ECE666">ECE666</option>
+        <option value="ECE777">ECE777</option>
 
+      </select>
+    </div>
 
-  <p>
-    <%= form.label :hourly_rate %><br>
-    <%= form.text_field :hourly_rate %>
-  </p>
+    <div class="field">
+      <%= form.label :hourly_rate, "What hourly rate would you like to be compensated at?"%><br>
+      <%= form.text_field :hourly_rate, placeholder: "25.00" %>
+    </div>
 
-  <p>
-    <%= form.label :courses %><br>
-    <%= form.text_field :courses %>
-  </p>
+    <div class="field">
 
-  <p>
-    <%= form.submit %>
-  </p>
+      <%= form.submit "Sign Up", :class => 'ui primary button' %>
+    </div>
+  </div>
 <% end %>
-

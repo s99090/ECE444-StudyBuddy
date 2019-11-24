@@ -22,8 +22,11 @@ Rails.application.routes.draw do
       patch :join
       put :join
     end
-    resources :group_announcement
-    resources :group_meeting
+    resources :events do
+      resources :comments
+    end
+    # resources :group_announcement
+    # resources :group_meeting
   end
 
   match '/home' => 'welcome#index', via: [:get, :post]

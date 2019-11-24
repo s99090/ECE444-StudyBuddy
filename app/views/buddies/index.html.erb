@@ -15,7 +15,16 @@
       <td><%= buddy.fname + " " + buddy.lname %></td>
       <td><%= buddy.description %></td>
       <td><%= buddy.hourly_rate %></td>
-      <td><%= link_to 'Show', buddy_path(buddy) %></td>
+      <td><%= current_user.profile.avatar %></td>
+      
     </tr>
   <% end %>
 </table>
+
+<div style="margin-left: 100px; margin-top: 50px">
+  <%= link_to 'Become a StudyBuddy', new_buddy_path, :class => 'ui primary button' %>
+</div>
+
+<div style="margin-left: 100px; margin-top: 50px">
+  <%= link_to 'Main Page', root_path, :class => 'ui primary button' %>
+</div>

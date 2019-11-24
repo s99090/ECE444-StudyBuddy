@@ -1,0 +1,47 @@
+
+<h1> Event </h1>
+
+<% if @event.creater_id == current_user.id %>
+  <%= link_to 'Edit Event', edit_group_event_path(@group,@event) %> |
+  <%= link_to 'Delete', group_event_path(@group,@event),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %> |
+<% end %>
+<%= link_to 'Back', group_path(@group) %>
+
+<p>
+  <strong>Event Type:</strong>
+    <%= @event.event_type %><br />
+  <strong>Event Name:</strong>
+    <%= @event.name %><br />
+  <strong>Content:</strong>
+    <%= @event.content %><br />
+  <strong>Event Date:</strong>
+    <%= @event.datetime %><br />
+</p>
+
+<h2>Comments</h2>
+<% @comments.sort_by(&:created_at).each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= User.find(comment.creater_id).username %> <%= link_to 'Profile', user_profile_path(User.find(comment.creater_id)) %>
+  </p>
+ 
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %> <% if comment.creater_id == current_user.id %><%= link_to 'Delete', group_event_comment_path(@group,@event,comment),
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' } %> <% end %>
+  </p>
+<% end %>
+ 
+<h2>Add a comment:</h2>
+<%= form_with(model: [ @group, @event, @comment ], local: true) do |form| %>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
