@@ -38,11 +38,13 @@ ActiveRecord::Schema.define(version: 2019_11_23_212309) do
 
   create_table "buddies", force: :cascade do |t|
     t.string "username"
-    t.string "service"
     t.text "description"
     t.string "hourly_rate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "fname"
+    t.string "lname"
+    t.string "courses"
   end
 
   create_table "comments", force: :cascade do |t|
