@@ -1,10 +1,9 @@
-<%= form_with scope: :buddy, :class => "ui form", url: buddies_path, local: true do |form| %>
+<%= form_with scope: :buddy, :class => "ui large form", url: buddies_path, local: true do |form| %>
 
   <% if @buddy.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@buddy.errors.count, "error") %> prohibited
-        this article from being saved:
+        <%= pluralize(@buddy.errors.count, "error") %> occurred during the sign up process:
       </h2>
       <ul>
         <% @buddy.errors.full_messages.each do |msg| %>
@@ -15,20 +14,31 @@
   <% end %>
 
   <div style="width: 1500px; margin-left: auto; margin-right: auto; margin-top: 75px; margin-bottom: 100px">
-    <h4 class="ui dividing header">Course Information</h4>
-    <div class="field">
-      <%= form.label :username %><br>
-      <%= form.text_field :username, :value => current_user.username %>
+
+    <h3 class="ui dividing header">Sign up to Become a Buddy!</h3>
+
+    <div class="two fields">
+      <div class="field">
+        <%= form.label :first_name %><br>
+        <%= form.text_field :fname, :value => current_user.profile.fname, placeholder: "First Name"  %>
+      </div>
+
+      <div class="field">
+        <%= form.label :last_name %><br>
+        <%= form.text_field :lname, :value => current_user.profile.lname, placeholder: "Last Name" %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= form.label :first_name %><br>
-      <%= form.text_field :fname, :value => current_user.profile.fname %>
-    </div>
+    <div class="two fields">
+      <div class="field">
+        <%= form.label :username, "StudyBuddy Username"%><br>
+        <%= form.text_field :username, :value => current_user.username %>
+      </div>
 
-    <div class="field">
-      <%= form.label :last_name %><br>
-      <%= form.text_field :lname, :value => current_user.profile.lname %>
+      <div class="field">
+        <%= form.label :email %><br>
+        <%= form.text_field :username, :value => current_user.email %>
+      </div>
     </div>
 
 
