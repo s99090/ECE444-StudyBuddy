@@ -35,13 +35,21 @@
 
     <div class="field">
       <%= form.label :description, "Why would you like to be a Buddy?" %><br>
-      <%= form.text_area :description %>
-
+      <%= form.text_area :description, placeholder: "I would like to be a Buddy because..." %>
     </div>
 
     <div class="field">
-      <%= form.label :courses %><br>
-      <%= form.text_field :courses %>
+      <label>Which course(s) would you like to tutor?</label>
+      <%#= select_tag 'user_id', options_for_select(@users.collect { |u| [u.name, u.id] }) %>
+
+      <select id="multi-select-demo" multiple="multiple">
+
+        <option value="ECE444">ECE444</option>
+        <option value="ECE555">ECE555</option>
+        <option value="ECE666">ECE666</option>
+        <option value="ECE777">ECE777</option>
+
+      </select>
     </div>
 
 
