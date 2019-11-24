@@ -17,33 +17,24 @@
 
     <h3 class="ui dividing header">Sign up to Become a Buddy!</h3>
 
-    <div class="two fields">
-      <div class="field">
+    <div class="fields">
+      <div class="six wide field">
         <%= form.label :first_name %><br>
-        <%= form.text_field :fname, :value => current_user.profile.fname, placeholder: "First Name"  %>
+        <%= form.text_field :fname, :value => current_user.profile.fname, placeholder: "First Name" %>
       </div>
-
-      <div class="field">
+      <div class="six wide field">
         <%= form.label :last_name %><br>
         <%= form.text_field :lname, :value => current_user.profile.lname, placeholder: "Last Name" %>
       </div>
-    </div>
-
-    <div class="two fields">
-      <div class="field">
-        <%= form.label :username, "StudyBuddy Username"%><br>
-        <%= form.text_field :username, :value => current_user.username %>
-      </div>
-
-      <div class="field">
-        <%= form.label :email %><br>
-        <%= form.text_field :username, :value => current_user.email %>
+      <div class="six wide field">
+        <%= form.label :username, "StudyBuddy Username" %><br>
+        <%= form.text_field :username, :value => current_user.username, placeholder: "StudyBuddy Username" %>
       </div>
     </div>
 
 
     <div class="field">
-      <%= form.label :description %><br>
+      <%= form.label :description, "Why would you like to be a Buddy?" %><br>
       <%= form.text_area :description %>
 
     </div>
@@ -52,6 +43,7 @@
       <%= form.label :courses %><br>
       <%= form.text_field :courses %>
     </div>
+
 
     <div class="field">
       <%= form.label :hourly_rate %><br>
