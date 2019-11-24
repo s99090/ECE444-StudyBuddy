@@ -12,7 +12,8 @@ class EventsController < ApplicationController
   def show
     @group = Group.find(params[:group_id])
     @event = @group.events.find(params[:id])
-    @comment = @event.comments.all
+    @comments = @event.comments.all
+    @comment = @event.comments.build
   end
 
   def new
