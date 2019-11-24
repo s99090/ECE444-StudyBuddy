@@ -9,7 +9,7 @@ class LinksController < ApplicationController
     end
 
     def new
-        @links = Link.newx  
+        @links = Link.new
     end
 
     def create 

@@ -1,22 +1,29 @@
-<h1>List all notes</h1>
+<div style="margin-left: 100px; margin-top: 50px">
+  <h1 class="ui dividing header">List all notes</h1>
 
-<button>
-  <%= link_to 'Add New Note', new_course_note_path %>
-</button>
+  <div class = "ui four cards">
+    <% @notes.each do |note| %>
+      <%= link_to course_note_path(@course, note), { :class=>"ui raised link card" } do %>
+        <div class="content">
+          <div class="header"><%= note.title %></div>
+          <div class="meta">Uploaded Date</div>
+          <div class="description"><%= note.description %></div>
+        </div> 
+      <div class="extra content">
+        <div class="right floated author">
+          <img class="ui avatar image"> Author Name
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
 
-<hr>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th></th>
-  </tr>
-
-  <% @notes.each do |note| %>
-    <tr>
-      <td><%= note.title %></td>
-      <td><%= note.description %></td>
-      <td><%= link_to 'Show', course_note_path(@course, note) %></td>
-    </tr>
-  <% end %>
-</table>
+  <div style = "margin-top : 50px;">
+  <%= link_to 'Add New Note', new_course_note_path, :class => 'ui primary button'%>
+  <%= link_to controller: 'welcome' do %>
+    <div class = "ui secondary button">
+    Main Page
+    </div>
+    <% end %>
+  </div>
+</div>

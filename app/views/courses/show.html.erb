@@ -1,14 +1,5 @@
 <head>
     <style type="text/css">
-      body {
-        -webkit-font-smoothing: antialiased;
-        -moz-font-smoothing: grayscale;
-      }
-      @media only screen and (min-width: 768px) {
-        .ui.container {
-          width: 800px;
-          max-width: 800px;
-        }
         nav.ui.container .ui.header {
           float: left;
           margin-top: 12px;
@@ -16,7 +7,6 @@
         nav.ui.container .ui.inverted.compact.menu {
           float: right;
         }
-      }
       .ui.inverted.vertical.center.aligned.segment {
         padding-top: 36px;
       }
@@ -85,12 +75,11 @@
     </style>
   </head>
 
-  <body id="root">
     <div class="ui inverted vertical segment">
     <%= link_to courses_path do%>
     <i class="large arrow left icon"></i>
     <% end %>
-      <nav class="ui container">
+      <nav class="ui container" style="width:800px">
         <h1 class="ui inverted header">
         <%= @course.course_id %>
         <%= @course.term %>
@@ -103,7 +92,7 @@
             <%= @course.groups%>
         </div>
       </nav>
-      <div class="ui content container">
+      <div class="ui content container" style="width:800px">
       <div class = "ui inverted segment">
       <img class="ui medium circular left floated image" src="https://s3.amazonaws.com/spoke-profiles-prod-assets/avatars/210x210h/337c08f9abb6747b6a5eb789f1b7e704d132adf7.png">
         <h2 class="ui inverted header">Professor Michael Stumm</h2>
@@ -123,4 +112,3 @@
         </div>
       </div>
     </div>
-  </body>

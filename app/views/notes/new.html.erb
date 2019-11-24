@@ -1,8 +1,6 @@
-<h1>Create new note</h1>
-
-
-
-<%= form_with scope: :note, url: course_notes_path, local:true do |form| %>
+<%= form_with scope: :note, :class => "ui form", url: course_notes_path, local:true do |form| %>
+  <div style="width: 1500px; margin-left: auto; margin-right: auto; margin-top: 75px; margin-bottom: 100px">
+  <h1 class="ui dividing header">Create new note</h1>
 
   <% if @note.errors.any? %>
     <div id="error_explanation">
@@ -18,20 +16,21 @@
     </div>
   <% end %>
 
-  <p>
-    <%= form.label :title %><br>
+  <div class = "field">
+    <%= form.label :title %>
     <%= form.text_field :title %>
-  </p>
+  </div>
 
-  <p>
-    <%= form.label :description %><br>
+  <div class = "field">
+    <%= form.label :description %>
     <%= form.text_area :description %>
-  </p>
+  </div>
 
-  <p>
-    <%= form.submit %>
-  </p>
+
+    <%= form.submit :class=>'ui primary button'%>
+    <%= link_to 'Back', course_notes_path, :class=>'ui secondary button' %>
+
+
+  </div>
 
 <% end %>
-
-<%= link_to 'Back', course_notes_path %>

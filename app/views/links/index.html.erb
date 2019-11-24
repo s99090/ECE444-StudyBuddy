@@ -1,22 +1,28 @@
-<h1>Listing Available Links for <%=@course.course_code%></h1>
-<%= link_to 'Main Page', controller: 'welcome' %> |
-<%= link_to 'New Link', new_course_link_path%>
 
+<div style="margin-left: 100px; margin-top: 50px">
+<h1 class="ui dividing header">Listing Available Links for <%=@course.course_code%></h1>
 
-<table>
-  <tr>
-    <th>Link Name</th>
-    <th>Link URL</th>
-    <th>Date Uploaded</th>
-  </tr>
- 
-  <% @links.each do |link| %>
-    <tr>
-      <td><%= link.link_name %></td>
-      <td> <%= link_to link.link_url, link.link_url, :target => "_blank" %></td>
-      <td><%= link.created_at %></td>
-
-    </tr>
+<div class="ui relaxed divided list">
+<% @links.each do |link| %>
+  <div class="item">
+    <i class="large github middle aligned icon"></i>
+    <div class="content">
+      <div class="header"><%= link.link_name %></div>
+      <div class="description"><%= link_to link.link_url, link.link_url, :target => "_blank" %></div>
+      <div class="description"><%= link.created_at %></div>
+    </div>
+  </div>
   <% end %>
-</table>
+</div>
+ 
+
+<div style = "margin-top : 50px;">
+<%= link_to 'Add New Link', new_course_link_path, :class => 'ui primary button'%>
+<%= link_to controller: 'welcome' do %>
+  <div class = "ui secondary button">
+  Main Page
+  </div>
+  <% end %>
+</div>
+</div>
 
