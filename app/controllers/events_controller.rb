@@ -54,7 +54,7 @@ class EventsController < ApplicationController
 
     if @event.creater_id == current_user.id
       @event.destroy
-      redirect_to group_event_path(@group, @event)
+      redirect_to group_path(@group)
     else
       @event.errors[:base] << "Sorry, you are not the creater of this event!"
       render 'show'
