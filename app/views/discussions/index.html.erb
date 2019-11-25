@@ -1,22 +1,50 @@
-<h1>List All Discussions for <%=@course.course_code%></h1>
-<%= link_to 'Main Page', controller: 'welcome' %> |
-<%= link_to 'New Discussion', new_course_discussion_path%>
+<div style="margin-left: 100px; margin-top: 50px">
+<h1 class="ui dividing header">List All Discussions for <%=@course.course_code%></h1>
+
+<div class="ui borderless compact menu" style = "margin-bottom: 30px;">
+<%= link_to 'Home', course_path(@course), :class=>"item"%>
+<%= link_to 'Notes', course_notes_path(@course), :class=>"item"%>
+<%= link_to 'Links', course_links_path(@course, @link), :class=>"item"%>
+<%= link_to 'Discussions', course_discussions_path(@course, @discussion), :class=>"active item" %>
+<%= @course.groups%>
+</div>
 
 
-
-<table>
-  <tr>
-    <th>Discussion Name</th>
-    <th>Discussion URL</th>
-    <th>Date Uploaded</th>
-  </tr>
- 
+<div class = "ui items">
   <% @discussions.each do |discussion| %>
-    <tr>
-      <td><%= discussion.discussion_name %></td>
-      <td><%= link_to discussion.discussion_name, course_discussion_path(@course, discussion) %></td>
-      <td><%= discussion.created_at %></td>
-    </tr>
+    <div class="item">
+      <div class = "ui placeholder">
+        <div class="image">
+        </div>
+      </div>
+      <div class="content">
+      <%= link_to discussion.discussion_name, course_discussion_path(@course, discussion)%>
+        <div class="meta">
+          <span>Description</span>
+        </div>
+        <div class="description">
+          <p></p>
+        </div>
+        <div class="extra">
+        <%= discussion.created_at %>
+        </div>
+      </div>
+    </div>
   <% end %>
-</table>
+</div>
+
+  <div style = "margin-top : 50px;">
+    <%= link_to 'Add New Discussion', new_course_discussion_path, :class => 'ui primary button'%>
+    <%= link_to courses_path do %>
+      <div class = "ui secondary button">
+      Back
+      </div>
+    <% end %>
+    <%= link_to controller: 'welcome' do %>
+      <div class = "ui secondary button">
+      Main Page
+      </div>
+    <% end %>
+  </div>
+</div>
 

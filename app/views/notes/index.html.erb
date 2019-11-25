@@ -1,5 +1,13 @@
-<div style="margin-left: 100px; margin-top: 50px">
+<div style="margin-left: 100px; margin-top: 50px; width: 80%">
   <h1 class="ui dividing header">List all notes</h1>
+
+  <div class="ui borderless compact menu" style = "margin-bottom: 30px;">
+  <%= link_to 'Home', course_path(@course), :class=>"item"%>
+  <%= link_to 'Notes', course_notes_path(@course), :class=>"active item"%>
+  <%= link_to 'Links', course_links_path(@course, @link), :class=>"item"%>
+  <%= link_to 'Discussions', course_discussions_path(@course, @discussion), :class=>"item" %>
+  <%= @course.groups%>
+</div>
 
   <div class = "ui four cards">
     <% @notes.each do |note| %>
@@ -20,6 +28,11 @@
 
   <div style = "margin-top : 50px;">
   <%= link_to 'Add New Note', new_course_note_path, :class => 'ui primary button'%>
+  <%= link_to course_path(@course) do %>
+    <div class = "ui secondary button">
+    Back
+    </div>
+  <% end %>
   <%= link_to controller: 'welcome' do %>
     <div class = "ui secondary button">
     Main Page

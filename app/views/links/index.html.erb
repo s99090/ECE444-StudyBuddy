@@ -2,6 +2,14 @@
 <div style="margin-left: 100px; margin-top: 50px">
 <h1 class="ui dividing header">Listing Available Links for <%=@course.course_code%></h1>
 
+<div class="ui borderless compact menu">
+  <%= link_to 'Home', course_path(@course), :class=>"item"%>
+  <%= link_to 'Notes', course_notes_path(@course), :class=>"item"%>
+  <%= link_to 'Links', course_links_path(@course, @link), :class=>"active item"%>
+  <%= link_to 'Discussions', course_discussions_path(@course, @discussion), :class=>"item" %>
+  <%= @course.groups%>
+</div>
+
 <div class="ui relaxed divided list">
 <% @links.each do |link| %>
   <div class="item">
@@ -18,6 +26,11 @@
 
 <div style = "margin-top : 50px;">
 <%= link_to 'Add New Link', new_course_link_path, :class => 'ui primary button'%>
+<%= link_to courses_path do %>
+  <div class = "ui secondary button">
+  Back
+  </div>
+<% end %>
 <%= link_to controller: 'welcome' do %>
   <div class = "ui secondary button">
   Main Page
