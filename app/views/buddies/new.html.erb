@@ -39,7 +39,8 @@
       </div>
       <div class="six wide field">
         <%= form.label :username, "StudyBuddy Username" %><br>
-        <%= form.text_field :username, :value => current_user.username, placeholder: "StudyBuddy Username", :disabled => true%>
+        <%#= form.text_field :username, :value => current_user.username, placeholder: "StudyBuddy Username", :disabled => true%>
+        <%= form.text_field :username, :value => current_user.username, placeholder: "StudyBuddy Username" %>
       </div>
     </div>
 
@@ -50,9 +51,8 @@
     </div>
 
     <div class="field">
-      <label>Which course(s) would you like to tutor?</label>
-      <%= select_tag 'multi_select_courses',
-                     options_for_select(@courses.collect { |u| [u.name, u.id] }), multiple: true %>
+      <%= form.label :courses, "Which course(s) would you like to tutor?" %>
+      <%= form.collection_select(:courses, Course.all, :id, :name, {:prompt => "Available courses:"}, {:multiple => true}) %>
     </div>
 
     <div class="field">

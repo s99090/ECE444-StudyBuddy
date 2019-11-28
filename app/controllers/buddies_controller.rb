@@ -4,22 +4,29 @@ class BuddiesController < ApplicationController
   end
 
   def new
-    @courses = Course.all
-    @users = User.all
     @buddy = Buddy.new
   end
 
   def create
-    @courses = Course.all
-    @users = User.all
 
     @buddy = Buddy.new(params.require(:buddy).permit(:id, :username, :fname, :lname, :description, :hourly_rate, :courses))
 
-    if not @buddy.save
+    if not @buddy.save or params[:buddy][:courses] == [""] #or params[:buddy][:username] != current_user.username
+
+      if params[:buddy][:courses] == [""]
+        @buddy.errors.add(:courses, "can't be empty, you must select at least 1 course!")
+      end
+
+      # if params[:buddy][:username] != current_user.username
+      #   @buddy.errors.add(:courses, "must match current user that is signed in!")
+      # end
+
       render 'new'
+
     else
       redirect_to @buddy
     end
+
 
   end
 
