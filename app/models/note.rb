@@ -1,3 +1,3 @@
 class Note < ApplicationRecord
-  belongs_to :course
+  belongs_to :noteowner, polymorphic: true
 end

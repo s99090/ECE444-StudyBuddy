@@ -3,11 +3,24 @@
   <% if @buddy.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@buddy.errors.count, "error") %> occurred during the sign up process:
+        <%= pluralize(@buddy.errors.count, "Error") %> Occurred During the Sign up Process:
       </h2>
       <ul>
         <% @buddy.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+
+          <% if msg.include? "Fname" %>
+            <li><%= msg.sub! 'Fname', 'First name' %></li>
+            
+          <% elsif msg.include? "Lname" %>
+            <li><%= msg.sub! 'Lname', 'Last name' %></li>
+            
+          <% elsif msg.include? "Description can't be blank" %>
+            
+            <li><%= msg.sub! "Description can't be blank", 'You must provide a description for why you would like to be a Buddy' %></li>
+          <% else %>
+            <li><%= msg %></li>
+          <% end %>
+
         <% end %>
       </ul>
     </div>
@@ -28,6 +41,7 @@
       </div>
       <div class="six wide field">
         <%= form.label :username, "StudyBuddy Username" %><br>
+        <%#= form.text_field :username, :value => current_user.username, placeholder: "StudyBuddy Username", :disabled => true%>
         <%= form.text_field :username, :value => current_user.username, placeholder: "StudyBuddy Username" %>
       </div>
     </div>
@@ -39,21 +53,12 @@
     </div>
 
     <div class="field">
-      <label>Which course(s) would you like to tutor?</label>
-      <%#= select_tag 'user_id', options_for_select(@users.collect { |u| [u.name, u.id] }) %>
-
-      <select id="multi-select-demo" multiple="multiple">
-
-        <option value="ECE444">ECE444</option>
-        <option value="ECE555">ECE555</option>
-        <option value="ECE666">ECE666</option>
-        <option value="ECE777">ECE777</option>
-
-      </select>
+      <%= form.label :courses, "Which course(s) would you like to tutor?" %>
+      <%= form.collection_select(:courses, Course.all, :id, :name, {:prompt => "Available courses:"}, {:multiple => true}) %>
     </div>
 
     <div class="field">
-      <%= form.label :hourly_rate, "What hourly rate would you like to be compensated at?"%><br>
+      <%= form.label :hourly_rate, "What hourly rate would you like to be compensated at?" %><br>
       <%= form.text_field :hourly_rate, placeholder: "25.00" %>
     </div>
 

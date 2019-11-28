@@ -6,6 +6,7 @@
     <th>Name</th>
     <th>Description</th>
     <th>Hourly rate</th>
+    <th>Image</th>
     <th></th>
   </tr>
   </thead>
@@ -15,8 +16,8 @@
       <td><%= buddy.fname + " " + buddy.lname %></td>
       <td><%= buddy.description %></td>
       <td><%= buddy.hourly_rate %></td>
-      <td><%= current_user.profile.avatar %></td>
-      
+      <td><%= image_tag current_user.profile.avatar %></td>
+
     </tr>
   <% end %>
 </table>

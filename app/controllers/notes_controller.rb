@@ -11,21 +11,16 @@ class NotesController < ApplicationController
   def create
     @course = Course.find(params["course_id"])
     @note = Note.new(note_params)
+    @note.author_id = current_user.id
     @note.course_id = @course.id
     if @note.save
       flash[:success] = "Saved!"
       redirect_to course_notes_path
     else
-      flash[:alert] = "Not Saved"
+      flash[:alert] = "Note was not saved"
+      #TODO: add more flash types (e.g. "add_flash_types :danger :myflashtype2") and return more specific error
       render 'new'
     end
-    # if @note.save
-    #   redirect_to @note
-    #   puts 'saved'
-    # else
-    #   puts 'failed'
-    #   render 'new'
-    # end
   end
 
   def show
@@ -35,7 +30,8 @@ class NotesController < ApplicationController
 
   private
     def note_params
-      params.require(:note).permit(:note_id, :title, :author, :description)
-      # params.require(:note).permit(:title, :description)
+      # params.require(:note).permit(:note_id, :title, :author, :description)
+      inputs = params.require(:note).permit(:title, :description)
+      inputs[:author]
     end
 end
