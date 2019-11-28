@@ -12,8 +12,10 @@ class BuddiesController < ApplicationController
 
     @buddy = Buddy.new(params.require(:buddy).permit(:id, :username, :fname, :lname, :description, :hourly_rate, :courses))
 
-    unless @buddy.save
+    if not @buddy.save
       render 'new'
+    else
+      redirect_to @buddy
     end
 
   end
