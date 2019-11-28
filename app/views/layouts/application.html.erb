@@ -40,7 +40,6 @@
     <% else %>
       <a class="item" href="/buddies">Buddies</a>
     <% end %>
-<<<<<<< HEAD
       <div class="right menu">
           <% if user_signed_in? %>
           <div class="item">Logged in as 
@@ -54,18 +53,6 @@
           <%= link_to "Login", new_user_session_path, :class => 'item'  %>
         <% end %>
       </div>
-=======
-    <div class="right menu">
-      <% if user_signed_in? %>
-        <div class="item">Logged in as
-          <b>&nbsp;<%= current_user.username %></b><%= image_tag current_user.profile.avatar %></div>
-        <%= link_to 'My Profile', user_profile_path(current_user), :class => 'item' %>
-        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'item' %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path, :class => 'item' %>
-        <%= link_to "Login", new_user_session_path, :class => 'item' %>
-      <% end %>
->>>>>>> 57ae79527371cc98efc7e0000cf8093438c8aeb3
     </div>
   </div>
 </div>
