@@ -53,14 +53,29 @@
     </div>
   </div>
 
-    <div class="container">
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
+    <div class="container" style="padding-left:20px; padding-right:20px;">
+    <!-- for each flash message display it and set class to alert, alert-name(e.g. alert-danger)-->
+      <% flash.each do |name, msg| %>
+        <div class="ui message">
+          <strong><%= name %></strong>
+          <p><%= msg %></p>
+        </div>
       <% end %>
       <%= yield %>
     </div>
   </body>
 </html>
+
+<!--
+Dead code:
+      <%
+=begin%>
+ <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %> 
+<%
+=end%>
+-->

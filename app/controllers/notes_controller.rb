@@ -16,16 +16,10 @@ class NotesController < ApplicationController
       flash[:success] = "Saved!"
       redirect_to course_notes_path
     else
-      flash[:alert] = "Not Saved"
+      flash[:alert] = "Note was not saved"
+      #TODO: add more flash types (e.g. "add_flash_types :danger :myflashtype2") and return more specific error
       render 'new'
     end
-    # if @note.save
-    #   redirect_to @note
-    #   puts 'saved'
-    # else
-    #   puts 'failed'
-    #   render 'new'
-    # end
   end
 
   def show
@@ -36,6 +30,5 @@ class NotesController < ApplicationController
   private
     def note_params
       params.require(:note).permit(:note_id, :title, :author, :description)
-      # params.require(:note).permit(:title, :description)
     end
 end
