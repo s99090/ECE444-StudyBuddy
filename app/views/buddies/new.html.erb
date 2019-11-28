@@ -51,16 +51,8 @@
 
     <div class="field">
       <label>Which course(s) would you like to tutor?</label>
-      <%#= select_tag 'user_id', options_for_select(@users.collect { |u| [u.name, u.id] }) %>
-
-      <select id="multi-select-demo" multiple="multiple">
-
-        <option value="ECE444">ECE444</option>
-        <option value="ECE555">ECE555</option>
-        <option value="ECE666">ECE666</option>
-        <option value="ECE777">ECE777</option>
-
-      </select>
+      <%= select_tag 'multi_select_courses',
+                     options_for_select(@courses.collect { |u| [u.name, u.id] }), multiple: true %>
     </div>
 
     <div class="field">

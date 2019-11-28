@@ -4,13 +4,15 @@ class BuddiesController < ApplicationController
   end
 
   def new
+    @courses = Course.all
     @buddy = Buddy.new
   end
 
   def create
+
     @buddy = Buddy.new(params.require(:buddy).permit(:id, :username, :fname, :lname, :description, :hourly_rate, :courses))
 
-    if not @buddy.save
+    unless @buddy.save
       render 'new'
     end
 
