@@ -24,13 +24,26 @@ class BuddiesController < ApplicationController
       render 'new'
 
     else
-      redirect_to @buddy
-    end
 
+      s = []
+      params[:buddy][:courses].each do |c|
+        if c != ""
+          s.push(Course.find(c).name)
+        end
+      end
+
+      @buddy.courses = s.join(",")
+      @buddy.save
+
+      redirect_to @buddy
+
+    end
 
   end
 
   def show
     @buddy = Buddy.find(params[:id])
   end
+
 end
+

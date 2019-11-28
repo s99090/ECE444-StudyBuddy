@@ -10,11 +10,13 @@
 
           <% if msg.include? "Fname" %>
             <li><%= msg.sub! 'Fname', 'First name' %></li>
+            
           <% elsif msg.include? "Lname" %>
             <li><%= msg.sub! 'Lname', 'Last name' %></li>
+            
           <% elsif msg.include? "Description can't be blank" %>
-            <li><%= msg.sub! "Description can't be blank",
-                             'You must provide a description for why you would like to be a Buddy' %></li>
+            
+            <li><%= msg.sub! "Description can't be blank", 'You must provide a description for why you would like to be a Buddy' %></li>
           <% else %>
             <li><%= msg %></li>
           <% end %>
