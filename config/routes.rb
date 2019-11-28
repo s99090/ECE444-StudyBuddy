@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   resources :courses do
     resources :links
     resources :notes
-    resources :discussions
+    resources :discussions do
+      resources :comments
+    end
   end
 
   resources :groups do

@@ -1,1 +1,55 @@
-<h1>Show Discussion</h1>
+
+<h1>Welcome to <%= @discussion.discussion_name %></h1>
+<h2><%=@discussion.initial_post%></h2>
+
+<% if @discussion.creater_id == current_user.id %>
+  <%= link_to 'Edit Discussion', edit_course_discussion_path(@course,@discussion) %> |
+  <%= link_to 'Delete', course_discussion_path(@course,@discussion),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %> |
+<% end %>
+<%= link_to 'Back', course_path(@course) %>
+
+<h2>Comments</h2>
+<% @comments.sort_by(&:created_at).each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= User.find(comment.creater_id).username %> <%= link_to 'Profile', user_profile_path(User.find(comment.creater_id)) %>
+  </p>
+ 
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %> <% if comment.creater_id == current_user.id %><%= link_to 'Delete', course_discussion_comment_path(@course,@discussion,comment),
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' } %> <% end %>
+  </p>
+  <p>
+  <strong>Created at:</strong>
+  <%= comment.created_at %> 
+</p>
+<% end %>
+ 
+<h2>Add a comment:</h2>
+<%= form_with(model: [ @course, @discussion, @comment ], local: true) do |form| %>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+<div style = "margin-top : 50px;">
+    <%= link_to course_discussions_path do%>
+      <div class = "ui secondary button">
+      Back
+      </div>
+    <% end %>
+    <%= link_to controller: 'welcome' do %>
+      <div class = "ui secondary button">
+      Main Page
+      </div>
+    <% end %>
+</div>
+

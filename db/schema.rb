@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2019_11_23_212309) do
     t.string "discussion_id"
     t.string "discussion_name"
     t.string "discussion_administrator"
+    t.string "initial_post"
     t.integer "creater_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
