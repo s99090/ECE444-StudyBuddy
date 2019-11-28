@@ -5,10 +5,13 @@ class BuddiesController < ApplicationController
 
   def new
     @courses = Course.all
+    @users = User.all
     @buddy = Buddy.new
   end
 
   def create
+    @courses = Course.all
+    @users = User.all
 
     @buddy = Buddy.new(params.require(:buddy).permit(:id, :username, :fname, :lname, :description, :hourly_rate, :courses))
 
