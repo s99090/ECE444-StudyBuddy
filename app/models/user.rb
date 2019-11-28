@@ -5,5 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :profile, dependent: :destroy
   has_and_belongs_to_many :groups
+  has_many :notes, as: :noteowner
   validates :username, uniqueness: true, presence: true
 end

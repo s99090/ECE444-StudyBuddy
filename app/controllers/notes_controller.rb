@@ -11,6 +11,7 @@ class NotesController < ApplicationController
   def create
     @course = Course.find(params["course_id"])
     @note = Note.new(note_params)
+    @note.author_id = current_user.id
     @note.course_id = @course.id
     if @note.save
       flash[:success] = "Saved!"
@@ -29,6 +30,8 @@ class NotesController < ApplicationController
 
   private
     def note_params
-      params.require(:note).permit(:note_id, :title, :author, :description)
+      # params.require(:note).permit(:note_id, :title, :author, :description)
+      inputs = params.require(:note).permit(:title, :description)
+      inputs[:author]
     end
 end
