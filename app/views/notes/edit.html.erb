@@ -1,6 +1,6 @@
-<h1>Create New Note</h1>
+<h1>Edit Note <%= @note.title %> </h1>
 
-<%= form_with scope: :note, :class => "ui form", url: course_notes_path, local:true do |form| %>
+<%= form_with scope: :note, :class => "ui form", url: course_note_path(@course), method: :patch, local:true do |form| %>
   <div style="width: 1500px; margin-left: auto; margin-right: auto; margin-top: 75px; margin-bottom: 100px">
 
   <% if @note.errors.any? %>
@@ -35,3 +35,4 @@
   </div>
 
 <% end %>
+
