@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one :profile, dependent: :destroy
+  has_many :notes
   has_and_belongs_to_many :groups
-  has_many :notes, as: :noteowner
   validates :username, uniqueness: true, presence: true
 end
