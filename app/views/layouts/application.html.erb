@@ -57,10 +57,10 @@
   </div>
 </div>
 
-    <div class="container" style="padding-left:20px; padding-right:20px;">
+    <div>
     <!-- for each flash message display it and set class to alert, alert-name(e.g. alert-danger)-->
       <% flash.each do |name, msg| %>
-        <div class="ui message">
+        <div class="ui message" style="margin: 0">
           <strong><%= name %></strong>
           <p><%= msg %></p>
         </div>

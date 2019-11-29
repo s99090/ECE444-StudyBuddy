@@ -1,17 +1,35 @@
+
+<div class = "ui container">
 <% if @user == current_user %>
   <h1> My Profile </h1>
 <% else %>
   <h1> <%= @user.username %>'s Profile </h1>
 <% end %>
-<p>
+<div class="image">
   <%= image_tag @profile.avatar, :style => "height: 60px; weight: 60px;" %><br />
-  <strong>Last Name:</strong>
-    <%= @profile.lname %><br />
-  <strong>First Name:</strong>
-    <%= @profile.fname %>
-</p>
+  </div>
+  <div class="content">
+    <div class="header"><%= @profile.fname %> <%= @profile.lname %></div>
+    <div class="meta">
+    <span class="date">Joined in 2013</span>
+  </div>
+  <div class="description">
+   <%= @profile.fname %> is a developer living in New York.
+  </div>
+
+  <div class="extra content">
+  <a>
+    <i class="user icon"></i>
+    22 Posts
+  </a>
+</div>
+
+</div>
 
 <% if @user == current_user %>
   <%= link_to 'Edit Profile', edit_user_profile_path %><br />
   <%= link_to 'Edit Account', edit_user_registration_path %>
 <% end %>
+
+</div>
+

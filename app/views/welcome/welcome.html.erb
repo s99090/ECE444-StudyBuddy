@@ -1,39 +1,41 @@
 <!-- Page Contents -->
 <div class="pusher">
-<div class="ui inverted vertical masthead center aligned segment" style="background-image: url('student.jpg'); background-size: cover; background-position: center center;">
+<div class="ui inverted vertical masthead center aligned segment" style="background: url(<%= asset_path 'background.jpeg' %>); background-size: cover; background-position: center center;">
 
   <div class="ui text container" style="height: 400px">
     <h1 class="ui inverted header" style="padding-top: 50px">
       Study Buddy
     </h1>
-    <h2>Do whatever you want when you want to.</h2>
-    <%= link_to "Get Started", new_user_registration_path, :class => 'ui huge primary button'  %>
+    <h2>Your one stop shop for all things studying related</h2>
+    <%= link_to "Get Started", new_user_registration_path, :class => 'ui huge secondary button'  %>
     </div>
   </div>
 
 </div>
-<div class="ui three item menu" style="margin: 0px">
+<div class="ui inverted three item menu" style="margin: 0px">
   <a class="item" href="/">Home</a>
   <a class="item" href="/about">About</a>
   <a class="item" href="./contact">Contact Us</a>
 </div>
 
-<div class="ui vertical stripe segment">
+<div class="ui vertical stripe segment" style="margin-top:40px;">
   <div class="ui middle aligned stackable grid container">
     <div class="row">
       <div class="eight wide column">
-        <h3 class="ui header">We Help Companies and Companions</h3>
+        <h3 class="ui header">We Help Struggling Students</h3>
         <p>We can give your company superpowers to do things that they never thought possible. Let us delight your customers and empower your needs...through pure data analytics.</p>
-        <h3 class="ui header">We Make Bananas That Can Dance</h3>
+        <h3 class="ui header">We Offer Links, Notes, Discussion Pages, and Studdy Buddies</h3>
         <p>Yes thats right, you thought it was the stuff of dreams, but even bananas can be bioengineered.</p>
       </div>
       <div class="six wide right floated column">
-        <img src="cutecat.jpeg" class="ui large bordered rounded image">
+      <div class = "ui medium bordered rounded image">
+        <%=image_tag("student.jpg")%>
+      </div>
       </div>
     </div>
     <div class="row">
       <div class="center aligned column">
-        <a class="ui huge button" href="/about">Check Them Out</a>
+        <a class="ui huge button" href="/about">About Us</a>
       </div>
     </div>
   </div>

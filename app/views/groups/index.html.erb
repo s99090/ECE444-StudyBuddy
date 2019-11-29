@@ -1,28 +1,31 @@
-<h1>Listing Groups</h1>
+<div style="margin-left: 100px; margin-top: 50px; width: 80%">
+<h1 class="ui dividing header">Listing Groups</h1>
 
 <%= link_to 'Main Page', controller: 'welcome' %> |
 <%= link_to 'New Group', new_group_path %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Text</th>
-    <th></th>
-  </tr>
-
+  <div class = "ui four cards" style="margin-top: 10px">
   <% @groups.each do |group| %>
-    <tr>
-      <td><%= group.name %></td>
-      <td><%= group.text %></td>
-      <td><%= link_to 'Show', group_path(group) %></td>
-
-      <% if not group.users.exists?(current_user.id) %>
-        <td><%= link_to 'Join', join_group_path(group), method: :put %></td>
-      <% else %>
-        <td><%= link_to 'Leave', join_group_path(group),
-                method: :put,
-                data: { confirm: 'If you are the only member in the group, the group will be deleted after you leave. Are you sure?' } %></td>
+    <div class ="ui raised link card ">
+    <%= link_to group_path(group), { :class=>"content" } do %>
+        <div class="header"><%= group.name %></div>
+        <div class="meta">Uploaded Date</div>
+        <div class="description"><%= group.text %></div>
       <% end %>
-    </tr>
+      <div class="extra content">
+      <% if not group.users.exists?(current_user.id) %>
+      <%= link_to 'Join', join_group_path(group),:class=>"ui secondary button", method: :put %>
+    <%else%>
+      <%= link_to 'Leave', join_group_path(group),
+            :class=>"ui secondary button", 
+            method: :put,
+            data: { confirm: 'If you are the only member in the group, the group will be deleted after you leave. Are you sure?' } %>
+    <%end%>
+        <div class="right floated author">
+        <img class="ui avatar image"> username
+        </div>
+      </div>
+      </div>
   <% end %>
-</table>
+</div>
+</div>
