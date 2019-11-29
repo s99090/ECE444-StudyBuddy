@@ -1,2 +1,0 @@
-class GroupMeetingController < ApplicationController
-end

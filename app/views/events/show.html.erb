@@ -1,13 +1,6 @@
 
-<h1> Event </h1>
-
-<% if @event.creater_id == current_user.id %>
-  <%= link_to 'Edit Event', edit_group_event_path(@group,@event) %> |
-  <%= link_to 'Delete', group_event_path(@group,@event),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %> |
-<% end %>
-<%= link_to 'Back', group_path(@group) %>
+<div class="ui container" style="margin-top: 20px">
+<h1><%= @event.name %></h1>
 
 <p>
   <strong>Event Type:</strong>
@@ -20,28 +13,51 @@
     <%= @event.datetime %><br />
 </p>
 
-<h2>Comments</h2>
+<h3 class="ui dividing header">Comments</h3>
+<div class="ui comments">
 <% @comments.sort_by(&:created_at).each do |comment| %>
-  <p>
-    <strong>Commenter:</strong>
-    <%= User.find(comment.creater_id).username %> <%= link_to 'Profile', user_profile_path(User.find(comment.creater_id)) %>
-  </p>
- 
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.body %> <% if comment.creater_id == current_user.id %><%= link_to 'Delete', group_event_comment_path(@group,@event,comment),
-                            method: :delete,
-                            data: { confirm: 'Are you sure?' } %> <% end %>
-  </p>
+  <div class="comment">
+  <a class="avatar">
+    <%=image_tag("default_profile.png")%>
+  </a>
+  <div class="content">
+  <a class="author"><%= User.find(comment.creater_id).username %> <%= link_to 'Profile', user_profile_path(User.find(comment.creater_id)) %></a>
+  <div class="metadata">
+    <span class="date"><%= comment.created_at %> </span>
+  </div>
+  <div class="text">
+  <%= comment.body %> <% if comment.creater_id == current_user.id %> <% end %>
+  </div>
+  <div class="actions">
+    <a class="reply">Reply</a>
+    <%= link_to 'Delete', group_event_comment_path(@group,@event,comment),
+    method: :delete,
+    data: { confirm: 'Are you sure?' } %> 
+  </div>
+</div>
+</div>
 <% end %>
  
-<h2>Add a comment:</h2>
+<div class ="ui reply form">
+<h4>Add a comment:</h4>
 <%= form_with(model: [ @group, @event, @comment ], local: true) do |form| %>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
+  <div class="field">
+  <%= form.text_area :body %>
+</div>
+<%= form.submit class: "ui blue submit button" %>
 <% end %>
+</div>
+
+<div style = "margin-top : 50px;">
+<div class="buttons">
+<% if @event.creater_id == current_user.id %>
+  <%= link_to 'Edit Event', edit_group_event_path(@group,@event), :class=>"ui secondary button" %> |
+  <%= link_to 'Delete', group_event_path(@group,@event),
+              method: :delete,
+              :class=>"ui secondary button",
+              data: { confirm: 'Are you sure?' } %> |
+<% end %>
+<%= link_to 'Back', group_path(@group), :class=>"ui secondary button" %>
+</div>
+</div>
+</div>

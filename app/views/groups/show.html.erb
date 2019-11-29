@@ -1,38 +1,63 @@
-<h1> Group: <%= @group.name %> </h1>
+<div style="margin-left: 100px; margin-top: 50px; width: 80%">
+<h1 class="ui dividing header"><%= @group.name %></h1>
+<div class="ui grid">
+  <div class="twelve wide column">
+      <p>
+      <strong>About:</strong>
+        <%= @group.text %>
+      </p>
+      <h1>Members</h1>
+        <% @group.users.each do |member| %>
+          <p> <%= member.username %> <%= link_to 'Profile', user_profile_path(member) %></p>
+        <% end %>
 
-<p>
-  <strong>About:</strong>
-    <%= @group.text %>
-</p>
+      <h1>Events</h1>
+        <% @events.each do |event| %>
+          <div class ="ui piled segment">
+        <%= link_to group_event_path(@group,event), :class=>"ui content" do%>
+          <h4 class="ui header"><%= event.name %></h4>
+          <p>About this event</p>
+          <p>Time of Event </p>
+        <%end%>
+        </div>
+        <%end%>
 
-<h1>Members</h1>
-<% @group.users.each do |member| %>
-  <p> <%= member.username %> <%= link_to 'Profile', user_profile_path(member) %></p>
-<% end %>
+        <%= link_to 'New Event', new_group_event_path(@group), :class=>"ui primary button"%>
 
-<h1>Events</h1>
-<%= link_to 'New Event', new_group_event_path(@group) %>
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-  </tr>
-  <% @events.each do |event| %>
-    <tr>
-      <td><%= event.name %></td>
-      <td><%= link_to 'Show', group_event_path(@group,event) %></td>
-    </tr>
-  <% end %>
-</table>
 
 <h1>Discussions</h1>
+  </div>
 
+  <div class="four wide column">
+    <h1 class="ui dividing header">Members</h1>
+    <div class="ui list">
+    <% @group.users.each do |member| %>
+      <div class="item">
+        <div class="ui avatar image">
+        <%=image_tag("default_profile.png")%>
+        </div>
+        <div class="content">
+        <%= link_to user_profile_path(member), :class=>"header" do %>
+          <%= member.username %>
+        <% end %>
+        <div class="description">Some description</div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+<div class="buttons">
 <% if @group.users.exists?(current_user.id) %>
-  <%= link_to 'Edit', edit_group_path(@group) %> |
+  <%= link_to 'Edit', edit_group_path(@group), :class=>"ui secondary button" %> |
   <%= link_to 'Leave', join_group_path(@group),
+              :class=>"ui secondary button",
               method: :put,
               data: { confirm: 'If you are the only member in the group, the group will be deleted after you leave. Are you sure?' } %> |
 <% else %>
-  <%= link_to 'Join', join_group_path(@group), method: :put %> |
+  <%= link_to 'Join', join_group_path(@group), :class=>"ui secondary button",  method: :put %> |
 <% end %>
-  <%= link_to 'Back', groups_path %>
+  <%= link_to 'Back', groups_path, :class=>"ui secondary button" %>
+  </div>
