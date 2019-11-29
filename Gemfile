@@ -25,6 +25,9 @@ gem 'jbuilder', '~> 2.7'
 # semantic UI
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
+#jquery
+gem 'jquery-rails'
+
 # user with Devise
 gem 'devise'
 

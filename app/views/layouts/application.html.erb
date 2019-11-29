@@ -12,12 +12,12 @@
     crossorigin="anonymous"></script>
   <script src="semantic/dist/semantic.min.js"></script>
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>        
+  <%= javascript_pack_tag "application", 'data-turbolinks-track': 'reload' %>
+  <%= csrf_meta_tags %>
 </head>
 
 <body>
-
 <div class="ui inverted large top menu" style="margin-bottom: 0px">
   <div class="ui container">
     <% if request.fullpath == "/" %>
@@ -57,10 +57,10 @@
   </div>
 </div>
 
-    <div class="container" style="padding-left:20px; padding-right:20px;">
+    <div>
     <!-- for each flash message display it and set class to alert, alert-name(e.g. alert-danger)-->
       <% flash.each do |name, msg| %>
-        <div class="ui message">
+        <div class="ui message" style="margin: 0">
           <strong><%= name %></strong>
           <p><%= msg %></p>
         </div>

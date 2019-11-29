@@ -1,21 +1,20 @@
-<%= form_with scope: :discussion, url: course_discussions_path, local: true do |form| %>
-
-      <p>
-        <%= form.label :discussion_name %><br>
+<%= form_with scope: :discussion, :class => "ui form",url: course_discussions_path, local: true do |form| %>
+  <div class = "field">
+        <%= form.label :discussion_name %>
         <%= form.text_field :discussion_name %>
-      </p>
+      </div>
      
-      <p>
-        <%= form.label :discussion_administrator %><br>
+      <div class = "field">
+        <%= form.label :discussion_administrator %>
         <%= form.text_field :discussion_administrator %>
-      </p>
+      </div>
   
-      <p>
-      <%= form.label :Post %><br>
+      <div class = "field">
+      <%= form.label :Post %>
       <%= form.text_field :initial_post %>
-    </p>
+      </div>
        
-      <p>
-        <%= form.submit %>
-      </p>
-      <% end %>
+      <div class = "field">
+        <%= form.submit :class=>'ui primary button'%>
+      </div>
+<% end %>
