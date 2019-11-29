@@ -132,7 +132,6 @@ ActiveRecord::Schema.define(version: 2019_11_23_212309) do
     t.bigint "course_id"
     t.string "link_name"
     t.string "link_url"
-    t.string "creater_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["course_id"], name: "index_links_on_course_id"

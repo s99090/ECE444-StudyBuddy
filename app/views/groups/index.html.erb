@@ -1,9 +1,29 @@
+<script type='text/javascript'>
+$("#group-table-button").click(function(){
+    console.log("hit the table button");
+    $("#group-cards").hide();
+    $("#group-table").show();
+});
+$("#group-card-button").click(function(){
+    console.log("hit the cards button");
+    $("#group-cards").show();
+    $("#group-table").hide();
+});
+</script>
+
 <div style="margin-left: 100px; margin-top: 50px; width: 80%">
 <h1 class="ui dividing header">Listing Groups</h1>
 
-<%= link_to 'Main Page', controller: 'welcome' %> |
-<%= link_to 'New Group', new_group_path %>
+<div class ="ui buttons">
+  <div class="ui secondary button" id="group-card-button">
+    Cards
+  </div>
+  <div class="ui secondary button" id="group-table-button">
+  Table
+</div>
+</div>
 
+<div id="group-cards">
   <div class = "ui four cards" style="margin-top: 10px">
   <% @groups.each do |group| %>
     <div class ="ui raised link card ">
@@ -26,6 +46,46 @@
         </div>
       </div>
       </div>
+  <% end %>
+</div>
+</div>
+
+<div id="group-table" style="display:none; margin-top: 50px">
+<table class="ui selectable celled table" style="width: 1500px; margin-left: auto; margin-right: auto">
+<thead>
+  <tr>
+    <th>Group Name</th>
+    <th>Description</th>
+    <th>Group Admin</th>
+    <th>Join/Leave</th>
+  </tr>
+  </thead>
+<tbody>
+  <% @groups.each do |group| %>
+    <tr>
+      <td><%= link_to group.name, group_path(group) %></td>
+      <td><%= group.text %></td>
+      <td>Admin</td>
+      <% if not group.users.exists?(current_user.id) %>
+      <td><%= link_to 'Join', join_group_path(group), method: :put %></td>
+    <%else%>
+      <td><%= link_to 'Leave', join_group_path(group),
+            method: :put,
+            data: { confirm: 'If you are the only member in the group, the group will be deleted after you leave. Are you sure?' } %></td>
+    <%end%>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+
+
+<div style = "margin-top : 50px;">
+<%= link_to 'Add New Group', new_group_path, :class => 'ui primary button'%>
+<%= link_to controller: 'welcome' do %>
+  <div class = "ui secondary button">
+  Main Page
+  </div>
   <% end %>
 </div>
 </div>
