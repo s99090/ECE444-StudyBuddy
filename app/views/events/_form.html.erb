@@ -1,4 +1,4 @@
-<%= form_with model: [@group, @event],  local: true do |form| %>
+<%= form_with model: [@group, @event], :class => "ui form", local: true do |form| %>
 
   <% if @event.errors.any? %>
     <div id="error_explanation">
@@ -13,27 +13,27 @@
     </div>
   <% end %>
   
-  <p>
+  <div class="field">
     <%= form.label :event_type %><br>
     <%= form.text_field :event_type %>
-  </p>
+  </div>
 
-  <p>
+  <div class="field">
     <%= form.label :name %><br>
     <%= form.text_field :name %>
-  </p>
+    </div>
 
-  <p>
+  <div class="field">
     <%= form.label :content %><br>
     <%= form.text_area :content %>
-  </p>
+    </div>
 
-  <p>
+  <div class="field">
     <%= form.label :date_time %><br>
     <%= form.datetime_field :datetime %>
-  </p>
+    </div>
 
-  <p>
-    <%= form.submit %>
-  </p>
+  <div class="field">
+    <%= form.submit :class=>'ui primary button'%>
+    </div>
 <% end %>
