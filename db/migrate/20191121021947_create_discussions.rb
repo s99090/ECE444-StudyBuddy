@@ -5,6 +5,8 @@ class CreateDiscussions < ActiveRecord::Migration[6.0]
       t.string :discussion_id
       t.string :discussion_name
       t.string :discussion_administrator
+      t.string :initial_post
+      t.integer :creater_id, null:false
       t.timestamps
     end
   end

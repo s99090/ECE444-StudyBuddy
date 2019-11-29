@@ -8,7 +8,7 @@ class CoursesController < ApplicationController
     end
 
     def create 
-        @course = Course.new(params.require(:course).permit(:course_id, :name, :subject, :term, :course_code, :students, :notes, :links, :discussions, :groups))
+        @course = Course.new(params.require(:course).permit(:name, :subject, :term, :course_code, :students, :notes, :links, :discussions, :groups))
         puts @course
         @course.save
         redirect_to @course

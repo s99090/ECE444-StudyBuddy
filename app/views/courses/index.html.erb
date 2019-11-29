@@ -11,21 +11,19 @@
 <table class="ui selectable celled table" style="width: 1500px; margin-left: auto; margin-right: auto">
 <thead>
   <tr>
-    <th>CourseID</th>
+    <th>Course Name</th>
     <th>Name</th>
     <th>Subject</th>
     <th>Term</th>
-    <th>Course Code</th>
   </tr>
   </thead>
 <tbody>
   <% @courses.each do |course| %>
     <tr>
-      <td><%= link_to course.course_id, course_path(course) %></td>
+      <td><%= link_to course.course_code, course_path(course) %></td>
       <td><%= course.name %></td>
       <td><%= course.subject %></td>
       <td><%= course.term %></td>
-      <td><%= course.course_code %></td>
     </tr>
   <% end %>
   </tbody>

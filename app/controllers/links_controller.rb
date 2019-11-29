@@ -14,8 +14,9 @@ class LinksController < ApplicationController
 
     def create 
         @course = Course.find(params["course_id"])
-        @link = Link.new(params.require(:link).permit(:link_name, :link_url, :course_id))
+        @link = Link.new(params.require(:link).permit(:link_name, :link_url, :course_id, :creater_id))
         @link.course_id = @course.id
+        @link.creater_id = current_user.id
         @link.save
         redirect_to course_links_path
     end
