@@ -4,6 +4,7 @@ class CreateLinks < ActiveRecord::Migration[6.0]
       t.references :course
       t.string :link_name 
       t.string :link_url
+      t.string :creater_id
       t.timestamps
     end
   end
