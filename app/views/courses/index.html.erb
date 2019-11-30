@@ -1,6 +1,7 @@
-<div style="margin-left: 100px; margin-top: 50px"><h1>Available Courses</h1></div>
+<div class="ui container" style="margin-left: 100px; margin-top: 50px">
+<div><h1 class="ui dividing header">Available Courses</h1></div>
 
-<div class="ui search" style="width: 500px; margin-left: 100px; margin-top: 20px">
+<div class="ui search" style="margin-top: 20px">
   <div class="ui icon input">
     <input class="prompt" type="text" placeholder="Search classes...">
     <i class="search icon"></i>
@@ -8,7 +9,7 @@
   <div class="results"></div>
 </div>
 
-<table class="ui selectable celled table" style="width: 1500px; margin-left: auto; margin-right: auto">
+<table class="ui selectable celled table">
 <thead>
   <tr>
     <th>Course Name</th>
@@ -31,4 +32,5 @@
 
 <div style = "margin-left: 80%">
 <%= link_to 'New Course', new_course_path, :class => 'ui primary button'%>
+</div>
 </div>
