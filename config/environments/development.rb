@@ -64,13 +64,15 @@ Rails.application.configure do
   config.action_mailer.default_url_options = {:host => 'localhost', port: 3000}
   config.action_mailer.smtp_settings = {
       :user_name => 'apikey',
-      :password => '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',
+      :password => ENV['SENDGRID_API_KEY'],
       :domain => 'study-buddy-3.herokuapp.com',
       :address => 'smtp.sendgrid.net',
       :port => 587,
       :authentication => :plain,
       :enable_starttls_auto => true
   }
+
+
 
   config.action_mailer.default_url_options = {host: 'localhost', port: 3000}
 end
