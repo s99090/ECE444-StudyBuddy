@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   end
 
   resources :courses do
-    resources :links
+    resources :links do
+        patch :addUpvote
+        patch :addDownvote
+    end
     resources :notes
     resources :discussions do
       resources :comments
