@@ -1,3 +1,6 @@
+require 'sendgrid-ruby'
+include SendGrid
+
 class BuddiesController < ApplicationController
   def index
     @buddies = Buddy.all
@@ -34,6 +37,8 @@ class BuddiesController < ApplicationController
 
       @buddy.courses = s.join(",")
       @buddy.save
+
+      SignupMailer.new_signup(current_user).deliver_now
 
       redirect_to @buddy
 
