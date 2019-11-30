@@ -20,5 +20,10 @@
   <p> TODO display pdf of notes</p>
 </p>
 
-<%= link_to "Edit", edit_course_note_path(@course), :class=>'ui secondary button'%>
+<%= if current_user.id == @note.user_id
+      link_to "Edit", edit_course_note_path(@course), :class=>'ui secondary button'
+end%>
+
+<%= link_to 'Delete', course_note_path(@course), method: :delete, data: { confirm: 'Are you sure?' }, :class=>'ui secondary button' %>
+
 <%= link_to 'Back', course_notes_path(@course), :class=>'ui secondary button' %>
