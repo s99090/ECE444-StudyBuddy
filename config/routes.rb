@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     resources :events do
       resources :comments
     end
+    resources :groupchats do
+      resources :comments
+    end
     # resources :group_announcement
     # resources :group_meeting
   end

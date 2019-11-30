@@ -1,0 +1,20 @@
+<%= form_with scope: :groupchat, :class => "ui form",url: group_groupchats_path, local: true do |form| %>
+  <div class = "field">
+        <%= form.label :groupchat_name %>
+        <%= form.text_field :groupchat_name %>
+      </div>
+     
+      <div class = "field">
+        <%= form.label :groupchat_administrator %>
+        <%= form.text_field :groupchat_administrator %>
+      </div>
+  
+      <div class = "field">
+      <%= form.label :Post %>
+      <%= form.text_field :initial_post %>
+      </div>
+       
+      <div class = "field">
+        <%= form.submit :class=>'ui primary button'%>
+      </div>
+<% end %>

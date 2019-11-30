@@ -1,0 +1,47 @@
+<div class="ui container" style="margin-left: 100px; margin-top: 50px">
+<h1 class="ui dividing header">List All Groupchats for <%=@group.name%></h1>
+
+<div class="ui borderless compact menu" style = "margin-bottom: 30px;">
+<%= link_to 'Home', group_path(@group), :class=>"item"%>
+<%= link_to 'Groupchats', group_groupchats_path(@group, @groupchat), :class=>"active item" %>
+</div>
+
+
+<div class = "ui items">
+  <% @groupchats.each do |groupchat| %>
+    <div class="item">
+      <div class = "ui placeholder">
+        <div class="image">
+        </div>
+      </div>
+      <div class="content">
+      <%= link_to groupchat.groupchat_name, group_groupchat_path(@group, groupchat)%>
+        <div class="meta">
+          <span>Description</span>
+        </div>
+        <div class="description">
+          <p></p>
+        </div>
+        <div class="extra">
+        <%= groupchat.created_at %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+  <div style = "margin-top : 50px;">
+    <%= link_to 'Add New Groupchat', new_group_groupchat_path, :class => 'ui primary button'%>
+    <%= link_to groups_path do %>
+      <div class = "ui secondary button">
+      Back
+      </div>
+    <% end %>
+    <%= link_to controller: 'welcome' do %>
+      <div class = "ui secondary button">
+      Main Page
+      </div>
+    <% end %>
+  </div>
+</div>
+
