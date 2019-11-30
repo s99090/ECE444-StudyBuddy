@@ -14,12 +14,12 @@
       <%= link_to course_note_path(@course, note), { :class=>"ui raised link card" } do %>
         <div class="content">
           <div class="header"><%= note.title %></div>
-          <div class="meta">Uploaded Date</div>
+          <div class="meta">Uploaded Date: <%= time_ago_in_words(note.updated_at) %> ago</div>
           <div class="description"><%= note.description %></div>
         </div> 
       <div class="extra content">
         <div class="right floated author">
-          <img class="ui avatar image"> <%= User.find(note.author_id).username %>
+          <img class="ui avatar image"> <%= User.find(note.user_id).username %>
         </div>
       </div>
       <% end %>

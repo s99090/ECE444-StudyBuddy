@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(version: 2019_11_23_212309) do
     t.bigint "course_id"
     t.string "link_name"
     t.string "link_url"
+    t.string "creater_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["course_id"], name: "index_links_on_course_id"
@@ -140,13 +141,13 @@ ActiveRecord::Schema.define(version: 2019_11_23_212309) do
   create_table "notes", force: :cascade do |t|
     t.string "note_id"
     t.string "title"
-    t.bigint "author_id"
+    t.bigint "user_id"
     t.bigint "course_id"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["author_id"], name: "index_notes_on_author_id"
     t.index ["course_id"], name: "index_notes_on_course_id"
+    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "profiles", force: :cascade do |t|

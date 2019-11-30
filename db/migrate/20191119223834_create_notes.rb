@@ -3,7 +3,7 @@ class CreateNotes < ActiveRecord::Migration[6.0]
     create_table :notes do |t|
       t.string :note_id
       t.string :title
-      t.references :author
+      t.references :user
       t.references :course
       t.text :description
 

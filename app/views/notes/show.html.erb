@@ -7,7 +7,7 @@
 
 <p>
   <strong>Author:</strong>
-  <%= @note.author %>
+  <%= @note.user.username %>
 </p>
 
 <p>
@@ -20,4 +20,5 @@
   <p> TODO display pdf of notes</p>
 </p>
 
-<%= link_to 'Back', course_notes_path(@course) %>
+<%= link_to "Edit", edit_course_note_path(@course), :class=>'ui secondary button'%>
+<%= link_to 'Back', course_notes_path(@course), :class=>'ui secondary button' %>
