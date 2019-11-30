@@ -14,7 +14,7 @@ class GroupchatsController < ApplicationController
     
     def edit
         @group = Group.find(params[:group_id])
-        @groupchat = @group.discussions.find(params[:id])
+        @groupchat = @group.groupchats.find(params[:id])
     end
     
     def create 

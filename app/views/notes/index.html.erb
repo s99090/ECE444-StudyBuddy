@@ -9,7 +9,20 @@
   <%= @course.groups%>
 </div>
 
-  <div class = "ui four cards">
+  <script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable a").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+
+  <input id="myInput" type="text" placeholder="Search..">
+
+  <div id="myTable" class = "ui four cards">
     <% @notes.each do |note| %>
       <%= link_to course_note_path(@course, note), { :class=>"ui raised link card" } do %>
         <div class="content">
