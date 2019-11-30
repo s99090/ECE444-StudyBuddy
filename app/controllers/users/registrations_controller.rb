@@ -13,8 +13,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     if resource.save
-      @profile = resource.create_profile
+      @profile = resource.build_profile
+      @profile.fname = params[:user][:profile][:fname]
+      @profile.lname = params[:user][:profile][:lname]
       @profile.avatar.attach(io: File.open("#{Rails.root}/app/assets/images/default_profile.png"), filename: 'default_profile.png')
+      @profile.save
     end
   end
 
