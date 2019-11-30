@@ -5,8 +5,9 @@ class SignupMailer < ApplicationMailer
   #
   #   en.signup_mailer.new_signup.subject
   #
-  def new_signup(user)
+  def new_signup(user, buddy)
     @user = user
+    @buddy = buddy
     @greeting = "Hi"
 
     mail to: user.email, subject: "new subject"

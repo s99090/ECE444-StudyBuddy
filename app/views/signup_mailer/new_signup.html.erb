@@ -1,5 +1,7 @@
-<h1>Signup#new_signup</h1>
+Hi <%= @user.username %>,
 
-<p>
-  <%= @greeting %>, find me in app/views/signup_mailer/new_signup.html.erb
-</p>
+Thanks for registering! To confirm your registration click the URL below.
+
+<%=  link_to "confirm", confirm_email_url(@buddy.confirm_token, host: root_url)%>
+<%#= @buddy.confirm_token %>
+
