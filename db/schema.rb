@@ -151,6 +151,8 @@ ActiveRecord::Schema.define(version: 2019_11_30_120413) do
     t.string "creater_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "upvotes", default: [], array: true
+    t.string "downvotes", default: [], array: true
     t.index ["course_id"], name: "index_links_on_course_id"
   end
 
