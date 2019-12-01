@@ -43,3 +43,4 @@ StudyBuddy/.yarn-integrity
 sendgrid.env
 /.idea/
 .DS_Store
+.yarn.lock
