@@ -41,7 +41,9 @@ class BuddiesController < ApplicationController
 
       SignupMailer.new_signup(current_user, @buddy).deliver_now
 
-      redirect_to @buddy
+      flash[:notice] = "A confirmation email has been sent."
+
+      redirect_to root_url
 
     end
 
