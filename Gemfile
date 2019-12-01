@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.7'
 # semantic UI
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
+gem 'sendgrid-ruby'
+
 #jquery
 gem 'jquery-rails'
 

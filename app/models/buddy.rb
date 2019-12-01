@@ -5,4 +5,16 @@ class Buddy < ApplicationRecord
   validates :fname, presence: true, allow_blank: false
   validates :lname, presence: true, allow_blank: false
   validates :description, presence: true, allow_blank: false
+
+  def set_confirmation_token
+    if self.confirm_token.blank?
+      self.confirm_token = SecureRandom.urlsafe_base64.to_s
+    end
+  end
+
+  def validate_email
+    self.email_confirmed = true
+    self.confirm_token = nil
+  end
+
 end

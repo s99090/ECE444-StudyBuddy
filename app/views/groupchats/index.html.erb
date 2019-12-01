@@ -1,25 +1,21 @@
 <div class="ui container" style="margin-left: 100px; margin-top: 50px">
-<h1 class="ui dividing header">List All Discussions for <%=@course.course_code%></h1>
+<h1 class="ui dividing header">List All Groupchats for <%=@group.name%></h1>
 
 <div class="ui borderless compact menu" style = "margin-bottom: 30px;">
-<%= link_to 'Home', course_path(@course), :class=>"item"%>
-<%= link_to 'Notes', course_notes_path(@course), :class=>"item"%>
-<%= link_to 'Links', course_links_path(@course, @link), :class=>"item"%>
-<%= link_to 'Discussions', course_discussions_path(@course, @discussion), :class=>"active item" %>
-<%= @course.groups%>
+<%= link_to 'Home', group_path(@group), :class=>"item"%>
+<%= link_to 'Groupchats', group_groupchats_path(@group, @groupchat), :class=>"active item" %>
 </div>
 
-<%= @course.inspect%>
 
 <div class = "ui items">
-  <% @discussions.each do |discussion| %>
+  <% @groupchats.each do |groupchat| %>
     <div class="item">
       <div class = "ui placeholder">
         <div class="image">
         </div>
       </div>
       <div class="content">
-      <%= link_to discussion.discussion_name, course_discussion_path(@course, discussion)%>
+      <%= link_to groupchat.groupchat_name, group_groupchat_path(@group, groupchat)%>
         <div class="meta">
           <span>Description</span>
         </div>
@@ -27,7 +23,7 @@
           <p></p>
         </div>
         <div class="extra">
-        <%= discussion.created_at %>
+        <%= groupchat.created_at %>
         </div>
       </div>
     </div>
@@ -35,8 +31,8 @@
 </div>
 
   <div style = "margin-top : 50px;">
-    <%= link_to 'Add New Discussion', new_course_discussion_path, :class => 'ui primary button'%>
-    <%= link_to courses_path do %>
+    <%= link_to 'Add New Groupchat', new_group_groupchat_path, :class => 'ui primary button'%>
+    <%= link_to groups_path do %>
       <div class = "ui secondary button">
       Back
       </div>

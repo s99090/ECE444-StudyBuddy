@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   end
 
   resources :courses do
-    resources :links
+    resources :links do
+        patch :addUpvote
+        patch :addDownvote
+    end
     resources :notes
     resources :discussions do
       resources :comments
@@ -27,6 +30,9 @@ Rails.application.routes.draw do
     resources :events do
       resources :comments
     end
+    resources :groupchats do
+      resources :comments
+    end
     # resources :group_announcement
     # resources :group_meeting
   end
@@ -34,5 +40,6 @@ Rails.application.routes.draw do
   match '/home' => 'welcome#index', via: [:get, :post]
   match '/about' => 'welcome#about', via: [:get, :post]
   match '/contact' => 'welcome#contact', via: [:get, :post]
+  get '/:token/confirm_email/', :to => "buddies#confirm_email", as: 'confirm_email'
   root 'welcome#welcome'
 end

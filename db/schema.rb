@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_23_212309) do
+ActiveRecord::Schema.define(version: 2019_11_30_165744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 2019_11_23_212309) do
     t.string "fname"
     t.string "lname"
     t.string "courses"
+    t.boolean "email_confirmed", default: false
+    t.string "confirm_token"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -116,6 +118,18 @@ ActiveRecord::Schema.define(version: 2019_11_23_212309) do
     t.index ["group_id"], name: "index_group_meetings_on_group_id"
   end
 
+  create_table "groupchats", force: :cascade do |t|
+    t.bigint "group_id"
+    t.string "groupchat_id"
+    t.string "groupchat_name"
+    t.string "groupchat_administrator"
+    t.string "initial_post"
+    t.integer "creater_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_groupchats_on_group_id"
+  end
+
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.text "text"
@@ -137,6 +151,8 @@ ActiveRecord::Schema.define(version: 2019_11_23_212309) do
     t.string "creater_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "upvotes", default: [], array: true
+    t.string "downvotes", default: [], array: true
     t.index ["course_id"], name: "index_links_on_course_id"
   end
 

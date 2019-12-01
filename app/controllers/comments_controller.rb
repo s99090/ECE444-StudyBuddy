@@ -46,6 +46,8 @@ private
         return Event.find(value)
       elsif name == "discussion_id"
         return Discussion.find(value)
+      elsif name == "groupchat_id"
+        return Groupchat.find(value)
       end
     end
     nil 

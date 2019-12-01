@@ -1,3 +1,6 @@
+require 'sendgrid-ruby'
+include SendGrid
+
 class BuddiesController < ApplicationController
   def index
     @buddies = Buddy.all
@@ -33,7 +36,10 @@ class BuddiesController < ApplicationController
       end
 
       @buddy.courses = s.join(",")
+      @buddy.set_confirmation_token
       @buddy.save
+
+      SignupMailer.new_signup(current_user, @buddy).deliver_now
 
       redirect_to @buddy
 
@@ -43,6 +49,18 @@ class BuddiesController < ApplicationController
 
   def show
     @buddy = Buddy.find(params[:id])
+  end
+
+  def confirm_email
+    user = Buddy.find_by_confirm_token(params[:token])
+    if user
+      user.validate_email
+      user.save(validate: false)
+      redirect_to user
+    else
+      flash[:error] = "Sorry. User does not exist"
+      redirect_to root_url
+    end
   end
 
 end
