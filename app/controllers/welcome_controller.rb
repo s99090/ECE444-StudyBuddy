@@ -13,6 +13,18 @@ class WelcomeController < ApplicationController
   def contact
   end
 
+  def sitemap
+  end
+  
+  def faq
+  end
+
+  def termsandconditions
+  end
+
+  def privacy
+  end
+
   def contact_us_submission
 
     name = params[:name]
