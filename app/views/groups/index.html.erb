@@ -52,8 +52,9 @@ $("#group-card-button").click(function(){
 
 <div id="group-table" style="display:none; margin-top: 50px">
 <% if @groups.distinct.count(:name) == 0%>
-<table class="ui selectable celled table" >
+<table class="ui selectable celled table" style="display:none;">
 <%else%>
+<table class="ui selectable celled table">
 <thead>
   <tr>
     <th>Group Name</th>
