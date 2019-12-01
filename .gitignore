@@ -42,3 +42,4 @@ StudyBuddy/yarn-debug.log*
 StudyBuddy/.yarn-integrity
 sendgrid.env
 /.idea/
+.DS_Store
