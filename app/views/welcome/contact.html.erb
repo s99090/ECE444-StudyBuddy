@@ -1,25 +1,27 @@
+<div class="ui container">
+  <%= form_with scope: :welcome, :class => "ui form", :style => "margin-top: 30px", url: contact_us_submission_path, local: true do |form| %>
 
-<div class = "ui container">
-<form class="ui form" style="margin-top: 30px">
-<h2 class="ui dividing header">Contact Us</h2>
-<p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
-    a matter of hours to help you.</p>
+    <h2 class="ui dividing header">Contact Us</h2>
+    <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us
+      directly. Our team will come back to you within
+      a matter of hours to help you.</p>
 
-<label>Name</label>
-<div class="field">
-    <input type="text" name="name" placeholder="Name">
-</div>
+    <label>Name</label>
+    <div class="field">
+      <input type="text" name="name" placeholder="Name">
+    </div>
 
-<label>Email</label>
-<div class="field">
-    <input type="text" name="email" placeholder="Email">
-</div>
+    <label>Email</label>
+    <div class="field">
+      <input type="text" name="email" placeholder="Email">
+    </div>
 
-<label>Message</label>
-<div class="field">
-    <textarea type="textarea" name="message" placeholder="Message"></textarea>
-</div>
+    <label>Message</label>
+    <div class="field">
+      <textarea type="textarea" name="message" placeholder="Message"></textarea>
+    </div>
 
-<button class="ui button" type="submit">Submit</button>
-</form>
+    <button class="ui button" type="submit">Submit</button>
+
+  <% end %>
 </div>

@@ -10,6 +10,6 @@ class SignupMailer < ApplicationMailer
     @buddy = buddy
     @greeting = "Hi"
 
-    mail to: user.email, subject: "new subject"
+    mail to: user.email, subject: "New Buddy Registration | StudyBuddy"
   end
 end
