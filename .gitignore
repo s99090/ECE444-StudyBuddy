@@ -41,3 +41,4 @@ StudyBuddy.byebug_history
 StudyBuddy/yarn-debug.log*
 StudyBuddy/.yarn-integrity
 sendgrid.env
+/.idea/
