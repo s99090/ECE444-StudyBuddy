@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   def show
     @user = User.find(params[:user_id])
+    @buddy = Buddy.find_by_username(@user.username)
     @profile = @user.profile
     if @profile == nil
       @profile = @user.create_profile

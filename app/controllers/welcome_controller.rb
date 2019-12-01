@@ -21,7 +21,7 @@ class WelcomeController < ApplicationController
 
     ContactUsMailer.new_issue(name, email, message).deliver_now
 
-    flash[:notice] = "Your report has been submitted."
+    flash[:notice] = "Thank you for contacting us!"
     redirect_to contact_path
 
   end
