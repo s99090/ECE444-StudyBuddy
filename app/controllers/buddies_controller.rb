@@ -60,7 +60,6 @@ class BuddiesController < ApplicationController
       flash[:notice] = "Thank you for signing up as a StudyBuddy!"
     else
       flash[:error] = "Sorry. User does not exist"
-
     end
 
     redirect_to root_url
