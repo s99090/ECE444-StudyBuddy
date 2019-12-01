@@ -40,6 +40,10 @@ Rails.application.routes.draw do
   match '/home' => 'welcome#index', via: [:get, :post]
   match '/about' => 'welcome#about', via: [:get, :post]
   match '/contact' => 'welcome#contact', via: [:get, :post]
+  match '/sitemap' => 'welcome#sitemap', via: [:get, :post]
+  match '/faq' => 'welcome#faq', via: [:get, :post]
+  match '/termsandconditions' => 'welcome#termsandconditions', via: [:get, :post]
+  match '/privacy' => 'welcome#privacy', via: [:get, :post]
 
   post '/contact_us_submission', to: 'welcome#contact_us_submission', as: 'contact_us_submission'
 
