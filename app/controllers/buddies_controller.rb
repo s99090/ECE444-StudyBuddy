@@ -52,6 +52,7 @@ class BuddiesController < ApplicationController
   end
 
   def confirm_email
+
     user = Buddy.find_by_confirm_token(params[:token])
 
     if user
