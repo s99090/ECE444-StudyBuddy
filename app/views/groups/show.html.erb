@@ -1,4 +1,4 @@
-<div class="ui container">
+<div class="ui container" style ="margin-top: 30px; margin-bottom: 30px;">
 <h1 class="ui dividing header"><%= @group.name %></h1>
 <div class="ui grid">
   <div class="twelve wide column">
@@ -6,10 +6,6 @@
       <strong>About:</strong>
         <%= @group.text %>
       </p>
-      <h1>Members</h1>
-        <% @group.users.each do |member| %>
-          <p> <%= member.username %> <%= link_to 'Profile', user_profile_path(member) %></p>
-        <% end %>
 
       <h1>Events</h1>
         <% @events.each do |event| %>
@@ -50,7 +46,7 @@
 
 </div>
 
-<div class="buttons">
+<div class="buttons" style="position: relative; margin-top: 40px;">
 <% if @group.users.exists?(current_user.id) %>
   <%= link_to 'Edit', edit_group_path(@group), :class=>"ui secondary button" %> |
   <%= link_to 'Leave', join_group_path(@group),
