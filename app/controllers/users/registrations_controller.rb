@@ -11,6 +11,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    if params[:user][:profile][:fname] =~ /^\s*$/ or params[:user][:profile][:lname] =~ /^\s*$/
+      flash[:Error] = "Please enter your first name and last name!"
+      redirect_to new_user_registration_path and return
+    end
     super
     if resource.save
       @profile = resource.build_profile
