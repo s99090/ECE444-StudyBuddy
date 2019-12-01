@@ -51,7 +51,9 @@ $("#group-card-button").click(function(){
 </div>
 
 <div id="group-table" style="display:none; margin-top: 50px">
+<% if @groups.distinct.count(:name) == 0%>
 <table class="ui selectable celled table" >
+<%else%>
 <thead>
   <tr>
     <th>Group Name</th>
@@ -60,6 +62,8 @@ $("#group-card-button").click(function(){
     <th>Join/Leave</th>
   </tr>
   </thead>
+<%end%>
+
 <tbody>
   <% @groups.each do |group| %>
     <tr>
