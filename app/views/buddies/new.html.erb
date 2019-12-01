@@ -2,6 +2,8 @@
 
   <% if @buddy.errors.any? %>
     <div id="error_explanation">
+    <div class="ui negative message">
+    <div class ="ui container">
       <h2>
         <%= pluralize(@buddy.errors.count, "Error") %> Occurred During the Sign up Process:
       </h2>
@@ -24,10 +26,10 @@
         <% end %>
       </ul>
     </div>
+    </div>
+    </div>
   <% end %>
-
-  <div style="width: 1500px; margin-left: auto; margin-right: auto; margin-top: 75px; margin-bottom: 100px">
-
+  <div class="ui container" style = "margin-top: 30px; margin-bottom: 30px;">
     <h3 class="ui dividing header">Sign up to Become a Buddy!</h3>
 
     <div class="fields">
@@ -68,3 +70,4 @@
     </div>
   </div>
 <% end %>
+</div>

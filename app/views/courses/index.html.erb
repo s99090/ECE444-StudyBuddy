@@ -9,15 +9,20 @@
   <div class="results"></div>
 </div>
 
-<table class="ui sortable selectable celled table" id="courses-table">
+<% if @courses.distinct.count(:course_code) == 0%>
+<table class="ui sortable selectable celled table" id="courses-table" style="display:none;">
+<%else%>
+<table class="ui selectable celled table" id="courses-table" style="margin-top: 30px;">
 <thead>
   <tr>
-    <th>Course Name</th>
-    <th>Name</th>
-    <th>Subject</th>
-    <th>Term</th>
+  <th>Course Name</th>
+  <th>Name</th>
+  <th>Subject</th>
+  <th>Term</th>
   </tr>
   </thead>
+<%end%>
+
 <tbody>
   <% @courses.each do |course| %>
     <tr>
@@ -30,7 +35,7 @@
   </tbody>
 </table>
 
-<div style = "margin-left: 80%">
+<div style = "margin-top: 30px;">
 <%= link_to 'New Course', new_course_path, :class => 'ui primary button'%>
 </div>
 </div>

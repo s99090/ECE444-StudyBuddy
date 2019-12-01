@@ -1,15 +1,21 @@
-<div style="margin-left: 100px; margin-top: 50px"><h1>There are 0 Buddies available to help you!</h1></div>
+<div class="ui container" style="margin-top: 50px">
 
-<table class="ui selectable celled table" style="width: 1500px; margin-left: auto; margin-right: auto">
-  <thead>
+<h1 class="ui dividing header">There are 0 Buddies available to help you!</h1>
+
+<% if @buddies.distinct.count(:username) == 0%>
+<table class="ui selectable celled table" style="display:none;">
+<%else%>
+<table class="ui selectable celled table" style="margin-top: 30px;">
+<thead>
   <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Hourly rate</th>
-    <th>Image</th>
-    <th>Courses</th>
+  <th>Name</th>
+  <th>Description</th>
+  <th>Hourly rate</th>
+  <th>Image</th>
+  <th>Courses</th>
   </tr>
   </thead>
+<%end%>
 
   <% @buddies.each do |buddy| %>
     <tr>
@@ -18,7 +24,11 @@
       </td>
       <td><%= buddy.description %></td>
       <td><%= buddy.hourly_rate %></td>
-      <td><%= image_tag current_user.profile.avatar %></td>
+      <td>
+      <div class ="ui avatar image">
+      <%= image_tag current_user.profile.avatar %>
+      </div>
+      </td>
       <td>
         <% buddy.courses.split(',').each do |c| %>
 
@@ -31,10 +41,9 @@
   <% end %>
 </table>
 
-<div style="margin-left: 100px; margin-top: 50px">
+<div class = "buttons" style = "margin-top: 50px;">
   <%= link_to 'Become a StudyBuddy', new_buddy_path, :class => 'ui primary button' %>
-</div>
 
-<div style="margin-left: 100px; margin-top: 50px">
-  <%= link_to 'Main Page', root_path, :class => 'ui primary button' %>
+  <%= link_to 'Main Page', root_path, :class => 'ui secondary button' %>
+</div>
 </div>
