@@ -1,7 +1,5 @@
-Hi <%= @user.username %>,
-
-Thanks for registering! To confirm your registration click the URL below.
-
-<%=  link_to "confirm", confirm_email_url(@buddy.confirm_token, host: root_url)%>
-<%#= @buddy.confirm_token %>
-
+Hi <%= @user.username %>!
+<br>
+<br>
+Thanks for you for registering as a new Buddy! To confirm your registration, click
+<%= link_to "here", confirm_email_url(@buddy.confirm_token, host: root_url) %>.

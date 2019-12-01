@@ -53,14 +53,17 @@ class BuddiesController < ApplicationController
 
   def confirm_email
     user = Buddy.find_by_confirm_token(params[:token])
+
     if user
       user.validate_email
       user.save(validate: false)
-      redirect_to user
+      flash[:notice] = "Thank you for signing up as a StudyBuddy!"
     else
       flash[:error] = "Sorry. User does not exist"
-      redirect_to root_url
+
     end
+
+    redirect_to root_url
   end
 
 end
