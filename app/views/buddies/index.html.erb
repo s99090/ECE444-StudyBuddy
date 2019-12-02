@@ -1,21 +1,21 @@
 <div class="ui container" style="margin-top: 50px">
 
-<h1 class="ui dividing header">There are 0 Buddies available to help you!</h1>
+  <h1 class="ui dividing header">There are 0 Buddies available to help you!</h1>
 
-<% if @buddies.distinct.count(:username) == 0%>
-<table class="ui selectable celled table" style="display:none;">
-<%else%>
-<table class="ui selectable celled table" style="margin-top: 30px;">
-<thead>
-  <tr>
-  <th>Name</th>
-  <th>Description</th>
-  <th>Hourly rate</th>
-  <th>Image</th>
-  <th>Courses</th>
-  </tr>
-  </thead>
-<%end%>
+  <% if @buddies.distinct.count(:username) == 0 %>
+    <table class="ui selectable celled table" style="display:none;">
+  <% else %>
+    <table class="ui selectable celled table" style="margin-top: 30px;">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Hourly rate</th>
+        <th>Image</th>
+        <th>Courses</th>
+      </tr>
+      </thead>
+  <% end %>
 
   <% @buddies.each do |buddy| %>
     <tr>
@@ -25,9 +25,9 @@
       <td><%= buddy.description %></td>
       <td><%= buddy.hourly_rate %></td>
       <td>
-      <div class ="ui avatar image">
-      <%= image_tag current_user.profile.avatar %>
-      </div>
+        <div class="ui avatar image">
+          <%= image_tag current_user.profile.avatar %>
+        </div>
       </td>
       <td>
         <% buddy.courses.split(',').each do |c| %>
@@ -39,11 +39,11 @@
 
     </tr>
   <% end %>
-</table>
+  </table>
 
-<div class = "buttons" style = "margin-top: 50px;">
-  <%= link_to 'Become a StudyBuddy', new_buddy_path, :class => 'ui primary button' %>
+  <div class="buttons" style="margin-top: 50px;">
+    <%= link_to 'Become a StudyBuddy', new_buddy_path, :class => 'ui primary button' %>
 
-  <%= link_to 'Main Page', root_path, :class => 'ui secondary button' %>
-</div>
+    <%= link_to 'Main Page', root_path, :class => 'ui secondary button' %>
+  </div>
 </div>

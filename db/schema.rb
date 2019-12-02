@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_30_165744) do
+ActiveRecord::Schema.define(version: 2019_12_02_045159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2019_11_30_165744) do
     t.string "courses"
     t.boolean "email_confirmed", default: false
     t.string "confirm_token"
+    t.string "about"
   end
 
   create_table "comments", force: :cascade do |t|
