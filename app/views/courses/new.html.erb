@@ -22,15 +22,14 @@
       <%= form.text_field :course_code%>
     </div>
 
-    <h4 class="ui dividing header">Suggested Fields</h4>
     <div class = "field">
-      <label>Professor</label>
-      <input type="text" name="professor-name" placeholder="Albus Dumbledore">
+      <%= form.label :professor %>
+      <%= form.text_field :professor%>
      </div>
 
      <div class = "field">
-     <label>Class Description</label>
-      <textarea></textarea>
+      <%= form.label :description, "Class Description" %>
+      <%= form.text_area :description %>
     </div>
 
     <div class = "field">
