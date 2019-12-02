@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2019_12_02_224642) do
     t.boolean "email_confirmed", default: false
     t.string "confirm_token"
     t.string "about"
+    t.string "interested_users", default: [], array: true
   end
 
   create_table "comments", force: :cascade do |t|

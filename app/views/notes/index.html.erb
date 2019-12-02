@@ -20,9 +20,15 @@
     });
   </script>
 
-  <input id="myInput" type="text" placeholder="Search..">
+  <div class="ui search">
+  <div class="ui icon input">
+    <input id="myInput" class="prompt" type="text" placeholder="Search notes..." style="width: 300px;">
+    <i class="search icon"></i>
+  </div>
+</div>
 
-  <div id="myTable" class = "ui four cards">
+
+  <div id="myTable" class = "ui four cards" style="margin-top:30px;">
     <% @notes.each do |note| %>
       <%= link_to course_note_path(@course, note), { :class=>"ui raised link card" } do %>
         <div class="content">

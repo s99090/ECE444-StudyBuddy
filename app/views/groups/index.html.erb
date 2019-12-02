@@ -14,7 +14,29 @@ $("#group-card-button").click(function(){
 <div class="ui container" style="margin-top: 50px">
 <h1 class="ui dividing header">Listing Groups</h1>
 
-<div class ="ui buttons">
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myCards a").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+<div class="ui search" style="margin-top: 10px">
+  <div class="ui icon input">
+    <input id="myInput" class="prompt" type="text" placeholder="Search Groups..." >
+    <i class="search icon"></i>
+  </div>
+  <div class="results"></div>
+</div>
+
+<div class ="ui buttons" style="margin-top: 20px">
   <div class="ui secondary button" id="group-card-button">
     Cards
   </div>
@@ -24,7 +46,7 @@ $("#group-card-button").click(function(){
 </div>
 
 <div id="group-cards">
-  <div class = "ui four cards" style="margin-top: 10px">
+  <div class = "ui four cards" id="myCards" style="margin-top: 10px">
   <% @groups.each do |group| %>
     <div class ="ui raised link card ">
     <%= link_to group_path(group), { :class=>"content" } do %>
@@ -65,7 +87,7 @@ $("#group-card-button").click(function(){
   </thead>
 <%end%>
 
-<tbody>
+<tbody id="myTable">
   <% @groups.each do |group| %>
     <tr>
       <td><%= link_to group.name, group_path(group) %></td>

@@ -1,16 +1,18 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    :omniauth_callbacks => "users/omniauth_callbacks" 
+      registrations: 'users/registrations',
+      :omniauth_callbacks => "users/omniauth_callbacks"
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get 'welcome/index'
 
   resources :buddies do
+   
     resources :meetings do
       resources :comments
     end
   end
+  patch '/buddies/:buddy_id/:current_user_id/add_interested', :to => "buddies#add_interested", as: 'buddy_add_interested'
 
   resources :users, :only => :none do
     resource :profile, :only => [:show, :edit, :update]
@@ -18,8 +20,8 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :links do
-        patch :addUpvote
-        patch :addDownvote
+      patch :addUpvote
+      patch :addDownvote
     end
     resources :notes
     resources :discussions do

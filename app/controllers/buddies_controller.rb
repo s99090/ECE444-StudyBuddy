@@ -66,6 +66,21 @@ class BuddiesController < ApplicationController
     redirect_to buddies_path
   end
 
+  def add_interested
+    @buddy = Buddy.find(params[:buddy_id])
+    @user = User.find(params[:current_user_id])
+
+    if @buddy.username != @user.username
+
+      unless @buddy.interested_users.include?(params[:current_user_id])
+        @buddy.interested_users.push(params[:current_user_id])
+        @buddy.save
+      end
+
+    end
+
+  end
+
   private
 
   def deliver_signup_email
