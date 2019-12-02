@@ -71,11 +71,14 @@ class BuddiesController < ApplicationController
     @user = User.find(params[:current_user_id])
 
     if @buddy.username != @user.username
-      @buddy.interested_users.push(params[:current_user_id])
-      @buddy.save
+
+      unless @buddy.interested_users.include?(params[:current_user_id])
+        @buddy.interested_users.push(params[:current_user_id])
+        @buddy.save
+      end
+
     end
 
-    # raise ""
   end
 
   private
