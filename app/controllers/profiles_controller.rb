@@ -2,6 +2,12 @@ class ProfilesController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @buddy = Buddy.find_by_username(@user.username)
+    @discussions = Discussion.where(creater_id: @user.id)
+    @events = Event.where(creater_id: @user.id)
+    @notes = Note.where(user: @user)
+    @links = Link.where(creater_id: @user.id)
+    @groupchats = Groupchat.where(creater_id: @user.id)
+
     @profile = @user.profile
     if @profile == nil
       @profile = @user.create_profile
