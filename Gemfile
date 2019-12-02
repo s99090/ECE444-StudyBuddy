@@ -33,6 +33,9 @@ gem 'jquery-rails'
 # user with Devise
 gem 'devise'
 
+# app setup helper 
+gem 'figaro'
+
 # Third party authentication
 gem 'omniauth-facebook'
 

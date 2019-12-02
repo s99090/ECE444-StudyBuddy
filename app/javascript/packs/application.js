@@ -11,9 +11,9 @@ require("jquery")
 //= require jquery3
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree 
 //= require semantic-ui
-
+//= require_tree
+//= require activestorage
 
 import JQuery from 'jquery';
 window.$ = window.jQuery = JQuery;

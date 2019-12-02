@@ -45,3 +45,6 @@ sendgrid.env
 .DS_Store
 .yarn.lock
 /public/packs/manifest.json
+
+# Ignore application configuration
+/config/application.yml

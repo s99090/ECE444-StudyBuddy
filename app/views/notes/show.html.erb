@@ -15,10 +15,21 @@
   <%= @note.description %>
 </p>
 
-<p>
-  <strong>PDF:</strong>
-  <p> TODO display pdf of notes</p>
-</p>
+<h2>Attachments:</h2>
+<ul class="no-bullet">
+  <% @noteFiles.each do |file| %>
+    <li>
+      <% if file.previewable? %>
+        <%= link_to(image_tag(file.preview(resize: "200x200>")),  rails_blob_path(note, disposition: "attachment"))
+        %>
+      <% elsif file.variable? %>
+        <%= link_to(image_tag(file.variant(resize: "200x200")), rails_blob_path(file, disposition: "attachment"))%>
+      <% else %>
+        <%= link_to(file.filename, rails_blob_path(file, disposition: "attachment")) %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
 
 <%= if current_user.id == @note.user_id
       link_to "Edit", edit_course_note_path(@course), :class=>'ui secondary button'
@@ -27,3 +38,17 @@ end%>
 <%= link_to 'Delete', course_note_path(@course), method: :delete, data: { confirm: 'Are you sure?' }, :class=>'ui secondary button' %>
 
 <%= link_to 'Back', course_notes_path(@course), :class=>'ui secondary button' %>
+
+<% if false %>
+  <p>
+  <strong>Files:</strong>
+  <ul>
+  <% @note.noteFiles.each do |file| %>
+    <li>
+      <%= image_tag file.preview(resize_to_limit: [100, 100]) %>
+    </li>
+  <% end %>
+</ul>
+  <p> TODO display pdf of notes</p>
+</p>
+<% end %>

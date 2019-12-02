@@ -13,6 +13,8 @@ class NotesController < ApplicationController
     @note = Note.new(note_params)
     @note.user = current_user
     @note.course_id = @course.id
+    # @note.noteFile.attach(params[:noteFile])
+    # raise("BP")
     if @note.save
       flash[:success] = "Saved!"
       redirect_to course_notes_path
@@ -26,6 +28,7 @@ class NotesController < ApplicationController
   def show
     @note = Note.find(params[:id])
     @course = Course.find(params["course_id"])
+    @noteFiles = [@note.noteFile]
   end
 
   def edit
@@ -35,7 +38,7 @@ class NotesController < ApplicationController
 
   def update
     @note = Note.find(params[:id])
-
+    @note.noteFiles.attach(params[:noteFiles])
     if @note.update(note_params)
       redirect_to course_notes_path
     else
@@ -51,6 +54,6 @@ class NotesController < ApplicationController
 
   private
     def note_params
-        params.require(:note).permit(:title, :description)
+        params.require(:note).permit(:title, :description, :noteFile)
     end
 end
