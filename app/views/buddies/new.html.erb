@@ -34,15 +34,15 @@
 
     <div class="fields">
       <div class="six wide field">
-        <%= form.label :first_name %><br>
+        <%= form.label :first_name %>
         <%= form.text_field :fname, :value => current_user.profile.fname, placeholder: "First Name" %>
       </div>
       <div class="six wide field">
-        <%= form.label :last_name %><br>
+        <%= form.label :last_name %>
         <%= form.text_field :lname, :value => current_user.profile.lname, placeholder: "Last Name" %>
       </div>
       <div class="six wide field">
-        <%= form.label :username, "StudyBuddy Username" %><br>
+        <%= form.label :username, "StudyBuddy Username" %>
         <%#= form.text_field :username, :value => current_user.username, placeholder: "StudyBuddy Username", :disabled => true%>
         <%= form.text_field :username, :value => current_user.username, placeholder: "StudyBuddy Username" %>
       </div>
@@ -50,8 +50,13 @@
 
 
     <div class="field">
-      <%= form.label :description, "Why would you like to be a Buddy?" %><br>
+      <%= form.label :description, "Why would you like to be a Buddy?" %>
       <%= form.text_area :description, placeholder: "I would like to be a Buddy because..." %>
+    </div>
+
+    <div class="field">
+      <%= form.label :about, "Tell me about yourself" %>
+      <%= form.text_area :about, placeholder: "I am a fourth year engineering student..." %>
     </div>
 
     <div class="field">
@@ -60,7 +65,7 @@
     </div>
 
     <div class="field">
-      <%= form.label :hourly_rate, "What hourly rate would you like to be compensated at?" %><br>
+      <%= form.label :hourly_rate, "What hourly rate would you like to be compensated at?" %>
       <%= form.text_field :hourly_rate, placeholder: "25.00" %>
     </div>
 

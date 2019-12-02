@@ -13,6 +13,7 @@
   <th>Hourly rate</th>
   <th>Image</th>
   <th>Courses</th>
+  <th>About Me</th>
   </tr>
   </thead>
 <%end%>
@@ -42,7 +43,11 @@
 </table>
 
 <div class = "buttons" style = "margin-top: 50px;">
+<% if @courses.distinct.count(:name)>0 %>
   <%= link_to 'Become a StudyBuddy', new_buddy_path, :class => 'ui primary button' %>
+  <%else%>
+  <p>Try adding a course!</p>
+  <%end%>
 
   <%= link_to 'Main Page', root_path, :class => 'ui secondary button' %>
 </div>

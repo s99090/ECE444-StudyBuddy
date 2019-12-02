@@ -1,13 +1,22 @@
 <div class ="ui container" style="margin-top: 20px; margin-bottom: 20px;">
 
+<div class ="ui raised segment">
+<div class = "ui grid">
+<div class="four wide column">
+<div class ="ui medium round image">
+<%= image_tag current_user.profile.avatar %>
+</div>
+</div>
+<div class ="twelve wide column" style="margin-top: 20px; margin-bottom: 20px;">
+
+  <h2 class ="ui dividing header"><%= @buddy.fname + " " + @buddy.lname %></h2>
+
+  <h4>About</h4>
+  <p><%= @buddy.about %></p>
+
 <p>
   <strong>Username:</strong>
   <%= @buddy.username %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @buddy.fname + " " + @buddy.lname %>
 </p>
 
 <p>
@@ -25,11 +34,10 @@
   <%= @buddy.hourly_rate %>
 </p>
 
-<p>
-  <strong>Courses:</strong>
-  <%= @buddy.courses %>
-</p>
+</div>
 
-<%= link_to 'Back', buddies_path %>
+</div>
+</div>
 
+<%= link_to 'Back', buddies_path, :class=>"ui button" %>
 </div>

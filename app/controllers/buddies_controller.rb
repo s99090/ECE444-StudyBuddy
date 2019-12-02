@@ -1,6 +1,7 @@
 class BuddiesController < ApplicationController
   def index
     @buddies = Buddy.all
+    @courses = Course.all
   end
 
   def new
