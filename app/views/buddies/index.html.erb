@@ -40,6 +40,8 @@ $(document).ready(function(){
 
 <tbody id ="myTable">
   <% @buddies.each do |buddy| %>
+    <% if !buddy.email_confirmed %>
+    <%else%>
     <tr>
       <td>
         <%= link_to buddy.fname + " " + buddy.lname, buddy %>
@@ -61,6 +63,7 @@ $(document).ready(function(){
       <td><%= buddy.about %></td>
 
     </tr>
+    <%end%>
   <% end %>
   </tbody>
   </table>
