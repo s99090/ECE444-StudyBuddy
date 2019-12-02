@@ -44,3 +44,4 @@ sendgrid.env
 /.idea/
 .DS_Store
 .yarn.lock
+/public/packs/manifest.json
