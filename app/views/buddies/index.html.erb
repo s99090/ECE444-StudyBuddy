@@ -1,79 +1,85 @@
 <div class="ui container" style="margin-top: 50px">
 
-<h1 class="ui dividing header">There are 0 Buddies available to help you!</h1>
+  <h1 class="ui dividing header">There are 0 Buddies available to help you!</h1>
 
 
-<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
+  <script>
+      $(document).ready(function () {
+          $("#myInput").on("keyup", function () {
+              var value = $(this).val().toLowerCase();
+              $("#myTable tr").filter(function () {
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+              });
+          });
+      });
+  </script>
 
-<div class="ui search" style="margin-top: 20px">
-  <div class="ui icon input">
-    <input id="myInput" class="prompt" type="text" placeholder="Search Buddies..." >
-    <i class="search icon"></i>
+  <div class="ui search" style="margin-top: 20px">
+    <div class="ui icon input">
+      <input id="myInput" class="prompt" type="text" placeholder="Search Buddies...">
+      <i class="search icon"></i>
+    </div>
+    <div class="results"></div>
   </div>
-  <div class="results"></div>
-</div>
 
-<% if @buddies.distinct.count(:username) == 0%>
-<table class="ui selectable celled table" style="display:none;">
-<%else%>
-<table class="ui selectable celled table" style="margin-top: 30px;">
-<thead>
-  <tr>
-  <th>Name</th>
-  <th>Description</th>
-  <th>Hourly rate</th>
-  <th>Image</th>
-  <th>Courses</th>
-  <th>About Me</th>
-  </tr>
-  </thead>
-<%end%>
+  <% if @buddies.distinct.count(:username) == 0 %>
+    <table class="ui selectable celled table" style="display:none;">
+  <% else %>
+    <table class="ui selectable celled table" style="margin-top: 30px;">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Hourly rate</th>
+        <th>Image</th>
+        <th>Courses</th>
+        <th>About Me</th>
+        <th>Interested?</th>
+      </tr>
+      </thead>
+  <% end %>
 
-<tbody id ="myTable">
+  <tbody id="myTable">
   <% @buddies.each do |buddy| %>
     <% if !buddy.email_confirmed %>
-    <%else%>
-    <tr>
-      <td>
-        <%= link_to buddy.fname + " " + buddy.lname, buddy %>
-      </td>
-      <td><%= buddy.description %></td>
-      <td><%= buddy.hourly_rate %></td>
-      <td>
-        <div class="ui avatar image">
-          <%= image_tag current_user.profile.avatar %>
-        </div>
-      </td>
-      <td>
-        <% buddy.courses.split(',').each do |c| %>
+    <% else %>
+      <tr>
+        <td>
+          <%= link_to buddy.fname + " " + buddy.lname, buddy %>
+        </td>
+        <td><%= buddy.description %></td>
+        <td><%= buddy.hourly_rate %></td>
+        <td>
+          <div class="ui avatar image">
+            <%= image_tag current_user.profile.avatar %>
+          </div>
+        </td>
+        <td>
+          <% buddy.courses.split(',').each do |c| %>
+            <%= link_to c, Course.find_by_name(c) %>
+          <% end %>
+        </td>
+        <td><%= buddy.about %></td>
+        <td>
+          <%= link_to buddy_add_interested_path(buddy, current_user.id), method: :patch do %>
+            <div class="ui button">
+              Interested
+            </div>
+          <% end %>
+        </td>
 
-          <%= link_to c, Course.find_by_name(c) %>
-
-        <% end %>
-      </td>
-      <td><%= buddy.about %></td>
-
-    </tr>
-    <%end%>
+      </tr>
+    <% end %>
   <% end %>
   </tbody>
   </table>
 
-<div class = "buttons" style = "margin-top: 50px;">
-<% if @courses.distinct.count(:name)>0 %>
-  <%= link_to 'Become a StudyBuddy', new_buddy_path, :class => 'ui primary button' %>
-  <%else%>
-  <p>Try adding a course!</p>
-  <%end%>
+  <div class="buttons" style="margin-top: 50px;">
+    <% if @courses.distinct.count(:name) > 0 %>
+      <%= link_to 'Become a StudyBuddy', new_buddy_path, :class => 'ui primary button' %>
+    <% else %>
+      <p>Try adding a course!</p>
+    <% end %>
 
     <%= link_to 'Main Page', root_path, :class => 'ui secondary button' %>
   </div>
