@@ -34,6 +34,7 @@ $(document).ready(function(){
   <th>Image</th>
   <th>Courses</th>
   <th>About Me</th>
+  <th>Interested?</th>
   </tr>
   </thead>
 <%end%>
@@ -61,6 +62,15 @@ $(document).ready(function(){
         <% end %>
       </td>
       <td><%= buddy.about %></td>
+      <td>
+
+        <%= link_to buddy_add_interested_path(buddy, current_user.id), method: :patch do %>
+          <div class="ui button">
+            Interested
+          </div>
+        <% end %>
+
+      </td>
 
     </tr>
     <%end%>
