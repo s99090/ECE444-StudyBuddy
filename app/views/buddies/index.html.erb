@@ -26,9 +26,9 @@
       <td><%= buddy.description %></td>
       <td><%= buddy.hourly_rate %></td>
       <td>
-      <div class ="ui avatar image">
-      <%= image_tag current_user.profile.avatar %>
-      </div>
+        <div class="ui avatar image">
+          <%= image_tag current_user.profile.avatar %>
+        </div>
       </td>
       <td>
         <% buddy.courses.split(',').each do |c| %>
@@ -40,7 +40,7 @@
 
     </tr>
   <% end %>
-</table>
+  </table>
 
 <div class = "buttons" style = "margin-top: 50px;">
 <% if @courses.distinct.count(:name)>0 %>
@@ -49,6 +49,6 @@
   <p>Try adding a course!</p>
   <%end%>
 
-  <%= link_to 'Main Page', root_path, :class => 'ui secondary button' %>
-</div>
+    <%= link_to 'Main Page', root_path, :class => 'ui secondary button' %>
+  </div>
 </div>

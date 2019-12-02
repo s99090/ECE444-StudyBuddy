@@ -33,6 +33,9 @@ gem 'jquery-rails'
 # user with Devise
 gem 'devise'
 
+# Third party authentication
+gem 'omniauth-facebook'
+
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 
