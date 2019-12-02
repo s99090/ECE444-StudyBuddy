@@ -12,8 +12,11 @@
           <div class ="ui piled segment">
         <%= link_to group_event_path(@group,event), :class=>"ui content" do%>
           <h4 class="ui header"><%= event.name %></h4>
-          <p>About this event</p>
-          <p>Time of Event </p>
+          <div style="color: black">
+          <div class="ui content">Description: <%= event.content %></div>
+          <div class="ui content">Organizer: <%= @users.find(event.creater_id).username %></div>
+          <div class="ui content"><%= event.datetime %> </div>
+          </div>
         <%end%>
         </div>
         <%end%>

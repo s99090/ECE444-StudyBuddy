@@ -20,7 +20,7 @@
   <% @buddies.each do |buddy| %>
     <tr>
       <td>
-        <%= link_to buddy.fname + " " + buddy.lname, buddy, :class => 'ui button' %>
+        <%= link_to buddy.fname + " " + buddy.lname, buddy %>
       </td>
       <td><%= buddy.description %></td>
       <td><%= buddy.hourly_rate %></td>
@@ -32,7 +32,7 @@
       <td>
         <% buddy.courses.split(',').each do |c| %>
 
-          <%= link_to c, Course.find_by_name(c), :class => 'ui button' %>
+          <%= link_to c, Course.find_by_name(c) %>
 
         <% end %>
       </td>
