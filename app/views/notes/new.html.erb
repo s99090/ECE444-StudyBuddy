@@ -26,6 +26,10 @@
     <%= form.text_area :description %>
   </div>
 
+  <div class = "field">
+    <%= form.file_field :noteFile %>
+  </div>
+
 
     <%= form.submit :class=>'ui primary button'%>
     <%= link_to 'Back', course_notes_path, :class=>'ui secondary button' %>

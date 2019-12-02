@@ -44,3 +44,6 @@ sendgrid.env
 /.idea/
 .DS_Store
 .yarn.lock
+
+# Ignore application configuration
+/config/application.yml
