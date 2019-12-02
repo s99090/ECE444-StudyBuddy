@@ -51,6 +51,8 @@ private
         return Discussion.find(value)
       elsif name == "groupchat_id"
         return Groupchat.find(value)
+      elsif name == "meeting_id"
+        return Meeting.find(value)
       end
     end
     nil 

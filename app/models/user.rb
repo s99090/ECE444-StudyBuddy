@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:facebook]
   has_one :profile, dependent: :destroy
   has_many :notes
+  has_many :meetings
   has_and_belongs_to_many :groups
   validates :username, uniqueness: true, presence: true
 
