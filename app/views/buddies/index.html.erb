@@ -1,22 +1,23 @@
 <div class="ui container" style="margin-top: 50px">
 
-<h1 class="ui dividing header">There are 0 Buddies available to help you!</h1>
+  <h1 class="ui dividing header">There are 0 Buddies available to help you!</h1>
 
-<% if @buddies.distinct.count(:username) == 0%>
-<table class="ui selectable celled table" style="display:none;">
-<%else%>
-<table class="ui selectable celled table" style="margin-top: 30px;">
-<thead>
-  <tr>
-  <th>Name</th>
-  <th>Description</th>
-  <th>Hourly rate</th>
-  <th>Image</th>
-  <th>Courses</th>
-  <th>About Me</th>
-  </tr>
-  </thead>
-<%end%>
+  <% if @buddies.distinct.count(:username) == 0 %>
+    <table class="ui selectable celled table" style="display:none;">
+  <% else %>
+    <table class="ui selectable celled table" style="margin-top: 30px;">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Hourly rate</th>
+        <th>Image</th>
+        <th>Courses</th>
+        <th>About Me</th>
+        <th>Interested?</th>
+      </tr>
+      </thead>
+  <% end %>
 
   <% @buddies.each do |buddy| %>
     <tr>
@@ -38,17 +39,26 @@
         <% end %>
       </td>
       <td><%= buddy.about %></td>
+      <td>
+
+        <%= link_to buddy_add_interested_path(buddy, current_user.id), method: :patch do %>
+          <div class="ui button">
+            Interested
+          </div>
+        <% end %>
+
+      </td>
 
     </tr>
   <% end %>
   </table>
 
-<div class = "buttons" style = "margin-top: 50px;">
-<% if @courses.distinct.count(:name)>0 %>
-  <%= link_to 'Become a StudyBuddy', new_buddy_path, :class => 'ui primary button' %>
-  <%else%>
-  <p>Try adding a course!</p>
-  <%end%>
+  <div class="buttons" style="margin-top: 50px;">
+    <% if @courses.distinct.count(:name) > 0 %>
+      <%= link_to 'Become a StudyBuddy', new_buddy_path, :class => 'ui primary button' %>
+    <% else %>
+      <p>Try adding a course!</p>
+    <% end %>
 
     <%= link_to 'Main Page', root_path, :class => 'ui secondary button' %>
   </div>
