@@ -35,7 +35,7 @@
     <%=image_tag("default_profile.png")%>
   </a>
   <div class="content">
-  <a class="author"><%= User.find(comment.creater_id).username %> <%= link_to 'Profile', user_profile_path(User.find(comment.creater_id)) %></a>
+  <a class="author"><%= link_to User.find(comment.creater_id).username, user_profile_path(User.find(comment.creater_id)) %></a>
   <div class="metadata">
     <span class="date"><%= comment.created_at %> </span>
   </div>
@@ -43,9 +43,11 @@
   <%= comment.body %> <% if comment.creater_id == current_user.id %> <% end %>
   </div>
   <div class="actions">
-    <%= link_to 'Delete', group_event_comment_path(@group,@event,comment),
-    method: :delete,
-    data: { confirm: 'Are you sure?' } %> 
+    <% if comment.creater_id == current_user.id %>
+      <%= link_to 'Delete', group_event_comment_path(@group,@event,comment),
+      method: :delete,
+      data: { confirm: 'Are you sure?' } %> 
+    <% end %>
   </div>
 </div>
 </div>
