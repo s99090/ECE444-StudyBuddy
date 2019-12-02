@@ -29,6 +29,9 @@ class CommentsController < ApplicationController
   def destroy
     session[:return_to] = request.referer
     @commentable = get_commentable
+    if not @commentable.comments.exists?(params[:id])
+      redirect_to session[:return_to] and return
+    end
     @comment = @commentable.comments.find(params[:id])
     if @comment.creater_id == current_user.id
       @comment.destroy
