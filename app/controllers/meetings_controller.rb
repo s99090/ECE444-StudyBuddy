@@ -33,11 +33,15 @@ class MeetingsController < ApplicationController
     @meeting = nil
 
     if params[:token] != nil
+
       @meeting = Meeting.all.find_by_meeting_token(params[:token])
+
       if @meeting == nil
-        flash[:error] = "Meeting link doesn't exist".
+        flash[:error] = "Meeting link doesn't exist."
         redirect_to buddies_path
+
       end
+
       @buddy = Buddy.find(@meeting.buddy_id)
     else
       @buddy = Buddy.find(params[:buddy_id])
@@ -45,6 +49,7 @@ class MeetingsController < ApplicationController
     end
 
     unless @buddy.username == current_user.username || current_user.id == @meeting.invitee.to_i
+      flash[:error] = "Meeting link doesn't exist."
       redirect_to buddies_path
     end
 
@@ -63,17 +68,19 @@ class MeetingsController < ApplicationController
   end
 
   def create
+
     @buddy = Buddy.find(params[:buddy_id])
+
     if @buddy.username != current_user.username
       redirect_to buddies_path
     end
+
     @meeting = @buddy.meetings.build(params.require(:meeting).permit(:name, :initial_post)) #have to fix this
     @meeting.invitee = params[:meeting][:users]
     @meeting.meeting_token = SecureRandom.urlsafe_base64.to_s
 
     if params[:meeting][:users] != "" && @meeting.save
       MeetingMailer.notify_student_about_meeting(User.find(@meeting.invitee), @buddy, @meeting).deliver_now
-      # raise ""
       redirect_to buddy_meeting_path(@buddy, @meeting)
       #we need to send a notification to the user that there was a meeting created
     else
