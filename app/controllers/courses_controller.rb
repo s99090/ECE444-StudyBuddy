@@ -10,7 +10,7 @@ class CoursesController < ApplicationController
 
     def create 
         @professors = Professor.all
-        @course = Course.new(params.require(:course).permit(:name, :subject, :term, :course_code, :studenpts, :notes, :links, :discussions, :groups, :description, :professor))
+        @course = Course.new(params.require(:course).permit(:name, :subject, :term, :course_code, :students, :notes, :links, :discussions, :groups, :description, :professor))
         puts @course
         if @course.save
             @course.professor << params[:course][:professor]
