@@ -16,30 +16,17 @@
   <%= @note.description %>
 </p>
 
-<h2>Attachments:</h2>
-<ul class="no-bullet">
-  <% @noteFiles.each do |file| %>
-    <li>
-      <% if file.previewable? %>
-        <%= link_to(image_tag(file.preview(resize: "200x200>")),  rails_blob_path(note, disposition: "attachment"))
-        %>
-      <% elsif file.variable? %>
-        <%= link_to(image_tag(file.variant(resize: "200x200")), rails_blob_path(file, disposition: "attachment"))%>
-      <% else %>
-        <%= link_to(file.filename, rails_blob_path(file, disposition: "attachment")) %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
-
 <%= if current_user.id == @note.user_id
       link_to "Edit", edit_course_note_path(@course), :class=>'ui secondary button'
 end%>
 
-<%= link_to 'Delete', course_note_path(@course), method: :delete, data: { confirm: 'Are you sure?' }, :class=>'ui secondary button' %>
+<%= if current_user.id == @note.user_id
+  link_to 'Delete', course_note_path(@course), method: :delete, data: { confirm: 'Are you sure?' }, :class=>'ui secondary button' 
+end%>
 
 <%= link_to 'Back', course_notes_path(@course), :class=>'ui secondary button' %>
 
+<<<<<<< HEAD
 <% if false %>
   <p>
   <strong>Files:</strong>
@@ -54,3 +41,15 @@ end%>
 </p>
 <% end %>
 </div>
+=======
+<h2>Attachments:</h2>
+<%if @note.noteFile.attached? %>
+  <%if @note.noteFile.filename.extension_with_delimiter == ".pdf" %>
+    <div style="text-align: center">
+      <iframe src="<%=(url_for(@note.noteFile))%>" width="80%" height="680" style="border: none; display: inline-block;"> </iframe>
+    </div>
+  <% else %>
+    <%= link_to "Download file", rails_blob_path(@note.noteFile, disposition: "attachment") %>
+  <%end%>
+<% end %>
+>>>>>>> 7a59f48254a039cd23ca42d2ae15ba7037e94fe3
