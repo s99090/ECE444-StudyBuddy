@@ -28,42 +28,40 @@
 </div>
 
 
-  <div id="myTable" class = "ui four cards" style="margin-top:30px;">
+  <div id="myTable" class = "ui three cards" style="margin-top:30px;">
     <% @notes.each do |note| %>
-      <%= link_to course_note_path(@course, note), { :class=>"ui raised link card"  style="height: 230px; overflow: hidden;"} do %>
-        <div class="content"  style="height: 200px; overflow: hidden;">
+      <div class ="ui raised link card" style="height: 230px; overflow: hidden;">
+        <%= link_to course_note_path(@course, note), { :class=>"content",  :style=>"height: 200px; overflow: hidden;"} do %>
           <div class="header"><%= note.title %></div>
           <div class="meta">Uploaded Date: <%= time_ago_in_words(note.updated_at) %> ago</div>
           <div class="description"><%= note.description %></div>
-        </div> 
-      <div class="extra content">
-        <div class="right floated author">
-          <img class="ui avatar image"> <%= User.find(note.user_id).username %>
+        <%end%>
+        <div class = "extra content">
+        <div class="ui avatar image"><%= image_tag User.find(note.user_id).profile.avatar %> </div><%= User.find(note.user_id).username %>
         </div>
+      <div class="extra content" style="margin-bottom: 5px;">
+      <div class="ui labeled button" tabindex =0>
+      <%= link_to course_note_addUpvote_path(@course,note), method: :patch do %>
+        <div class="ui red button" style="padding: 10px;">
+        <i class="hand point up icon"></i> Upvotes
       </div>
-      <div class="extra content" style="margin-top: 10px;">
-      <div class="ui labeled button" tabindex="0">
-    <%= link_to course_note_addUpvote_path(@course,note), method: :patch do %>
-      <div class="ui red button">
-      <i class="hand point up icon"></i> Upvotes
-    </div>
-    <a class="ui basic red left pointing label">
-    <%= note.upvotes.length %>
-    </a>
-    <% end %>
-    </div>
-    <div class="ui labeled button" tabindex="0">
-    <%= link_to course_note_addDownvote_path(@course, note), method: :patch do %>
-      <div class="ui basic blue button">
-      <i class="hand point down icon"></i> Downvotes
-    </div>
-    <a class="ui basic left pointing blue label">
-      <%= note.downvotes.length%>
-    </a>
-    <% end %>
-    </div>
-    </div>
+      <a class="ui basic red left pointing label" style="padding: 10px;">
+      <%= note.upvotes.length %>
+      </a>
       <% end %>
+      </div>
+      <div class="ui labeled button" tabindex =1>
+      <%= link_to course_note_addDownvote_path(@course, note), method: :patch do %>
+        <div class="ui basic blue button" style="padding: 10px;">
+        <i class="hand point down icon"></i> Downvotes
+      </div>
+      <a class="ui basic left pointing blue label" style="padding: 10px;">
+        <%= note.downvotes.length%>
+      </a>
+      <% end %>
+      </div>
+      </div>
+    </div>
     <% end %>
   </div>
 
