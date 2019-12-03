@@ -10,7 +10,7 @@ class MeetingMailer < ApplicationMailer
     @buddy = buddy
     @meeting = meeting
 
-    mail to: @student.email, subject: "New meeting request"
+    mail to: @student.email, subject: "New Meeting Request | StudyBuddy"
 
   end
 end

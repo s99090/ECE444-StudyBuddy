@@ -1,11 +1,10 @@
-
 <div class="ui container" style="margin-top: 50px">
 
-<% if @buddies.length == 1 %>
-  <h1 class="ui dividing header">There is <%= @buddies.length%> Buddy available to help you!</h1>
-<% else %>
-<h1 class="ui dividing header">There are <%= @buddies.length%> Buddies available to help you!</h1>
-<% end %>
+  <% if @buddies.length == 1 %>
+    <h1 class="ui dividing header">There is <%= @buddies.length %> Buddy available to help you!</h1>
+  <% else %>
+    <h1 class="ui dividing header">There are <%= @buddies.length %> Buddies available to help you!</h1>
+  <% end %>
 
   <script>
       $(document).ready(function () {
@@ -65,7 +64,8 @@
         </td>
         <td><%= buddy.about %></td>
         <td>
-          <%= link_to buddy_add_interested_path(buddy, current_user.id), method: :patch do %>
+          <%= link_to buddy_add_interested_path(buddy, current_user.id), method: :patch,
+                      data: {confirm: 'This buddy will be notified about your interest. Are you sure?'} do %>
             <div class="ui button">
               Interested
             </div>
