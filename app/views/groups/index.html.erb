@@ -78,7 +78,6 @@ $(document).ready(function(){
   <tr>
     <th>Group Name</th>
     <th>Description</th>
-    <th>Group Admin</th>
     <th>Join/Leave</th>
   </tr>
   </thead>
@@ -89,7 +88,6 @@ $(document).ready(function(){
     <tr>
       <td><%= link_to group.name, group_path(group) %></td>
       <td><%= group.text %></td>
-      <td>Admin</td>
       <% if not group.users.exists?(current_user.id) %>
       <td><%= link_to 'Join', join_group_path(group), method: :put %></td>
     <%else%>

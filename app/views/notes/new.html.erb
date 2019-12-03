@@ -1,6 +1,6 @@
 <%= form_with scope: :note, :class => "ui form", url: course_notes_path, local:true do |form| %>
-  <div class="ui container">
-  <h1 class="ui dividing header">Create new note</h1>
+  <div class="ui container" style="margin-top: 50px;">
+  <h1 class="ui dividing header">Create New Note</h1>
 
   <% if @note.errors.any? %>
     <div id="error_explanation">

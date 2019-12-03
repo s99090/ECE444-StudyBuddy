@@ -1,0 +1,47 @@
+<%= form_with scope: :course, :class => "ui form", url: courses_path, local: true do |form| %>
+    <div class="ui container" style="margin-top: 50px; margin-bottom: 50px; padding: 0px">
+      <h4 class="ui dividing header">Course Information</h4>
+        <div class = "field">
+          <%= form.label :name %>
+          <%= form.text_field :name %>
+        </div>
+    
+        <div class = "field">
+          <%= form.label :subject %>
+          <%= form.text_field :subject %>
+        </div>
+    
+    
+        <div class = "field">
+          <%= form.label :term %>
+          <%= form.text_field :term %>
+        </div>
+    
+        <div class = "field">
+          <%= form.label :course_code %>
+          <%= form.text_field :course_code%>
+        </div>
+    
+        <style>
+        select.selector{
+          width: 100%;
+          }
+        </style>
+        <div class = "field">
+          <%= form.label :professor %>
+          <%= form.select :professor , Professor.all.collect(&:name), {:prompt => "Select One"}, {:style =>'width:100%'}%>
+         </div>
+    
+         <div class = "field">
+          <%= form.label :description, "Class Description" %>
+          <%= form.text_area :description %>
+        </div>
+    
+        <div class = "field">
+          <%= form.submit :class=>'ui primary button' %>
+          <%= link_to 'Back', course_path(@course), :class=>"ui secondary button" %>
+         </div>
+        </div>
+      <% end %>
+    
+    
