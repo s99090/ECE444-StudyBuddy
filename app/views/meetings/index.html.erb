@@ -1,9 +1,33 @@
 <div class="ui container" style="margin-left: 100px; margin-top: 50px">
+
+  <div><h1 class="ui dividing header">Interested Students</h1></div>
+
+  <div style="height:300px;overflow:auto;">
+    <table class="ui selectable celled table" id="courses-table" style="margin-top: 30px;">
+
+      <thead>
+      <tr>
+        <th>StudyBuddy Username</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @buddy.interested_users.each do |user| %>
+        <tr>
+          <td><%= User.find(user).username %></td>
+        </tr>
+      <% end %>
+      </tbody>
+
+
+    </table>
+  </div>
+
   <div><h1 class="ui dividing header">Available Meetings</h1></div>
 
   <div class="ui search" style="margin-top: 20px">
     <div class="ui icon input">
-      <input class="prompt" type="text" placeholder="Search classes...">
+      <input class="prompt" type="text" placeholder="Search meetings...">
       <i class="search icon"></i>
     </div>
     <div class="results"></div>
