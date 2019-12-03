@@ -1,0 +1,7 @@
+Hi <%= @student.username %>!
+<br>
+<br>
+
+A StudyBuddy (<%= @buddy.username %>) would like to meet with you!
+
+View the meeting <%= link_to "here", view_encrypted_meeting_url(@meeting.meeting_token, host: root_url) %>.
