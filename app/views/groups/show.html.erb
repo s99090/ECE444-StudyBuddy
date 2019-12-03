@@ -24,8 +24,29 @@
         <%= link_to 'New Event', new_group_event_path(@group), :class=>"ui primary button"%>
 
 <h1>Groupchats</h1>
+  <div class = "ui items">
+    <% @groupchats.each do |groupchat| %>
+      <div class="item">
+        <div class = "ui placeholder">
+          <div class="image">
+          </div>
+        </div>
+        <div class="content">
+        <%= link_to groupchat.groupchat_name, group_groupchat_path(@group, groupchat)%>
+          <div class="meta">
+            <span>Description</span>
+          </div>
+          <div class="description">
+            <p></p>
+          </div>
+          <div class="extra">
+          <%= groupchat.created_at %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <%= link_to 'New Groupchat', new_group_groupchat_path(@group), :class=>"ui primary button"%>
-<%= link_to 'groupchats', group_groupchats_path(@group, @groupchat), :class=>"item" %>
   </div>
 
   <div class="four wide column">
@@ -40,7 +61,7 @@
         <%= link_to user_profile_path(member), :class=>"header" do %>
           <%= member.username %>
         <% end %>
-        <div class="description">Some description</div>
+        <div class="description"><%=member.email%></div>
         </div>
       </div>
       <% end %>

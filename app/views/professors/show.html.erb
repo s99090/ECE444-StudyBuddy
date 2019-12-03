@@ -1,13 +1,50 @@
 <div class ="ui container" style="margin-top: 50px;">
 
-<h1><%= @professor.name %></h1>
-<div class="ui medium image">
-<%= image_tag @professor.avatar %><br/>
+<h1 class="ui dividing header"><%= @professor.position %> <%= @professor.name %></h1>
+<div class ="ui grid">
+<div class="ui four wide column">
+<div class="ui medium round image">
+  <%= image_tag @professor.avatar %><br/>
 </div>
+
+<% if current_user.username == 'admin' %>
+  <%= link_to "Edit", edit_professor_path(), :class=>'ui primary button' %>
+  <%= link_to 'Delete', professor_path(), method: :delete, data: { confirm: 'Are you sure?' }, :class=>'ui secondary button' %>
+<% end %>
+
+<%= link_to 'Back', professors_path(), :class=>'ui button' %>
+</div>
+<div class="ui twelve wide column">
+<div class ="ui content">
 <p>
   <strong>Department:</strong>
   <%= @professor.department %>
 </p>
+
+<% if @courses.distinct.count(:course_code) == 0%>
+<table class="ui sortable selectable celled table" id="courses-table" style="display:none;">
+<%else%>
+<table class="ui selectable celled table" id="courses-table" style="margin-top: 30px;">
+<thead>
+  <tr>
+  <th>Course Name</th>
+  <th>Name</th>
+  <th>Subject</th>
+  <th>Term</th>
+  </tr>
+  </thead>
+<%end%>
+
+<tbody id="myTable" >
+  <% @courses.each do |course| %>
+    <tr>
+      <td><%= link_to course.course_code, course_path(course) %></td>
+      <td><%= course.name %></td>
+      <td><%= course.subject %></td>
+      <td><%= course.term %></td>
+    </tr>
+  <% end %>
+  </tbody>
 
 <p>
   <strong>Position:</strong>
@@ -28,12 +65,8 @@
     <span class="glyphicon glyphicon-star-empty"></span>
    <% end %>
 </p>
-
-<% if current_user.username == 'admin' %>
-  <%= link_to "Edit", edit_professor_path(), :class=>'ui primary button' %>
-  <%= link_to 'Delete', professor_path(), method: :delete, data: { confirm: 'Are you sure?' }, :class=>'ui secondary button' %>
-<% end %>
-
-<%= link_to 'Back', professors_path(), :class=>'ui button' %>
+</div>
+</div>
+</div>
 
 </div>

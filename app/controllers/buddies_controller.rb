@@ -84,6 +84,47 @@ class BuddiesController < ApplicationController
 
   end
 
+  def addUpvote
+    @buddy = Buddy.find(params[:buddy_id])
+    if not (@buddy.upvotes.include? (current_user.id).to_s)
+       if not (@buddy.downvotes.include? (current_user.id).to_s)
+            @buddy.upvotes << (current_user.id)
+            @buddy.save
+            redirect_to buddies_path
+       else
+            
+            @buddy.upvotes << (current_user.id)
+            @buddy.downvotes.pop(current_user.id)
+            @buddy.save
+            redirect_to buddies_path
+       end
+    else
+        flash[:Notice] = "You have already upvoted this buddy"
+        redirect_to buddies_path
+    end
+    
+end
+def addDownvote
+    @buddy = Buddy.find(params[:buddy_id])
+    if not (@buddy.downvotes.include? (current_user.id).to_s)
+       if not (@buddy.upvotes.include? (current_user.id).to_s)
+            @buddy.downvotes << (current_user.id)
+            @buddy.save
+            redirect_to buddies_path
+       else
+            #need to raise an error here
+
+            @buddy.downvotes << (current_user.id)
+            @buddy.upvotes.pop(current_user.id)
+            @buddy.save
+            redirect_to buddies_path
+       end
+    else
+        flash[:Notice] = "You have already downvoted this buddy"
+        redirect_to buddies_path
+    end
+end
+
   private
 
   def deliver_signup_email

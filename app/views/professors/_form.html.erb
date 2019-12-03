@@ -1,4 +1,17 @@
 <%= form_with model: @professor, :class => "ui form", local: true do |form| %>
+  <% if @professor.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@professor.errors.count, "error") %> prohibited
+      this note from being saved:
+    </h2>
+    <ul>
+      <% @professor.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
   <div class="ui container" style="margin-top: 50px; margin-bottom: 50px; padding: 0px">
     <h4 class="ui dividing header">Professor Information</h4>
       <div class = "field">

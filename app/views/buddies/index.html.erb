@@ -39,6 +39,7 @@
         <th>Courses</th>
         <th>About Me</th>
         <th>Interested?</th>
+        <th>Net Positive Votes</th>
       </tr>
       </thead>
   <% end %>
@@ -48,6 +49,11 @@
     <% if !buddy.email_confirmed %>
     <% else %>
       <tr>
+        <td>
+          <%= link_to buddy.fname + " " + buddy.lname, buddy %>
+        </td> 
+        <td><%= buddy.description %></td>
+        <td><%= buddy.hourly_rate %></td>
         <td>
           <div class="ui avatar image">
             <%= image_tag current_user.profile.avatar %>
@@ -72,7 +78,7 @@
             </div>
           <% end %>
         </td>
-
+        <td><%= buddy.upvotes.length - buddy.downvotes.length %></td>
       </tr>
     <% end %>
   <% end %>

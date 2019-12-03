@@ -11,6 +11,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @users = User.all
     @events = @group.events.all
+    @groupchats = @group.groupchats.all
   end
 
   def new

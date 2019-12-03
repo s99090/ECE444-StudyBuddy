@@ -33,7 +33,7 @@ class NotesController < ApplicationController
 
   def edit
     @note = Note.find(params[:id])
-    @course = Note.find(params[:course_id])
+    @course = Course.find(params[:course_id])
   end
 
   def update
@@ -51,6 +51,49 @@ class NotesController < ApplicationController
     flash[:info] = "Note deleted" 
     redirect_to course_notes_path
   end
+
+  def addUpvote
+    @course = Course.find(params[:course_id])
+    @note = Note.find(params[:note_id])
+    if not (@note.upvotes.include? (current_user.id).to_s)
+       if not (@note.downvotes.include? (current_user.id).to_s)
+            @note.upvotes << (current_user.id)
+            @note.save
+            redirect_to course_notes_path
+       else
+            
+            @note.upvotes << (current_user.id)
+            @note.downvotes.pop(current_user.id)
+            @note.save
+            redirect_to course_notes_path
+       end
+    else
+        flash[:Notice] = "You have already upvoted this note"
+        redirect_to course_notes_path
+    end
+    
+end
+def addDownvote
+    @course = Course.find(params[:course_id])
+    @note = Note.find(params[:note_id])
+    if not (@note.downvotes.include? (current_user.id).to_s)
+       if not (@note.upvotes.include? (current_user.id).to_s)
+            @note.downvotes << (current_user.id)
+            @note.save
+            redirect_to course_notes_path
+       else
+            #need to raise an error here
+
+            @note.downvotes << (current_user.id)
+            @note.upvotes.pop(current_user.id)
+            @note.save
+            redirect_to course_notes_path
+       end
+    else
+        flash[:Notice] = "You have already downvoted this note"
+        redirect_to course_notes_path
+    end
+end
 
   private
     def note_params
