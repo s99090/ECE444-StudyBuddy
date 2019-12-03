@@ -17,6 +17,36 @@
   </div>
 
   <div class = "ui field">
+    <%= form.label :gender %><br>
+    <%= form.text_field :gender %>
+  </div>
+
+  <div class = "ui field">
+    <%= form.label :phone_number %><br>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div class = "ui field">
+    <%= form.label :personal_website %><br>
+    <%= form.text_field :website %>
+  </div>
+
+  <div class = "ui field">
+    <%= form.label :address %><br>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class = "ui field">
+    <%= form.label :major %><br>
+    <%= form.text_field :major %>
+  </div>
+
+  <div class = "ui field">
+    <%= form.label :about %><br>
+    <%= form.text_area :about %>
+  </div>
+
+  <div class = "ui field">
     <%= form.submit :class=>'ui primary button'%>
     <%= link_to 'Back', user_profile_path, :class=>'ui secondary button' %>
   </div>

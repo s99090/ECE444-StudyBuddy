@@ -67,6 +67,7 @@ class BuddiesController < ApplicationController
   end
 
   def add_interested
+
     @buddy = Buddy.find(params[:buddy_id])
     @user = User.find(params[:current_user_id])
 
@@ -75,6 +76,7 @@ class BuddiesController < ApplicationController
       unless @buddy.interested_users.include?(params[:current_user_id])
         @buddy.interested_users.push(params[:current_user_id])
         @buddy.save
+        NewInterestMailer.notify_buddy_about_new_interest(User.find_by_username(@buddy.username), User.find(params[:current_user_id])).deliver_now
       end
 
     end
