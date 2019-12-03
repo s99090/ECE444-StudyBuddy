@@ -81,6 +81,17 @@ class MeetingsController < ApplicationController
     @meeting.meeting_token = SecureRandom.urlsafe_base64.to_s
 
     if params[:meeting][:users] != "" && @meeting.save
+
+      s = view_encrypted_meeting_url(@meeting.meeting_token, host: root_url)
+      s += ", "
+      s += @buddy.username
+
+      # raise ""
+
+      @user = User.find(@meeting.invitee)
+      @user.invited_meetings.push(s)
+      @user.save
+
       MeetingMailer.notify_student_about_meeting(User.find(@meeting.invitee), @buddy, @meeting).deliver_now
       redirect_to buddy_meeting_path(@buddy, @meeting)
       #we need to send a notification to the user that there was a meeting created

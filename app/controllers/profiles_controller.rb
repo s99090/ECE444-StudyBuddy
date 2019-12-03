@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
     @notes = Note.where(user: @user)
     @links = Link.where(creater_id: @user.id)
     @groupchats = Groupchat.where(creater_id: @user.id)
+    # @invited_meetings = @user.in
 
     @profile = @user.profile
     if @profile == nil

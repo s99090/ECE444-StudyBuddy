@@ -164,6 +164,29 @@
 
               </div>
 
+              <div class="ui content" style="margin-top: 20px;">
+                <% if @user.invited_meetings.length == 0 %>
+                  <h3 class="ui dividing header">Invited Meetings</h3>
+                  <p>You currently do not have a meeting invite.</p>
+                <% else %>
+                  <h3 class="ui dividing header">Invited Meetings</h3>
+                <% end %>
+                <div class="ui relaxed divided list">
+                  <% @user.invited_meetings.each do |m| %>
+                    <div class="ui item">
+                      <div class="content">
+
+                        <% url = m.split(',')[0] %>
+                        <% buddy_username = m.split(',')[1] %>
+                        <%= link_to buddy_username, url %>
+
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+
+              </div>
+
             </div>
           </div>
 
