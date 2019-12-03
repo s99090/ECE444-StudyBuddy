@@ -1,9 +1,10 @@
 <div class="ui container" style="margin-top: 50px">
 
-  <% if @buddies.length == 1 %>
-    <h1 class="ui dividing header">There is <%= @buddies.length %> Buddy available to help you!</h1>
+  <% count = Buddy.where(:email_confirmed => true).length %>
+  <% if count == 1 %>
+    <h1 class="ui dividing header">There is <%= count %> Buddy available to help you!</h1>
   <% else %>
-    <h1 class="ui dividing header">There are <%= @buddies.length %> Buddies available to help you!</h1>
+    <h1 class="ui dividing header">There are <%= count %> Buddies available to help you!</h1>
   <% end %>
 
   <script>
