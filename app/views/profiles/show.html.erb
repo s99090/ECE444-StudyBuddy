@@ -155,8 +155,8 @@
                   <% @links.each do |link| %>
                     <div class="ui item">
                       <div class="content">
-                        <%= link_to link.url, link.link_url, :target => "_blank", :class => "header" %>
-                        <div class="description">  <%= link.name %></div>
+                        <%= link_to link.link_url, link.link_url, :target => "_blank", :class => "header" %>
+                        <div class="description">  <%= link.link_name %></div>
                       </div>
                     </div>
                   <% end %>
