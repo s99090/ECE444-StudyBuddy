@@ -13,14 +13,60 @@
       <%= @profile.fname %>
       @profile.about
     </div>
-    <div class="description">
-
-      <% unless @buddy.nil? %>
-        <%= link_to 'Remove My Listing from Buddies Section', buddy_path(@buddy), method: :delete,
-                    data: {confirm: 'Are you sure you would like to remove your listing from the Buddies section?'} %>
+    <div class="twelve wide column">
+      <% if @user == current_user %>
+        <h1> My Profile </h1>
+      <% else %>
+        <h1> <%= @user.username %>'s Profile </h1>
       <% end %>
 
-    </div>
+      <div class="ui content">
+        <h3 class="ui dividing header">Groups</h3>
+        <% @user.groups.each do |group| %>
+          <%= group.name %>
+          <%= link_to group.name, group_path(group) %>
+        <% end %>
+      </div>
+
+      <div class="ui content">
+        <h3 class="ui dividing header"> Discussions</h3>
+        <% @discussions.each do |discussion| %>
+          <%= link_to discussion.discussion_name, course_discussion_path(Course.find(discussion.course_id), discussion) %>
+        <% end %>
+      </div>
+
+      <div class="ui content">
+        <h3 class="ui dividing header"> Group Events</h3>
+        <% @events.each do |event| %>
+          <%= event.name %>
+          <%= link_to event.name, group_event_path(Group.find(event.group_id), event) %>
+        <% end %>
+      </div>
+
+      <div class="ui content">
+        <h3 class="ui dividing header">Group Chats</h3>
+        <% @groupchats.each do |groupchat| %>
+          <%= groupchat.groupchat_name %>
+          <%= link_to groupchat.groupchat_name, group_groupchat_path(Group.find(groupchat.group_id), groupchat) %>
+        <% end %>
+      </div>
+
+
+      <div class="ui content">
+        <h3 class="ui dividing header">Notes</h3>
+        <% @notes.each do |note| %>
+          <%= note.title %>
+          <%= link_to note.title, course_note_path(Course.find(note.course_id), note) %>
+        <% end %>
+      </div>
+
+      <div class="ui content">
+        <h3 class="ui dividing header">Links</h3>
+        <% @links.each do |link| %>
+          <%= link.name %>
+          <%= link_to link.url, link.link_url, :target => "_blank" %>
+        <% end %>
+      </div>
 
   </div>
 

@@ -6,7 +6,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get 'welcome/index'
 
-  resources :buddies
+  resources :buddies do
+   
+    resources :meetings do
+      resources :comments
+    end
+  end
   patch '/buddies/:buddy_id/:current_user_id/add_interested', :to => "buddies#add_interested", as: 'buddy_add_interested'
 
   resources :users, :only => :none do

@@ -28,8 +28,18 @@
 
 
 <h3 class="ui dividing header">Comments</h3>
+<div class ="ui reply form">
+<h4>Add a comment:</h4>
+<%= form_with(model: [ @group, @event, @comment ], local: true) do |form| %>
+  <div class="field">
+  <%= form.text_area :body %>
+</div>
+<%= form.submit class: "ui blue submit button" %>
+<% end %>
+</div>
+
 <div class="ui comments">
-<% @comments.sort_by(&:created_at).each do |comment| %>
+<% @comments.sort_by(&:created_at).reverse.each do |comment| %>
   <div class="comment">
   <a class="avatar">
     <%=image_tag("default_profile.png")%>
@@ -52,15 +62,5 @@
 </div>
 </div>
 <% end %>
- 
-<div class ="ui reply form">
-<h4>Add a comment:</h4>
-<%= form_with(model: [ @group, @event, @comment ], local: true) do |form| %>
-  <div class="field">
-  <%= form.text_area :body %>
-</div>
-<%= form.submit class: "ui blue submit button" %>
-<% end %>
-</div>
 
 </div>

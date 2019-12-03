@@ -1,4 +1,5 @@
 class Buddy < ApplicationRecord
+  has_many :meetings
   validates :username, uniqueness: true, presence: true
   validates :hourly_rate, format: {with: /\A\d{1,6}(\.\d{0,2})?\z/,
                                    message: "does not match expected format"}

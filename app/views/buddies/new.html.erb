@@ -2,34 +2,34 @@
 
   <% if @buddy.errors.any? %>
     <div id="error_explanation">
-    <div class="ui negative message">
-    <div class ="ui container">
-      <h2>
-        <%= pluralize(@buddy.errors.count, "Error") %> Occurred During the Sign up Process:
-      </h2>
-      <ul>
-        <% @buddy.errors.full_messages.each do |msg| %>
+      <div class="ui negative message">
+        <div class="ui container">
+          <h2>
+            <%= pluralize(@buddy.errors.count, "Error") %> Occurred During the Sign up Process:
+          </h2>
+          <ul>
+            <% @buddy.errors.full_messages.each do |msg| %>
 
-          <% if msg.include? "Fname" %>
-            <li><%= msg.sub! 'Fname', 'First name' %></li>
-            
-          <% elsif msg.include? "Lname" %>
-            <li><%= msg.sub! 'Lname', 'Last name' %></li>
-            
-          <% elsif msg.include? "Description can't be blank" %>
-            
-            <li><%= msg.sub! "Description can't be blank", 'You must provide a description for why you would like to be a Buddy' %></li>
-          <% else %>
-            <li><%= msg %></li>
-          <% end %>
+              <% if msg.include? "Fname" %>
+                <li><%= msg.sub! 'Fname', 'First name' %></li>
 
-        <% end %>
-      </ul>
-    </div>
-    </div>
+              <% elsif msg.include? "Lname" %>
+                <li><%= msg.sub! 'Lname', 'Last name' %></li>
+
+              <% elsif msg.include? "Description can't be blank" %>
+
+                <li><%= msg.sub! "Description can't be blank", 'You must provide a description for why you would like to be a Buddy' %></li>
+              <% else %>
+                <li><%= msg %></li>
+              <% end %>
+
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </div>
   <% end %>
-  <div class="ui container" style = "margin-top: 30px; margin-bottom: 30px;">
+  <div class="ui container" style="margin-top: 30px; margin-bottom: 30px;">
     <h3 class="ui dividing header">Sign up to Become a Buddy!</h3>
 
     <div class="fields">

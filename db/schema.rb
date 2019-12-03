@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_02_202054) do
+ActiveRecord::Schema.define(version: 2019_12_02_224642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,16 @@ ActiveRecord::Schema.define(version: 2019_12_02_202054) do
     t.index ["course_id"], name: "index_links_on_course_id"
   end
 
+  create_table "meetings", force: :cascade do |t|
+    t.bigint "buddy_id"
+    t.string "name"
+    t.text "initial_post"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "invitee", default: ""
+    t.index ["buddy_id"], name: "index_meetings_on_buddy_id"
+  end
+
   create_table "notes", force: :cascade do |t|
     t.string "note_id"
     t.string "title"
@@ -196,6 +206,7 @@ ActiveRecord::Schema.define(version: 2019_12_02_202054) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "provider"
     t.string "uid"
+    t.string "meetings", default: [], array: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
