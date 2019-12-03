@@ -35,6 +35,28 @@
 </p>
 
 </div>
+<div class="extra content" style="margin-top: 10px;">
+<div class="ui labeled button" tabindex="0">
+<%= link_to buddy_addUpvote_path(@buddy), method: :patch do %>
+<div class="ui red button">
+<i class="hand point up icon"></i> Upvotes
+</div>
+<a class="ui basic red left pointing label">
+<%= @buddy.upvotes.length %>
+</a>
+<% end %>
+</div>
+<div class="ui labeled button" tabindex="0">
+<%= link_to buddy_addDownvote_path(@buddy), method: :patch do %>
+<div class="ui basic blue button">
+<i class="hand point down icon"></i> Downvotes
+</div>
+<a class="ui basic left pointing blue label">
+<%= @buddy.downvotes.length%>
+</a>
+<% end %>
+</div>
+</div>
 
 </div>
 </div>
