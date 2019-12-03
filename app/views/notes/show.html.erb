@@ -26,22 +26,6 @@ end%>
 
 <%= link_to 'Back', course_notes_path(@course), :class=>'ui secondary button' %>
 
-<<<<<<< HEAD
-<% if false %>
-  <p>
-  <strong>Files:</strong>
-  <ul>
-  <% @note.noteFiles.each do |file| %>
-    <li>
-      <%= image_tag file.preview(resize_to_limit: [100, 100]) %>
-    </li>
-  <% end %>
-</ul>
-  <p> TODO display pdf of notes</p>
-</p>
-<% end %>
-</div>
-=======
 <h2>Attachments:</h2>
 <%if @note.noteFile.attached? %>
   <%if @note.noteFile.filename.extension_with_delimiter == ".pdf" %>
@@ -52,4 +36,4 @@ end%>
     <%= link_to "Download file", rails_blob_path(@note.noteFile, disposition: "attachment") %>
   <%end%>
 <% end %>
->>>>>>> 7a59f48254a039cd23ca42d2ae15ba7037e94fe3
+</div>
