@@ -1,11 +1,13 @@
 class GroupchatsController < ApplicationController
     def index 
-        @groupchats = Groupchat.all
-        @full_discussions = Groupchat.all
-        @info = params["group_id"]
-        @courses = Group.all
         @group = Group.find(params["group_id"])
-        @groupchats = Groupchat.where(group_id: @group.id)
+        redirect_to group_path(@group)
+        # @groupchats = Groupchat.all
+        # @full_discussions = Groupchat.all
+        # @info = params["group_id"]
+        # @courses = Group.all
+        # @group = Group.find(params["group_id"])
+        # @groupchats = Groupchat.where(group_id: @group.id)
     end
     
     def new
