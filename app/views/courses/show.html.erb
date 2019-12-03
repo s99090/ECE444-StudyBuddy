@@ -26,4 +26,12 @@
           <%= @course.description%>
         </p>
         </div>
+
+        
+        <% if current_user.username == 'admin' %>
+        <div class = "buttons" style="margin-top: 20px">
+  <%= link_to "Edit", edit_course_path(), :class=>'ui primary button' %>
+  <%= link_to 'Delete', course_path(), method: :delete, data: { confirm: 'Are you sure?' }, :class=>'ui secondary button' %>
+  </div>
+<% end %>
     </div>

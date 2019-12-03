@@ -20,6 +20,26 @@ class CoursesController < ApplicationController
         end
     end
 
+    def edit
+        @course = Course.find(params[:id])
+      end
+    
+      def update
+        @course = Course.find(params[:id])
+    
+        if @course.update(params.require(:course).permit(:name, :subject, :term, :course_code, :students, :notes, :links, :discussions, :groups, :description, :professor))
+          redirect_to @course
+        else
+          render 'edit'
+        end
+      end
+
+    def destroy
+        @course = Course.find(params[:id])
+        @course.destroy
+        redirect_to '/courses'
+      end
+
     def show
         @course = Course.find(params[:id])
         @professor = Professor.find_by(name: @course.professor)
