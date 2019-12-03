@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  require 'open-uri'
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -35,9 +36,9 @@ class User < ApplicationRecord
         @profile = user.build_profile
         @profile.fname = auth.info.name.split[0]
         @profile.lname = auth.info.name.split[-1]
-        # image = open(auth.info.image) # assuming the user model has an image
-        # @profile.avatar.attach(io: image, filename: 'profile-image.jpg')
-        @profile.avatar.attach(io: File.open("#{Rails.root}/app/assets/images/default_profile.png"), filename: 'default_profile.png')
+        image = open(auth.info.image) # assuming the user model has an image
+        @profile.avatar.attach(io: image, filename: 'facebook_image.jpg')
+        # @profile.avatar.attach(io: File.open("#{Rails.root}/app/assets/images/default_profile.png"), filename: 'default_profile.png')
         @profile.save
       end
     end
