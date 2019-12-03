@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   def index
     @groups = Group.all
+    @professors = Professor.all
   end
 
   def edit

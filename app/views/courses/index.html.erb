@@ -47,7 +47,11 @@ $(document).ready(function(){
 </table>
 
 <div style = "margin-top: 30px;">
+<% if @professor.distinct.count(:name) > 0 %>
 <%= link_to 'New Course', new_course_path, :class => 'ui primary button'%>
+<% else %>
+<p>Try adding a Professor!</p>
+<% end %>
 <%= link_to 'Main Page', root_path, :class => 'ui secondary button' %>
 </div>
 </div>
