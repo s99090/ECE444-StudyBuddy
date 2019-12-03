@@ -5,6 +5,11 @@
         <%= form.label :name %>
         <%= form.text_field :name %>
       </div>
+
+      <div class = "ui field">
+      <%= form.label :image %>
+      <%= form.file_field :avatar %>
+    </div>
   
       <div class = "field">
         <%= form.label :department %>
@@ -19,16 +24,12 @@
   
       <div class = "field">
         <%= form.label :about %>
-        <%= form.text_field :about%>
+        <%= form.text_area :about%>
       </div>
   
-      <div class = "field">
-        <%= form.label :rating %>
-        <%= form.number_field :rating%>
-       </div>
-  
-      <div class = "field">
+      <div class = "buttons">
         <%= form.submit :class=>'ui primary button' %>
+        <%= link_to 'Back', professors_path, :class=>'ui secondary button' %>
        </div>
       </div>
     <% end %>

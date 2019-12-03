@@ -53,7 +53,9 @@
           <% if user_signed_in? %>
           <div class="item">Logged in as 
             <b>&nbsp;<%= current_user.username %></b>
+            <div class ="ui round avatar image">
             <%= image_tag current_user.profile.avatar if current_user.profile.avatar.attached? %>
+            </div>
           </div>
           <%= link_to 'My Profile', user_profile_path(current_user), :class => 'item' %>
           <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'item'  %>

@@ -1,5 +1,9 @@
-<h1><%= @professor.name %></h1>
+<div class ="ui container" style="margin-top: 50px;">
 
+<h1><%= @professor.name %></h1>
+<div class="ui medium image">
+<%= image_tag @professor.avatar %><br/>
+</div>
 <p>
   <strong>Department:</strong>
   <%= @professor.department %>
@@ -16,8 +20,10 @@
 </p>
 
 <% if current_user.username == 'admin' %>
-  <%= link_to "Edit", edit_professor_path(), :class=>'ui secondary button' %>
+  <%= link_to "Edit", edit_professor_path(), :class=>'ui primary button' %>
   <%= link_to 'Delete', professor_path(), method: :delete, data: { confirm: 'Are you sure?' }, :class=>'ui secondary button' %>
 <% end %>
 
-<%= link_to 'Back', professors_path(), :class=>'ui secondary button' %>
+<%= link_to 'Back', professors_path(), :class=>'ui button' %>
+
+</div>
