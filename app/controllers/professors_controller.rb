@@ -5,6 +5,7 @@ class ProfessorsController < ApplicationController
 
   def show
     @professor = Professor.find(params[:id])
+    @blank_stars = 5 - @professor.rating.to_i
     if @professor.avatar.present?
     else
       @professor.avatar.attach(io: File.open("#{Rails.root}/app/assets/images/default_profile.png"), filename: 'default_profile.png')
@@ -47,6 +48,6 @@ class ProfessorsController < ApplicationController
   private
   
   def professor_params
-    params.require(:professor).permit(:name, :department, :position, :about, :avatar)
+    params.require(:professor).permit(:name, :department, :position, :about, :avatar, :rating)
   end
 end
