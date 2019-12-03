@@ -18,16 +18,28 @@
       <div class="header"><%= link.link_name %></div>
       <div class="description"><%= link_to link.link_url, link.link_url, :target => "_blank" %></div>
       <div class="description"><%= link.created_at %></div>
-      <%= link_to course_link_addUpvote_path(@course,link), method: :patch do %>
-        <div class = "ui secondary button">
-        UPVOTES <%= link.upvotes.length %>
-        </div>
-      <% end %>
-      <%= link_to course_link_addDownvote_path(@course, link), method: :patch do %>
-        <div class = "ui secondary button">
-        DOWNVOTES <%= link.downvotes.length%>
-        </div>
-      <% end %>
+    </div>
+    <div class="extra content" style="margin-top: 10px;">
+      <div class="ui labeled button" tabindex="0">
+    <%= link_to course_link_addUpvote_path(@course,link), method: :patch do %>
+      <div class="ui red button">
+      <i class="hand point up icon"></i> Upvotes
+    </div>
+    <a class="ui basic red left pointing label">
+    <%= link.upvotes.length %>
+    </a>
+    <% end %>
+    </div>
+    <div class="ui labeled button" tabindex="0">
+    <%= link_to course_link_addDownvote_path(@course, link), method: :patch do %>
+      <div class="ui basic blue button">
+      <i class="hand point down icon"></i> Downvotes
+    </div>
+    <a class="ui basic left pointing blue label">
+      <%= link.downvotes.length%>
+    </a>
+    <% end %>
+    </div>
     </div>
   </div>
   <% end %>
