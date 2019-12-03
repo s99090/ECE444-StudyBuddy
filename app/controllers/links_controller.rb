@@ -19,8 +19,10 @@ class LinksController < ApplicationController
         @link.creater_id = current_user.id
 
         if @link.save
+            flash[:Success] = "You have successfully added a link."
             redirect_to course_links_path
           else
+            flash[:Error] = "You must provide a valid http or https link."
             render 'new'
           end
     end
