@@ -19,11 +19,9 @@
     <%= form.text_field :name %>
   </div>
 
-
-
   <div class="field">
     <%= form.label :courses, "Please select the student you would like to start a meeting with:" %>
-    <%= form.collection_select(:users, User.where(id: @buddy.interested_users), :id, :username, {:prompt => "Interested users:"}, {:multiple => true}) %>
+    <%= form.collection_select(:users, User.where(id: @buddy.interested_users), :id, :username, {:prompt => "Interested users:"}, {:multiple => false}) %>
   </div>
 
   <div class="field">
