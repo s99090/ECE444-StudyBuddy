@@ -5,6 +5,10 @@ class ProfessorsController < ApplicationController
 
   def show
     @professor = Professor.find(params[:id])
+    if @professor.avatar.present?
+    else
+      @professor.avatar.attach(io: File.open("#{Rails.root}/app/assets/images/default_profile.png"), filename: 'default_profile.png')
+    end
   end
 
   def new
@@ -13,7 +17,6 @@ class ProfessorsController < ApplicationController
 
   def create
     @professor = Professor.new(professor_params)
-
     if @professor.save
       redirect_to @professor
     else
@@ -44,6 +47,6 @@ class ProfessorsController < ApplicationController
   private
   
   def professor_params
-    params.require(:professor).permit(:name, :department, :position, :about, :rating)
+    params.require(:professor).permit(:name, :department, :position, :about, :avatar)
   end
 end

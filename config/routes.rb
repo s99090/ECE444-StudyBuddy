@@ -57,5 +57,6 @@ Rails.application.routes.draw do
   post '/contact_us_submission', to: 'welcome#contact_us_submission', as: 'contact_us_submission'
 
   get '/:token/confirm_email/', :to => "buddies#confirm_email", as: 'confirm_email'
+  get '/view_meeting/:token/', :to => "meetings#show", as: 'view_encrypted_meeting'
   root 'welcome#welcome'
 end
