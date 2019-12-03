@@ -45,7 +45,6 @@
 
   <tbody id="myTable">
   <% @buddies.each do |buddy| %>
-    <%#= buddy.interested_users %>
     <% if !buddy.email_confirmed %>
     <% else %>
       <tr>

@@ -1,41 +1,40 @@
-
 <div class="ui container" style="margin-left: 100px; margin-top: 50px">
-<div><h1 class="ui dividing header">Available Meetings</h1></div>
+  <div><h1 class="ui dividing header">Available Meetings</h1></div>
 
-<div class="ui search" style="margin-top: 20px">
+  <div class="ui search" style="margin-top: 20px">
     <div class="ui icon input">
-    <input class="prompt" type="text" placeholder="Search classes...">
-    <i class="search icon"></i>
+      <input class="prompt" type="text" placeholder="Search classes...">
+      <i class="search icon"></i>
     </div>
     <div class="results"></div>
-</div>
+  </div>
 
-<% if 1 == 0%>
-<table class="ui sortable selectable celled table" id="courses-table" style="display:none;">
-<%else%>
-<table class="ui selectable celled table" id="courses-table" style="margin-top: 30px;">
-<thead>
+  <% if 1 == 0 %>
+    <table class="ui sortable selectable celled table" id="courses-table" style="display:none;">
+  <% else %>
+    <table class="ui selectable celled table" id="courses-table" style="margin-top: 30px;">
+      <thead>
+      <tr>
+        <th>Meeting Name</th>
+        <th>Invitee</th>
+        <th>Created At</th>
+      </tr>
+      </thead>
+  <% end %>
+
+  <tbody>
+  <% @meetings.each do |meeting| %>
     <tr>
-    <th>Meeting Name</th>
-    <th>Invitee</th>
-    <th>Created At</th>
+      <td><%= link_to meeting.name, buddy_meeting_path(@buddy, meeting) %></td>
+      <td><%= meeting.invitee %></td>
+      <td><%= meeting.created_at %></td>
     </tr>
-    </thead>
-<%end%>
+  <% end %>
+  </tbody>
+  </table>
 
-<tbody>
-    <% @meetings.each do |meeting| %>
-    <tr>
-        <td><%= link_to meeting.name, buddy_meeting_path(@buddy, meeting) %></td>
-        <td><%= meeting.invitee %></td>
-        <td><%= meeting.created_at %></td>
-    </tr>
-    <% end %>
-    </tbody>
-</table>
-
-<div style = "margin-top: 30px;">
-<%= link_to 'New Meeting', new_buddy_meeting_path(@buddy), :class => 'ui primary button'%>
-<%= link_to 'Main Page', root_path, :class => 'ui secondary button' %>
-</div>
+  <div style="margin-top: 30px;">
+    <%= link_to 'New Meeting', new_buddy_meeting_path(@buddy), :class => 'ui primary button' %>
+    <%= link_to 'Main Page', root_path, :class => 'ui secondary button' %>
+  </div>
 </div>
