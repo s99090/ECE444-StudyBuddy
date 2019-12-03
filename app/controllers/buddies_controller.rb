@@ -6,6 +6,7 @@ class BuddiesController < ApplicationController
 
   def new
     @buddy = Buddy.new
+    @courses = Course.all
   end
 
   def create

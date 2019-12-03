@@ -60,8 +60,12 @@
     </div>
 
     <div class="field">
-      <%= form.label :courses, "Which course(s) would you like to tutor?" %>
-      <%= form.collection_select(:courses, Course.all, :id, :name, {:prompt => "Available courses:"}, {:multiple => true}) %>
+    <%= form.label :courses, "Which course(s) would you like to tutor?" %>
+    <select multiple class="form-control" style="width:100%">
+    <% @courses.each do |course|%>
+      <option><%= course.name %></option>
+      <%end%>
+    </select>
     </div>
 
     <div class="field">
