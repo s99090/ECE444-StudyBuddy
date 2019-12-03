@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     resource :profile, :only => [:show, :edit, :update]
   end
 
+  resources :professors
+
   resources :courses do
     resources :links do
       patch :addUpvote

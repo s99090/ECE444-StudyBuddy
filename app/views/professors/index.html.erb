@@ -1,0 +1,51 @@
+<div class="ui container" style="margin-left: 100px; margin-top: 50px">
+<div><h1 class="ui dividing header">Professors</h1></div>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+<div class="ui search" style="margin-top: 20px">
+  <div class="ui icon input">
+    <input id="myInput" class="prompt" type="text" placeholder="Search classes..." >
+    <i class="search icon"></i>
+  </div>
+  <div class="results"></div>
+</div>
+
+<div style = "margin-top: 30px;">
+<%= link_to 'New Professor', new_professor_path, :class => 'ui primary button'%>
+<%= link_to 'Main Page', root_path, :class => 'ui secondary button' %>
+</div>
+
+<% if @professors.distinct.count(:id) == 0%>
+<table class="ui sortable selectable celled table" id="professors-table" style="display:none;">
+<%else%>
+<table class="ui selectable celled table" id="professors-table" style="margin-top: 30px;">
+<thead>
+  <tr>
+  <th>Name</th>
+  <th>Department</th>
+  <th>Rating</th>
+  </tr>
+  </thead>
+<%end%>
+
+<tbody id="myTable" >
+  <% @professors.each do |professor| %>
+    <tr>
+      <td><%= link_to professor.name, professor_path(professor) %></td>
+      <td><%= professor.department %></td>
+      <td><%= professor.rating %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
