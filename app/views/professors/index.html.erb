@@ -43,7 +43,12 @@ $(document).ready(function(){
     <tr>
       <td><%= link_to professor.name, professor_path(professor) %></td>
       <td><%= professor.department %></td>
-      <td><%= professor.rating %></td>
+      <td>  <% professor.rating.to_i.times do  %>
+        <span class="glyphicon glyphicon-star"></span>
+       <% end %>
+       <% (5- professor.rating.to_i).times do %>
+        <span class="glyphicon glyphicon-star-empty"></span>
+       <% end %></td>
     </tr>
   <% end %>
   </tbody>

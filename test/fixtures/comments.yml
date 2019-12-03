@@ -4,8 +4,10 @@ one:
   body: MyText
   commentable: one
   commentable_type: Commentable
+  creater_id: 1
 
 two:
   body: MyText
   commentable: two
   commentable_type: Commentable
+  creater_id: 1

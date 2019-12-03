@@ -22,9 +22,14 @@
       <%= form.text_field :course_code%>
     </div>
 
+    <style>
+    select.selector{
+      width: 100%;
+      }
+    </style>
     <div class = "field">
       <%= form.label :professor %>
-      <%= form.text_field :professor%>
+      <%= form.select :professor , Professor.all.collect(&:name), {:prompt => "Select One"}, {:style =>'width:100%'}%>
      </div>
 
      <div class = "field">

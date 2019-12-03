@@ -1,4 +1,4 @@
-<div class="ui container" style="margin-left: 100px; margin-top: 50px">
+<div class="ui container" style=" margin-top: 50px; margin-bottom: 50px;">
 
         <h1 class="ui dividing header"><%= @course.name %></h1>
 
@@ -12,9 +12,12 @@
 
       <div class = "ui text">
       <p>
-      <img class="ui small circular left floated image" src="https://s3.amazonaws.com/spoke-profiles-prod-assets/avatars/210x210h/337c08f9abb6747b6a5eb789f1b7e704d132adf7.png">
-        <h2 class="ui header">Professor <%=@course.professor %></h2>
-          <%=@course.professor %> is a distinguished lecturer and Professor at the University of Toronto 
+      <div class ="ui small circular left floated image">
+      <%= image_tag @professor.avatar %><br/>
+      </div>
+        <h2 class="ui header">Professor <%= link_to @professor.name, professor_path(@professor) %></h2>
+          <h4>About</h4>
+          <%=@professor.about %>
         </p>
       </div>
       <div class = "ui text" style= "margin-top : 160px">

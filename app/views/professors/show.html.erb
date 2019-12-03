@@ -15,8 +15,18 @@
 </p>
 
 <p>
+  <strong>About:</strong>
+  <%= @professor.about %>
+</p>
+
+<p>
   <strong>Rating:</strong>
-  <%= @professor.rating %>
+  <% @professor.rating.to_i.times do  %>
+    <span class="glyphicon glyphicon-star"></span>
+   <% end %>
+   <% @blank_stars.times do %>
+    <span class="glyphicon glyphicon-star-empty"></span>
+   <% end %>
 </p>
 
 <% if current_user.username == 'admin' %>
