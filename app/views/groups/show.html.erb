@@ -61,7 +61,7 @@
         <%= link_to user_profile_path(member), :class=>"header" do %>
           <%= member.username %>
         <% end %>
-        <div class="description">Some description</div>
+        <div class="description"><%=member.email%></div>
         </div>
       </div>
       <% end %>

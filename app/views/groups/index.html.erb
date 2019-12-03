@@ -48,10 +48,10 @@ $(document).ready(function(){
 <div id="group-cards">
   <div class = "ui four cards" id="myCards" style="margin-top: 10px">
   <% @groups.each do |group| %>
-    <div class ="ui raised link card ">
-    <%= link_to group_path(group), { :class=>"content" } do %>
+    <div class ="ui raised link card " style="height: 230px;">
+    <%= link_to group_path(group), { :class=>"content", :style=>"height: 200px; overflow: hidden" } do %>
         <div class="header"><%= group.name %></div>
-        <div class="meta">Uploaded Date</div>
+        <div class="meta">Uploaded Date: <%= time_ago_in_words(group.updated_at) %> ago</div>
         <div class="description"><%= group.text %></div>
       <% end %>
       <div class="extra content">
@@ -63,9 +63,6 @@ $(document).ready(function(){
             method: :put,
             data: { confirm: 'If you are the only member in the group, the group will be deleted after you leave. Are you sure?' } %>
     <%end%>
-        <div class="right floated author">
-        <img class="ui avatar image"> username
-        </div>
       </div>
       </div>
   <% end %>
@@ -109,10 +106,9 @@ $(document).ready(function(){
 
 <div style = "margin-top : 50px;">
 <%= link_to 'Add New Group', new_group_path, :class => 'ui primary button'%>
-<%= link_to controller: 'welcome' do %>
+<%= link_to 'Main Page', root_path, :class => 'ui secondary button' %>
   <div class = "ui secondary button">
   Main Page
   </div>
-  <% end %>
 </div>
 </div>
