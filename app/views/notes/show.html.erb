@@ -1,4 +1,10 @@
-<h1> <% @note.title %> </h1>
+<div class = "ui container">
+<h1>Show note</h1>
+
+<p>
+  <strong>Title:</strong>
+  <%= @note.title %>
+</p>
 
 <p>
   <strong>Author:</strong>
@@ -30,3 +36,4 @@ end%>
     <%= link_to "Download file", rails_blob_path(@note.noteFile, disposition: "attachment") %>
   <%end%>
 <% end %>
+</div>
