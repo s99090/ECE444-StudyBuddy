@@ -31,6 +31,7 @@ class MeetingsController < ApplicationController
 
     @buddy = nil
     @meeting = nil
+    @amount = 0
 
     if params[:token] != nil
 

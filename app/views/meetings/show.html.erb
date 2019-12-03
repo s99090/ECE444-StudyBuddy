@@ -19,9 +19,27 @@
                     :class => "ui secondary button",
                     data: {confirm: 'Are you sure?'} %> |
       <% end %>
-      <%= link_to 'Back', buddy_meetings_path(@buddy), :class => "ui button" %>
+      <%= link_to 'Back', buddy_meetings_path(@buddy), :class => "ui secondary button" %>
     </div>
   </div>
+  <br>
+  <%= form_tag payment_index_path do %>
+    <article>
+      <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+      <% end %>
+    </article>
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="<%= "pk_test_61c3e7SEnxRRP3Dd0BVBtiDF00guZ5Q9vk" %>"
+      data-description="Pay for an hour of lessons"
+      data-amount="<%= number_to_currency(@buddy.hourly_rate * 100) %>"
+      data-locale="auto"></script>
+    <label class="amount">
+    <span>Amount: <%= number_to_currency(@buddy.hourly_rate) %></span>
+    </label>
+  <% end %>
 
 
   <h3 class="ui dividing header">Conversation</h3>

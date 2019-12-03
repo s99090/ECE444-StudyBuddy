@@ -71,7 +71,7 @@
       <div class="ui content" style="margin-top: 20px;">
         <% if @discussions.distinct.count(:discussion_name) == 0 %>
           <h3 class="ui dividing header"> Discussions</h3>
-          <p>You are currently not in a discussion. Join a <%= link_to 'group', groups_path %></p>
+          <p>You are currently not in a discussion. Join a <%= link_to 'Enter a course.', courses_path %></p>
         <% else %>
           <h3 class="ui dividing header">Discussions</h3>
         <% end %>
@@ -109,7 +109,7 @@
           <div class="ui content" style="margin-top: 20px;">
             <% if @groupchats.distinct.count(:groupchat_name) == 0 %>
               <h3 class="ui dividing header">Group Chats</h3>
-              <p>You are not currently in a group chat. Join a <%= link_to 'group', groups_path %></p>
+              <p>You are not currently in a group chat. Join a <%= link_to 'group chat', groups_path %></p>
             <% else %>
               <h3 class="ui dividing header">Group Chats</h3>
             <% end %>

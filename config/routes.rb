@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   resources :professors
 
+  resources :payment
+
   resources :courses do
     resources :links do
       patch :addUpvote

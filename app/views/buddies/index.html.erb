@@ -32,10 +32,10 @@
     <table class="ui selectable celled table" style="margin-top: 30px;">
       <thead>
       <tr>
+        <th>Image</th>
         <th>Name</th>
         <th>Description</th>
         <th>Hourly rate</th>
-        <th>Image</th>
         <th>Courses</th>
         <th>About Me</th>
         <th>Interested?</th>
@@ -49,15 +49,15 @@
     <% else %>
       <tr>
         <td>
-          <%= link_to buddy.fname + " " + buddy.lname, buddy %>
-        </td>
-        <td><%= buddy.description %></td>
-        <td><%= buddy.hourly_rate %></td>
-        <td>
           <div class="ui avatar image">
             <%= image_tag current_user.profile.avatar %>
           </div>
         </td>
+        <td>
+          <%= link_to buddy.fname + " " + buddy.lname, buddy %>
+        </td>
+        <td><%= buddy.description %></td>
+        <td><%= buddy.hourly_rate %></td>
         <td>
           <% buddy.courses.split(',').each do |c| %>
             <%= link_to c, Course.find_by_name(c) %>
