@@ -33,7 +33,7 @@ class NotesController < ApplicationController
 
   def edit
     @note = Note.find(params[:id])
-    @course = Note.find(params[:course_id])
+    @course = Course.find(params[:course_id])
   end
 
   def update

@@ -40,7 +40,6 @@
         <th>About Me</th>
         <th>Interested?</th>
         <th>Net Positive Votes</th>
-        <th>Percentage Positive Votes</th>
       </tr>
       </thead>
   <% end %>
@@ -75,7 +74,6 @@
           <% end %>
         </td>
         <td><%= buddy.upvotes.length - buddy.downvotes.length %></td>
-        <td><%= (100*buddy.upvotes.length)/(buddy.upvotes.length + buddy.downvotes.length) %></td>
       </tr>
     <% end %>
   <% end %>
