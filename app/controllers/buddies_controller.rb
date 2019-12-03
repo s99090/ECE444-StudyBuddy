@@ -93,7 +93,7 @@ class BuddiesController < ApplicationController
   end
 
   def buddy_params
-    Buddy.new(params.require(:buddy).permit(:id, :username, :fname, :lname, :description, :hourly_rate, :courses))
+    Buddy.new(params.require(:buddy).permit(:id, :username, :fname, :lname, :description, :hourly_rate, :courses, :about))
   end
 
   def gather_course_list
