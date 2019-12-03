@@ -3,7 +3,7 @@
 
   <p>
     <strong>Invitee:</strong>
-    <%= @meeting.name %><br/>
+    <%= User.find(@meeting.invitee).username %><br/>
     <strong>Date Created:</strong>
     <%= @meeting.created_at %><br/>
     <strong>Initial Post:</strong>

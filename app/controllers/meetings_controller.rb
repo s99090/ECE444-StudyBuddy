@@ -108,14 +108,17 @@ class MeetingsController < ApplicationController
   end
 
   def destroy
-    @group = Group.find(params[:group_id])
-    @event = @group.events.find(params[:id])
+    @buddy = Buddy.find(params[:buddy_id])
+    @meeting = @buddy.meetings.find(params[:id])
 
-    if @event.creater_id == current_user.id
-      @event.destroy
-      redirect_to group_path(@group)
+    if Buddy.find(@meeting.buddy_id).username == current_user.username
+
+      @meeting.destroy
+      redirect_to buddy_meetings_url(@buddy)
+
     else
-      @event.errors[:base] << "Sorry, you are not the creater of this event!"
+
+      @buddy.errors[:base] << "Sorry, you are not the creater of this meeting!"
       render 'show'
     end
   end
