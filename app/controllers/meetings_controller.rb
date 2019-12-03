@@ -1,18 +1,18 @@
 class MeetingsController < ApplicationController
-  before_action :checkIfAllowed
+  # before_action :checkIfAllowed
 
-  def checkIfAllowed
-    @buddy = Buddy.find(params[:buddy_id])
-    if @buddy.username != current_user.username && current_user.username != "borhterbeat" #or @buddy.interested_users.include?(current_user.username)
-      @buddy.errors.add(:courses, "You are not allowed to be here")
-      puts current_user.username
-      redirect_to buddies_path
-    end
-  end
+  # def checkIfAllowed
+  #   @buddy = Buddy.find(params[:buddy_id])
+  #   if @buddy.username != current_user.username && current_user.username != "borhterbeat" #or @buddy.interested_users.include?(current_user.username)
+  #     @buddy.errors.add(:courses, "You are not allowed to be here")
+  #     puts current_user.username
+  #     redirect_to buddies_path
+  #   end
+  # end
 
   def index
-    puts("ASDSADSAD")
-    puts(params)
+    # puts("ASDSADSAD")
+    # puts(params)
     @buddy = Buddy.find(params[:buddy_id])
     if @buddy.username != current_user.username
       redirect_to buddies_path
@@ -58,8 +58,10 @@ class MeetingsController < ApplicationController
     end
     @meeting = @buddy.meetings.build(params.require(:meeting).permit(:name, :initial_post)) #have to fix this
     @meeting.invitee = params[:meeting][:users]
+    @meeting.meeting_token = SecureRandom.urlsafe_base64.to_s
 
     if params[:meeting][:users] != "" && @meeting.save
+
       redirect_to buddy_meeting_path(@buddy, @meeting)
       #we need to send a notification to the user that there was a meeting created
     else
