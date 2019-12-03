@@ -49,19 +49,14 @@
     <% if !buddy.email_confirmed %>
     <% else %>
       <tr>
+      <td>
+      <div class="ui avatar image">
+        <%= image_tag current_user.profile.avatar %>
+      </div>
+    </td>
         <td>
           <%= link_to buddy.fname + " " + buddy.lname, buddy %>
         </td> 
-        <td><%= buddy.description %></td>
-        <td><%= buddy.hourly_rate %></td>
-        <td>
-          <div class="ui avatar image">
-            <%= image_tag current_user.profile.avatar %>
-          </div>
-        </td>
-        <td>
-          <%= link_to buddy.fname + " " + buddy.lname, buddy %>
-        </td>
         <td><%= buddy.description %></td>
         <td><%= buddy.hourly_rate %></td>
         <td>
