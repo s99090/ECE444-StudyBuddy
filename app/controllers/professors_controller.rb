@@ -5,6 +5,7 @@ class ProfessorsController < ApplicationController
 
   def show
     @professor = Professor.find(params[:id])
+    @courses = Course.where(professor: @professor.name)
     @blank_stars = 5 - @professor.rating.to_i
     if @professor.avatar.present?
     else

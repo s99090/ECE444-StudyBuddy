@@ -9,6 +9,31 @@
   <%= @professor.department %>
 </p>
 
+<% if @courses.distinct.count(:course_code) == 0%>
+<table class="ui sortable selectable celled table" id="courses-table" style="display:none;">
+<%else%>
+<table class="ui selectable celled table" id="courses-table" style="margin-top: 30px;">
+<thead>
+  <tr>
+  <th>Course Name</th>
+  <th>Name</th>
+  <th>Subject</th>
+  <th>Term</th>
+  </tr>
+  </thead>
+<%end%>
+
+<tbody id="myTable" >
+  <% @courses.each do |course| %>
+    <tr>
+      <td><%= link_to course.course_code, course_path(course) %></td>
+      <td><%= course.name %></td>
+      <td><%= course.subject %></td>
+      <td><%= course.term %></td>
+    </tr>
+  <% end %>
+  </tbody>
+
 <p>
   <strong>Position:</strong>
   <%= @professor.position %>
