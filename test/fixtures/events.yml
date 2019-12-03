@@ -1,15 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  type: 
+  event_type: 
   name: MyString
   content: MyText
   datetime: 2019-11-23 15:46:50
   group: one
+  creater_id: 1
 
 two:
-  type: 
+  event_type: 
   name: MyString
   content: MyText
   datetime: 2019-11-23 15:46:50
   group: two
+  creater_id: 1
