@@ -66,6 +66,21 @@ class BuddiesController < ApplicationController
     redirect_to buddies_path
   end
 
+  def add_interested
+    @buddy = Buddy.find(params[:buddy_id])
+    @user = User.find(params[:current_user_id])
+
+    if @buddy.username != @user.username
+
+      unless @buddy.interested_users.include?(params[:current_user_id])
+        @buddy.interested_users.push(params[:current_user_id])
+        @buddy.save
+      end
+
+    end
+
+  end
+
   private
 
   def deliver_signup_email
@@ -75,7 +90,7 @@ class BuddiesController < ApplicationController
   end
 
   def buddy_params
-    Buddy.new(params.require(:buddy).permit(:id, :username, :fname, :lname, :description, :about, :hourly_rate, :courses))
+    Buddy.new(params.require(:buddy).permit(:id, :username, :fname, :lname, :description, :hourly_rate, :courses))
   end
 
   def gather_course_list

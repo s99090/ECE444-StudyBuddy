@@ -12,10 +12,13 @@
     crossorigin="anonymous"></script>
   <script src="semantic/dist/semantic.min.js"></script>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>        
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <%= csrf_meta_tags %>
 </head>
 
 <body>
@@ -30,6 +33,11 @@
       <a class="active item" href="/courses">Courses</a>
     <% else %>
       <a class="item" href="/courses">Courses</a>
+    <% end %>
+    <% if request.fullpath == "/professors" %>
+      <a class="active item" href="/professors">Professors</a>
+    <% else %>
+      <a class="item" href="/professors">Professors</a>
     <% end %>
     <% if request.fullpath == "/groups" %>
       <a class="active item" href="/groups">Groups</a>

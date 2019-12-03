@@ -1,0 +1,65 @@
+<div class="ui container" style="margin-top: 20px">
+  <h1><%= @meeting.name %></h1>
+
+  <p>
+    <strong>Invitee:</strong>
+    <%= @meeting.name %><br/>
+    <strong>Date Created:</strong>
+    <%= @meeting.created_at %><br/>
+    <strong>Initial Post:</strong>
+    <%= @meeting.initial_post %><br/>
+  </p>
+
+  <div style="margin-top : 30px;">
+    <div class="buttons">
+      <% if @buddy.username == current_user.username %>
+        <%= link_to 'Edit Meeting', edit_buddy_meeting_path(@buddy, @meeting), :class => "ui primary button" %> |
+        <%= link_to 'Delete', buddy_meeting_path(@buddy, @meeting),
+                    method: :delete,
+                    :class => "ui secondary button",
+                    data: {confirm: 'Are you sure?'} %> |
+      <% end %>
+      <%= link_to 'Back', buddy_meetings_path(@buddy), :class => "ui button" %>
+    </div>
+  </div>
+
+
+  <h3 class="ui dividing header">Conversation</h3>
+  <div class="ui comments">
+    <% @comments.sort_by(&:created_at).each do |comment| %>
+      <div class="comment">
+        <a class="avatar">
+          <%= image_tag("default_profile.png") %>
+        </a>
+        <div class="content">
+          <a class="author"><%= link_to User.find(comment.creater_id).username, user_profile_path(User.find(comment.creater_id)) %></a>
+          <div class="metadata">
+            <span class="date"><%= comment.created_at %> </span>
+          </div>
+          <div class="text">
+            <%= comment.body %>
+            <% if comment.creater_id == current_user.id %>
+            <% end %>
+          </div>
+          <div class="actions">
+            <% if comment.creater_id == current_user.id %>
+              <%= link_to 'Delete', buddy_meeting_comment_path(@buddy, @meeting, comment),
+                          method: :delete,
+                          data: {confirm: 'Are you sure?'} %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="ui reply form">
+      <h4>Message body:</h4>
+      <%= form_with(model: [@buddy, @meeting, @comment], local: true) do |form| %>
+        <div class="field">
+          <%= form.text_area :body %>
+        </div>
+        <%= form.submit class: "ui blue submit button" %>
+      <% end %>
+    </div>
+
+  </div>

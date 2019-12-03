@@ -1,8 +1,6 @@
-<h1>Edit Note <%= @note.title %> </h1>
-
 <%= form_with scope: :note, :class => "ui form", url: course_note_path(@course), method: :patch, local:true do |form| %>
-  <div style="width: 1500px; margin-left: auto; margin-right: auto; margin-top: 75px; margin-bottom: 100px">
-
+  <div class = "ui container" style="margin-top: 50px;">
+  <h1 class="ui dividing header">Edit Note <%= @note.title %> </h1>
   <% if @note.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -27,9 +25,10 @@
     <%= form.text_area :description %>
   </div>
 
-
+  <div class="buttons">
     <%= form.submit :class=>'ui primary button'%>
     <%= link_to 'Back', course_notes_path, :class=>'ui secondary button' %>
+    </div>
 
 
   </div>

@@ -1,0 +1,36 @@
+<%= form_with model: [@buddy, @meeting], :class => "ui form", local: true do |form| %>
+
+  <% if @meeting.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@meeting.errors.count, "error") %> prohibited this event from being saved:
+      </h2>
+      <ul>
+        <% @meeting.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= form.label :name, "Meeting Name" %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :courses, "Please select the student you would like to start a meeting with:" %>
+    <%= form.collection_select(:users, User.where(id: @buddy.interested_users), :id, :username, {:prompt => "Interested users:"}, {:multiple => false}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :initial_post %><br>
+    <%= form.text_area :initial_post %>
+  </div>
+
+  <div class="field">
+    <%= form.submit :class => 'ui primary button' %>
+  </div>
+<% end %>
+  
