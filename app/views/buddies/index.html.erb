@@ -1,8 +1,11 @@
 
 <div class="ui container" style="margin-top: 50px">
 
-  <h1 class="ui dividing header">There are 0 Buddies available to help you!</h1>
-
+<% if @buddies.length == 1 %>
+  <h1 class="ui dividing header">There is <%= @buddies.length%> Buddy available to help you!</h1>
+<% else %>
+<h1 class="ui dividing header">There are <%= @buddies.length%> Buddies available to help you!</h1>
+<% end %>
 
   <script>
       $(document).ready(function () {
