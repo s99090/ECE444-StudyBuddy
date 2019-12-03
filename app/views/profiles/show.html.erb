@@ -1,162 +1,169 @@
 <div class="ui container" style="margin-top: 50px; margin-bottom: 50px;">
   <div class="ui grid">
-  <div class="four wide column">
-  <div class="ui medium image">
-    <%= image_tag @profile.avatar %><br/>
-  </div>
-  <div class="content">
-    <div class="header"><h2><%= @profile.fname %> <%= @profile.lname %></h2></div>
-    <div class="meta">
-      <span class="date">Joined in 2019</span>
-    </div>
-    <div class="description">
-      <%= @profile.fname %>
-      @profile.about
-    </div>
-    <div class="description">
+    <div class="four wide column">
+      <div class="ui medium image">
+        <%= image_tag @profile.avatar %><br/>
+      </div>
+      <div class="content">
+        <div class="header"><h2><%= @profile.fname %> <%= @profile.lname %></h2></div>
+        <div class="meta">
+          <span class="date">Joined in 2019</span>
+        </div>
+        <div class="description">
+          <%= @profile.fname %>
+          @profile.about
+        </div>
+        <div class="description">
 
-      <% unless @buddy.nil? %>
-        <%= link_to 'Remove My Listing from Buddies Section', buddy_path(@buddy), method: :delete,
-                    data: {confirm: 'Are you sure you would like to remove your listing from the Buddies section?'} %>
+          <% unless @buddy.nil? %>
+            <%= link_to 'Remove My Listing from Buddies Section', buddy_path(@buddy), method: :delete,
+                        data: {confirm: 'Are you sure you would like to remove your listing from the Buddies section?'} %>
+          <% end %>
+
+        </div>
+
+      </div>
+
+      <div class="ui content">
+
+      </div>
+
+      <% if @user == current_user %>
+
+        <% unless @buddy.nil? %>
+          <% if @buddy.email_confirmed? %>
+            <%= link_to 'My meetings', buddy_meetings_url(@buddy.id) %><br/>
+          <% end %>
+        <% end %>
+
+        <%= link_to 'Edit Profile', edit_user_profile_path %><br/>
+        <%= link_to 'Edit Account', edit_user_registration_path %>
+      <% end %>
+    </div>
+
+
+    <div class="twelve wide column">
+      <% if @user == current_user %>
+        <h1> My Profile </h1>
+      <% else %>
+        <h1> <%= @user.username %>'s Profile </h1>
       <% end %>
 
-    </div>
+      <div class="ui content">
+        <% if @user.groups.distinct.count(:name) == 0 %>
+          <h3 class="ui dividing header">Groups</h3>
+          <p>You are currently not in a group. Join a <%= link_to 'group', groups_path %></p>
+        <% else %>
+          <h3 class="ui dividing header">Groups</h3>
+        <% end %>
+        <div class="ui relaxed divided list">
+          <% @user.groups.each do |group| %>
+            <div class="ui item">
+              <div class="content">
+                <%= link_to group.name, group_path(group), :class => "header" %>
+                <div class="description"><%= group.text %></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
 
-  </div>
-
-  <div class = "ui content">
-  
-  </div>
-
-  <% if @user == current_user %>
-    <%= link_to 'Edit Profile', edit_user_profile_path %><br/>
-    <%= link_to 'Edit Account', edit_user_registration_path %>
-  <% end %>
-</div>
-
-
-<div class="twelve wide column">
-  <% if @user == current_user %>
-  <h1> My Profile </h1>
-<% else %>
-  <h1> <%= @user.username %>'s Profile </h1>
-<% end %>
-
-<div class="ui content">
-<% if @user.groups.distinct.count(:name) == 0%>
-<h3 class="ui dividing header">Groups</h3>
-<p>You are currently not in a group. Join a <%= link_to 'group', groups_path%></p>
-<%else%>
-<h3 class="ui dividing header">Groups</h3>
-<%end%>
-<div class ="ui relaxed divided list">
-<% @user.groups.each do |group| %>
-  <div class="ui item">
-  <div class="content">
-  <%= link_to group.name, group_path(group),:class=>"header" %>
-    <div class="description"><%= group.text %></div>
-  </div>
-  </div>
-<%end%>
-</div>
-</div>
-
-<div class="ui content" style = "margin-top: 20px;">
-<% if @discussions.distinct.count(:discussion_name) == 0%>
-<h3 class="ui dividing header"> Discussions</h3>
-<p>You are currently not in a discussion. Join a <%= link_to 'group', groups_path%></p>
-<%else%>
-<h3 class="ui dividing header">Discussions</h3>
-<%end%>
-<div class ="ui relaxed divided list">
-<% @discussions.each do |discussion| %>
-  <div class="ui item">
-    <div class="content">
-    <%= link_to discussion.discussion_name, course_discussion_path(Course.find(discussion.course_id), discussion), :class=>"header"%>
-      <div class="description"><%= discussion.initial_post %></div>
-  </div>
-</div>
-<%end%>
-</div>
+      <div class="ui content" style="margin-top: 20px;">
+        <% if @discussions.distinct.count(:discussion_name) == 0 %>
+          <h3 class="ui dividing header"> Discussions</h3>
+          <p>You are currently not in a discussion. Join a <%= link_to 'group', groups_path %></p>
+        <% else %>
+          <h3 class="ui dividing header">Discussions</h3>
+        <% end %>
+        <div class="ui relaxed divided list">
+          <% @discussions.each do |discussion| %>
+            <div class="ui item">
+              <div class="content">
+                <%= link_to discussion.discussion_name, course_discussion_path(Course.find(discussion.course_id), discussion), :class => "header" %>
+                <div class="description"><%= discussion.initial_post %></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
 
 
-<div class="ui content" style = "margin-top: 20px;">
-<% if @events.distinct.count(:name) == 0%>
-<h3 class="ui dividing header"> Group Events</h3>
-<p>You are not currently participating in an event. Join a <%= link_to 'group', groups_path%></p>
-<%else%>
-<h3 class="ui dividing header">Group Events</h3>
-<%end%>
-<div class ="ui relaxed divided list">
-<% @events.each do |event| %>
+        <div class="ui content" style="margin-top: 20px;">
+          <% if @events.distinct.count(:name) == 0 %>
+            <h3 class="ui dividing header"> Group Events</h3>
+            <p>You are not currently participating in an event. Join a <%= link_to 'group', groups_path %></p>
+          <% else %>
+            <h3 class="ui dividing header">Group Events</h3>
+          <% end %>
+          <div class="ui relaxed divided list">
+            <% @events.each do |event| %>
 
-  <div class="ui item">
-  <div class="content">
-  <%= link_to event.name, group_event_path(Group.find(event.group_id),event), :class=>"header"%>
-    <div class="description">  <%= event.content %></div>
-</div>
-</div>
-<%end%>
-</div>
+              <div class="ui item">
+                <div class="content">
+                  <%= link_to event.name, group_event_path(Group.find(event.group_id), event), :class => "header" %>
+                  <div class="description">  <%= event.content %></div>
+                </div>
+              </div>
+            <% end %>
+          </div>
 
-<div class="ui content" style = "margin-top: 20px;">
-<% if @groupchats.distinct.count(:groupchat_name) == 0%>
-<h3 class="ui dividing header">Group Chats</h3>
-<p>You are not currently in a group chat. Join a <%= link_to 'group', groups_path%></p>
-<%else%>
-<h3 class="ui dividing header">Group Chats</h3>
-<%end%>
-<div class ="ui relaxed divided list">
-<% @groupchats.each do |groupchat| %>
+          <div class="ui content" style="margin-top: 20px;">
+            <% if @groupchats.distinct.count(:groupchat_name) == 0 %>
+              <h3 class="ui dividing header">Group Chats</h3>
+              <p>You are not currently in a group chat. Join a <%= link_to 'group', groups_path %></p>
+            <% else %>
+              <h3 class="ui dividing header">Group Chats</h3>
+            <% end %>
+            <div class="ui relaxed divided list">
+              <% @groupchats.each do |groupchat| %>
 
-  <div class="ui item">
-  <div class="content">
-  <%= link_to groupchat.groupchat_name, group_groupchat_path(Group.find(groupchat.group_id), groupchat), :class=>"header"%>
-    <div class="description">  <%= groupchat.initial_post %></div>
-</div>
-</div>
-<%end%>
-</div>
+                <div class="ui item">
+                  <div class="content">
+                    <%= link_to groupchat.groupchat_name, group_groupchat_path(Group.find(groupchat.group_id), groupchat), :class => "header" %>
+                    <div class="description">  <%= groupchat.initial_post %></div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
 
 
-<div class="ui content" style = "margin-top: 20px;">
-<% if @notes.distinct.count(:title) == 0%>
-<h3 class="ui dividing header">Notes</h3>
-<p>You currently do not have a note. Enter a <%= link_to 'course', courses_path%></p>
-<%else%>
-<h3 class="ui dividing header">Notes</h3>
-<%end%>
-<div class ="ui relaxed divided list">
-<% @notes.each do |note| %>
-  <div class="ui item">
-  <div class="content">
-  <%= link_to note.title, course_note_path(Course.find(note.course_id), note),:class=>"header"%>
-    <div class="description">  <%= note.description %></div>
-</div>
-</div>
-<%end%>
-</div>
+            <div class="ui content" style="margin-top: 20px;">
+              <% if @notes.distinct.count(:title) == 0 %>
+                <h3 class="ui dividing header">Notes</h3>
+                <p>You currently do not have a note. Enter a <%= link_to 'course', courses_path %></p>
+              <% else %>
+                <h3 class="ui dividing header">Notes</h3>
+              <% end %>
+              <div class="ui relaxed divided list">
+                <% @notes.each do |note| %>
+                  <div class="ui item">
+                    <div class="content">
+                      <%= link_to note.title, course_note_path(Course.find(note.course_id), note), :class => "header" %>
+                      <div class="description">  <%= note.description %></div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
 
-<div class="ui content" style = "margin-top: 20px;">
-<% if @links.distinct.count(:link_name) == 0%>
-<h3 class="ui dividing header">Links</h3>
-<p>You currently do not have a link. Enter a <%= link_to 'course', courses_path%></p>
-<%else%>
-<h3 class="ui dividing header">Links</h3>
-<%end%>
-<div class ="ui relaxed divided list">
-<% @links.each do |link| %>
-  <div class="ui item">
-  <div class="content">
-  <%= link_to link.url, link.link_url, :target => "_blank", :class=>"header"  %>
-    <div class="description">  <%= link.name %></div>
-</div>
-</div>
-<%end%>
-</div>
+              <div class="ui content" style="margin-top: 20px;">
+                <% if @links.distinct.count(:link_name) == 0 %>
+                  <h3 class="ui dividing header">Links</h3>
+                  <p>You currently do not have a link. Enter a <%= link_to 'course', courses_path %></p>
+                <% else %>
+                  <h3 class="ui dividing header">Links</h3>
+                <% end %>
+                <div class="ui relaxed divided list">
+                  <% @links.each do |link| %>
+                    <div class="ui item">
+                      <div class="content">
+                        <%= link_to link.url, link.link_url, :target => "_blank", :class => "header" %>
+                        <div class="description">  <%= link.name %></div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
 
-</div>
+              </div>
 
-  </div>
-</div>
+            </div>
+          </div>
 
