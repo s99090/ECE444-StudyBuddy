@@ -1,25 +1,24 @@
-<h1>Edit My Profile</h1>
-
-<%= form_with model: [current_user, @profile], local: true do |form| %>
-  
-  <p>
+<%= form_with model: [current_user, @profile], :class => "ui form", local: true do |form| %>
+  <div class = "ui container" style="margin-top: 50px;">
+  <h1 class="ui dividing header">Edit My Profile</h1>
+  <div class = "ui field">
     <%= image_tag @profile.avatar, :style => "height: 60px; weight: 60px;" %><br /><br>
     <%= form.file_field :avatar %>
-  </p>
+  </div>
 
-  <p>
+  <div class = "ui field">
     <%= form.label :last_name %><br>
     <%= form.text_field :lname %>
-  </p>
+  </div>
 
-  <p>
+  <div class = "ui field">
     <%= form.label :first_name %><br>
     <%= form.text_field :fname %>
-  </p>
+  </div>
 
-  <p>
-    <%= form.submit %>
-  </p>
+  <div class = "ui field">
+    <%= form.submit :class=>'ui primary button'%>
+    <%= link_to 'Back', user_profile_path, :class=>'ui secondary button' %>
+  </div>
+  </div>
 <% end %>
-
-<%= link_to 'Back', user_profile_path %>
