@@ -32,7 +32,9 @@ class MeetingsController < ApplicationController
   def show
     @buddy = Buddy.find(params[:buddy_id])
     @meeting = @buddy.meetings.find(params[:id])
-    if @buddy.username != current_user.username && current_user.username != @meeting.invitee
+
+    unless @buddy.username == current_user.username || current_user.id == @meeting.invitee.to_i
+      # raise ""
       redirect_to buddies_path
     end
 
