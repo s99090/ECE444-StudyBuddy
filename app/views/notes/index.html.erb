@@ -41,6 +41,28 @@
           <img class="ui avatar image"> <%= User.find(note.user_id).username %>
         </div>
       </div>
+      <div class="extra content" style="margin-top: 10px;">
+      <div class="ui labeled button" tabindex="0">
+    <%= link_to course_note_addUpvote_path(@course,note), method: :patch do %>
+      <div class="ui red button">
+      <i class="hand point up icon"></i> Upvotes
+    </div>
+    <a class="ui basic red left pointing label">
+    <%= note.upvotes.length %>
+    </a>
+    <% end %>
+    </div>
+    <div class="ui labeled button" tabindex="0">
+    <%= link_to course_note_addDownvote_path(@course, note), method: :patch do %>
+      <div class="ui basic blue button">
+      <i class="hand point down icon"></i> Downvotes
+    </div>
+    <a class="ui basic left pointing blue label">
+      <%= note.downvotes.length%>
+    </a>
+    <% end %>
+    </div>
+    </div>
       <% end %>
     <% end %>
   </div>

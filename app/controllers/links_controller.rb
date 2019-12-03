@@ -42,14 +42,17 @@ class LinksController < ApplicationController
                 @link.save
                 redirect_to course_links_path
            else
-                puts "already downvoted this link"
+                
                 @link.upvotes << (current_user.id)
                 @link.downvotes.pop(current_user.id)
                 @link.save
                 redirect_to course_links_path
            end
+        else
+            flash[:Notice] = "You have already upvoted this link"
+            redirect_to course_links_path
         end
-        # redirect_to course_link_path(@course, @link)
+        
     end
     def addDownvote
         @course = Course.find(params[:course_id])
@@ -61,14 +64,15 @@ class LinksController < ApplicationController
                 redirect_to course_links_path
            else
                 #need to raise an error here
-                puts "already upvoted this link"
+
                 @link.downvotes << (current_user.id)
                 @link.upvotes.pop(current_user.id)
                 @link.save
                 redirect_to course_links_path
            end
         else
-            puts "already downvoted this link"
+            flash[:Notice] = "You have already downvoted this link"
+            redirect_to course_links_path
         end
     end
 end

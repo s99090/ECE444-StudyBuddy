@@ -7,10 +7,12 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   resources :buddies do
-   
     resources :meetings do
       resources :comments
     end
+    patch :addUpvote
+    patch :addDownvote
+
   end
   patch '/buddies/:buddy_id/:current_user_id/add_interested', :to => "buddies#add_interested", as: 'buddy_add_interested'
 
@@ -25,7 +27,10 @@ Rails.application.routes.draw do
       patch :addUpvote
       patch :addDownvote
     end
-    resources :notes
+    resources :notes do
+      patch :addUpvote
+      patch :addDownvote
+    end
     resources :discussions do
       resources :comments
     end
