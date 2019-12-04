@@ -1,24 +1,26 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Usage
+To use the app online access the website at: https://study-buddy-3.herokuapp.com/
 
-Things you may want to cover:
+To run locally simply clone the directory and run the following commands
 
-* Ruby version
+```
+bundle install
+rails server
+```
 
-* System dependencies
+# Features
 
-* Configuration
+# Development
+Our team used BDD and user stories to develop the main features.
+We also followed an agile development strategy using Trello, 
 
-* Database creation
+# Testing
+Our code was tested manually through various user flows, on different browsers.
+We also have used unit tests to do automated testing.
 
-* Database initialization
 
-* How to run the test suite
+# Extras
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Ruby version 6.0.00
