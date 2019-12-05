@@ -2,6 +2,7 @@
 
 # Usage
 To use the app online access the website at: https://study-buddy-3.herokuapp.com/
+(Note sign up is limitied due to trail function of sendgrid, but signup is available with facebook)
 
 To run locally simply clone the directory and run the following commands
 
